@@ -50,6 +50,9 @@ public class MainGUI extends JFrame {
 	private JRadioButton rdbtnNewRadioButton_2;
 	private JPanel panel;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JMenuBar menuBar;
+	private JMenu mnLogin;
+	private JMenuItem mntmRegistro;
 	
 	/**
 	 * This is the default constructor
@@ -84,7 +87,8 @@ public class MainGUI extends JFrame {
 	 */
 	private void initialize() {
 		// this.setSize(271, 295);
-		this.setSize(495, 290);
+		this.setSize(652, 402);
+		setJMenuBar(getMenuBar_1());
 		this.setContentPane(getJContentPane());
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
@@ -217,5 +221,25 @@ public class MainGUI extends JFrame {
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
 	
+	private JMenuBar getMenuBar_1() {
+		if (menuBar == null) {
+			menuBar = new JMenuBar();
+			menuBar.add(getMnLogin());
+		}
+		return menuBar;
+	}
+	private JMenu getMnLogin() {
+		if (mnLogin == null) {
+			mnLogin = new JMenu(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.mnLogin.text_1")); //$NON-NLS-1$ //$NON-NLS-2$
+			mnLogin.add(getMntmRegistro());
+		}
+		return mnLogin;
+	}
+	private JMenuItem getMntmRegistro() {
+		if (mntmRegistro == null) {
+			mntmRegistro = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.mntmRegistro.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+		return mntmRegistro;
+	}
 } // @jve:decl-index=0:visual-constraint="0,0"
 
