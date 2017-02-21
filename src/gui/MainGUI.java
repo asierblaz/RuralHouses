@@ -53,6 +53,7 @@ public class MainGUI extends JFrame {
 	private JMenuBar menuBar;
 	private JMenu mnLogin;
 	private JMenuItem mntmRegistro;
+	private JMenuItem mntmRegistrarse;
 	
 	/**
 	 * This is the default constructor
@@ -232,14 +233,35 @@ public class MainGUI extends JFrame {
 		if (mnLogin == null) {
 			mnLogin = new JMenu(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.mnLogin.text_1")); //$NON-NLS-1$ //$NON-NLS-2$
 			mnLogin.add(getMntmRegistro());
+			mnLogin.add(getMntmRegistrarse());
 		}
 		return mnLogin;
 	}
 	private JMenuItem getMntmRegistro() {
 		if (mntmRegistro == null) {
 			mntmRegistro = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.mntmRegistro.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			mntmRegistro.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					JFrame entrar = new LoginGUI();
+					entrar.setVisible(true);
+					setVisible(false);
+				}
+			});
 		}
 		return mntmRegistro;
+	}
+	private JMenuItem getMntmRegistrarse() {
+		if (mntmRegistrarse == null) {
+			mntmRegistrarse = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.mntmRegistrarse.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			mntmRegistrarse.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JFrame registro = new LoginGUI();
+					registro.setVisible(true);
+					setVisible(false);
+				}
+			});
+		}
+		return mntmRegistrarse;
 	}
 } // @jve:decl-index=0:visual-constraint="0,0"
 

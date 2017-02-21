@@ -65,17 +65,16 @@ public class LoginGUI extends JFrame {
 		lblContrasea.setBounds(43, 122, 97, 25);
 		contentPane.add(lblContrasea);
 		
-		JButton btnAtrs = new JButton("Atr\u00E1s");
-		btnAtrs.addActionListener(new ActionListener() {
+		JButton volver = new JButton("Volver");
+		volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrame atras = new MainGUI();
 				atras.setVisible(true);
-				dispose();
-			
+				setVisible(false);
 			}
 		});
-		btnAtrs.setBounds(438, 277, 97, 25);
-		contentPane.add(btnAtrs);
+		volver.setBounds(438, 277, 97, 25);
+		contentPane.add(volver);
 		
 		JLabel lblNombreDeUsuario = new JLabel("Nombre de Usuario");
 		lblNombreDeUsuario.setBounds(30, 71, 135, 25);
@@ -93,9 +92,9 @@ public class LoginGUI extends JFrame {
 		JButton btnnoTienesCuenta = new JButton("\u00BFNo tienes cuenta?");
 		btnnoTienesCuenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFrame registro = new Registro();
+				JFrame registro = new RegistroGUI();
 				registro.setVisible(true);
-				dispose();
+				setVisible(false);
 			}
 		});
 		btnnoTienesCuenta.setBounds(43, 277, 177, 25);

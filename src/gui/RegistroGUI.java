@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Registro extends JFrame {
+public class RegistroGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -29,7 +29,7 @@ public class Registro extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Registro frame = new Registro();
+					RegistroGUI frame = new RegistroGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +41,7 @@ public class Registro extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Registro() {
+	public RegistroGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 448, 481);
 		contentPane = new JPanel();
@@ -112,7 +112,7 @@ public class Registro extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JFrame vuelta= new MainGUI();
 				vuelta.setVisible(true);
-				dispose();
+				setVisible(false);
 			}
 		});
 		btnVolver.setBounds(24, 396, 97, 25);
@@ -123,7 +123,7 @@ public class Registro extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JFrame login= new LoginGUI();
 				login.setVisible(true);
-				dispose();
+				setVisible(false);
 			}
 		});
 		btnEntrarEnEl.setBounds(161, 363, 156, 25);
