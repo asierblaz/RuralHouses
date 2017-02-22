@@ -2,9 +2,10 @@ package businessLogic;
 
 import java.util.Iterator;
 import java.util.Vector;
+import java.rmi.RemoteException;
 import java.util.Date;
 
-
+import domain.Client;
 //import domain.Booking;
 import domain.Offer;
 import domain.RuralHouse;
@@ -55,6 +56,11 @@ public interface ApplicationFacadeInterfaceWS  {
 	 * @return the first offer that overlaps with those dates, or null if there is no overlapping offer
 	 */
 
+	
+	@WebMethod public Client crearCliente (String nombre,String usuario, String pass, String cuenta) throws RemoteException, Exception;
+	
+	
+	
 	@WebMethod public Vector<Offer> getOffers( RuralHouse rh, Date firstDay,  Date lastDay) ;
 	
 	@WebMethod public void initializeBD();
