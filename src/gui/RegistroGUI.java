@@ -11,6 +11,8 @@ import businessLogic.ApplicationFacadeInterfaceWS;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -29,6 +31,7 @@ public class RegistroGUI extends JFrame {
 	private String pass;
 	private String cuenta;
 	private boolean tipoOwner;
+	private boolean tipoCliente;
 	private final ButtonGroup TipoUsuario = new ButtonGroup();
 	private JRadioButton rdbtnCliente;
 	private JRadioButton rdbtnOwner;
@@ -61,7 +64,7 @@ public class RegistroGUI extends JFrame {
 	 */
 	public RegistroGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 388, 436);
+		setBounds(100, 100, 396, 398);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -77,7 +80,7 @@ public class RegistroGUI extends JFrame {
 		contentPane.add(lblNombre);
 		
 		textUsuario = new JTextField();
-		textUsuario.setBounds(179, 155, 156, 22);
+		textUsuario.setBounds(179, 106, 156, 22);
 		contentPane.add(textUsuario);
 		textUsuario.setColumns(10);
 		
@@ -87,15 +90,15 @@ public class RegistroGUI extends JFrame {
 		contentPane.add(lblRegistro);
 		
 		JLabel lblNombreDeUsuario = new JLabel("Nombre de Usuario:");
-		lblNombreDeUsuario.setBounds(54, 155, 131, 22);
+		lblNombreDeUsuario.setBounds(54, 106, 131, 22);
 		contentPane.add(lblNombreDeUsuario);
 		
 		JLabel lblCuentaBancaria = new JLabel("Cuenta Bancaria:");
-		lblCuentaBancaria.setBounds(54, 203, 113, 16);
+		lblCuentaBancaria.setBounds(54, 182, 113, 16);
 		contentPane.add(lblCuentaBancaria);
 		
 		textCuenta = new JTextField();
-		textCuenta.setBounds(179, 200, 156, 22);
+		textCuenta.setBounds(179, 179, 156, 22);
 		contentPane.add(textCuenta);
 		textCuenta.setColumns(10);
 		
@@ -103,20 +106,33 @@ public class RegistroGUI extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				try{
 				
 					ApplicationFacadeInterfaceWS facade = MainGUI.getBusinessLogic();
 					tipoOwner= rdbtnOwner.isSelected();
+					tipoCliente= rdbtnCliente.isSelected();
 					nombre= textNombre.getText();
 					usuario= textUsuario.getText();
 					cuenta= textCuenta.getText();
-					if(!checkEmptyFields())
+					if(!ComprobarCamposVacios()){
+						
+						if(tipoCliente){
+							Users u = facade.crearCliente(nombre, usuario, pass, cuenta);
+							System.out.println(u.toString() + "registrado como Cliente;");
+						}
+						
+					}
 				
-				
+				} catch (Exception e) {
+					//showErrorDialog();
+				//} catch (Exception ex) {
+					//ex.printStackTrace();
+				}
 				
 				
 			}
 		});
-		btnNewButton.setBounds(205, 284, 107, 25);
+		btnNewButton.setBounds(205, 253, 107, 25);
 		contentPane.add(btnNewButton);
 		
 		JButton btnVolver = new JButton("Volver");
@@ -127,7 +143,7 @@ public class RegistroGUI extends JFrame {
 				setVisible(false);
 			}
 		});
-		btnVolver.setBounds(36, 336, 97, 25);
+		btnVolver.setBounds(36, 305, 97, 25);
 		contentPane.add(btnVolver);
 		
 		JButton btnEntrarEnEl = new JButton("Entrar en el Sistema");
@@ -139,25 +155,39 @@ public class RegistroGUI extends JFrame {
 				
 			}
 		});
-		btnEntrarEnEl.setBounds(179, 336, 156, 25);
+		btnEntrarEnEl.setBounds(179, 305, 156, 25);
 		contentPane.add(btnEntrarEnEl);
 		
 		rdbtnCliente = new JRadioButton("Cliente");
 		TipoUsuario.add(rdbtnCliente);
-		rdbtnCliente.setBounds(166, 245, 67, 25);
+		rdbtnCliente.setBounds(166, 214, 67, 25);
 		contentPane.add(rdbtnCliente);
 		
 		rdbtnOwner = new JRadioButton("Owner");
 		TipoUsuario.add(rdbtnOwner);
-		rdbtnOwner.setBounds(268, 245, 67, 25);
+		rdbtnOwner.setBounds(268, 214, 67, 25);
 		contentPane.add(rdbtnOwner);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
-		lblContrasea.setBounds(54, 112, 76, 16);
+		lblContrasea.setBounds(54, 147, 76, 16);
 		contentPane.add(lblContrasea);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(179, 109, 156, 22);
+		passwordField.setBounds(179, 144, 156, 22);
 		contentPane.add(passwordField);
 	}
+	private boolean ComprobarCamposVacios() {
+		String message = "Porfavor rellene todos los campos";
+		if (cuenta.trim().equals("") || pass.trim().equals("")
+				|| usuario.trim().equals("") || nombre.trim().equals("")) {
+			JOptionPane.showMessageDialog(null, message, "Error",
+					JOptionPane.WARNING_MESSAGE);
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+	
 }
