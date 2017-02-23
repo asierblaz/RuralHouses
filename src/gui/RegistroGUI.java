@@ -188,6 +188,6 @@ public class RegistroGUI extends JFrame {
 		}
 
 	}
-
+//bajada
 	
 }
