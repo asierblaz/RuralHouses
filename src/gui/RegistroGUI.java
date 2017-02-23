@@ -30,7 +30,7 @@ public class RegistroGUI extends JFrame {
 	private String usuario;
 	private String pass;
 	private String cuenta;
-	private boolean tipoOwner;
+	//private boolean tipoOwner;
 	private boolean tipoCliente;
 	private final ButtonGroup TipoUsuario = new ButtonGroup();
 	private JRadioButton rdbtnCliente;
@@ -109,7 +109,7 @@ public class RegistroGUI extends JFrame {
 				try{
 				
 					ApplicationFacadeInterfaceWS facade = MainGUI.getBusinessLogic();
-					tipoOwner= rdbtnOwner.isSelected();
+					//tipoOwner= rdbtnOwner.isSelected();
 					tipoCliente= rdbtnCliente.isSelected();
 					nombre= textNombre.getText();
 					usuario= textUsuario.getText();
