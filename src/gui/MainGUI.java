@@ -255,7 +255,7 @@ public class MainGUI extends JFrame {
 			mntmRegistrarse = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.mntmRegistrarse.text")); //$NON-NLS-1$ //$NON-NLS-2$
 			mntmRegistrarse.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					JFrame registro = new LoginGUI();
+					JFrame registro = new RegistroGUI();
 					registro.setVisible(true);
 					setVisible(false);
 				}
