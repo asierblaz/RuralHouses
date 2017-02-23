@@ -178,19 +178,6 @@ public class DataAccess {
 				
 		return false;
 	}
-/*	
-public boolean existsOverlappingUser(String login) throws RemoteException,
-			
-		try {
-			ObjectSet ob = db.queryByExample(new User(null, login, null, null));
-			if (ob.isEmpty()) {
-				return false;
-			} else {
-				throw new OverlappingUserExists();
-			}
-		} finally {
-
-		}*/
 	
 	
 	
