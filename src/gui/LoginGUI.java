@@ -115,7 +115,7 @@ public class LoginGUI extends JFrame {
 			usuario= textUsuario.getText();
 			pass= passwordField.getText();
 			
-			MainGUI.setLogin(facade.comprobarUsuario(usuario, pass));
+			MainGUI.setUsuario(facade.comprobarUsuario(usuario, pass));
 			boolean b= MainGUI.getUsuario() != null;
 			
 			textUsuario.setText("");

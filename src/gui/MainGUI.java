@@ -8,9 +8,10 @@ package gui;
 import javax.swing.*;
 
 import configuration.ConfigXML;
+import domain.Owner;
 import domain.RuralHouse;
 
-import domain.Users;
+import domain.*;
 import businessLogic.ApplicationFacadeInterfaceWS;
 
 import java.awt.Color;
@@ -32,10 +33,12 @@ public class MainGUI extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 
+	private static ActionListener ListenerLogin = null;
+
 	private JPanel jContentPane = null;
 	private JButton boton1 = null;
-	private JButton boton2 = null;
-	private JButton boton3 = null;
+	private static JButton setAvailability = null;
+	private  static JButton queryAvailability = null;
 
     private static ApplicationFacadeInterfaceWS appFacadeInterface;
 	
@@ -53,9 +56,9 @@ public class MainGUI extends JFrame {
 	private JPanel panel;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JMenuBar menuBar;
-	private JMenu mnLogin;
-	private JMenuItem mntmlogin;
-	private JMenuItem mntmRegistrarse;
+	private static JMenu mnLogin;
+	private static JMenuItem mntmlogin;
+	private static JMenuItem mntmRegistrarse;
 	private static Users usuario; //creada.
 	
 	/**
@@ -107,14 +110,49 @@ public class MainGUI extends JFrame {
 			jContentPane = new JPanel();
 			jContentPane.setLayout(new GridLayout(4, 1, 0, 0));
 			jContentPane.add(getLblNewLabel());
-			jContentPane.add(getBoton3());
-			jContentPane.add(getBoton2());
+			jContentPane.add(getQueryAvailability());
+			jContentPane.add(getSetAvailability());
 			jContentPane.add(getPanel());
 		}
 		return jContentPane;
 	}
 
+	//-----------------------
+	public static void setModoRegistro(){
+		mntmlogin.setText("Desconectarse");
+
+		if (getUsuario() instanceof Owner){
+			Owner o = (Owner) getUsuario();
+			setAvailability.setEnabled(true);
+			mntmRegistrarse.setEnabled(false);
+		}else{
+			Client c= (Client) getUsuario();
+			mntmRegistrarse.setEnabled(false);
+			setAvailability.setEnabled(false);
+			}
+			mntmlogin.removeActionListener(ListenerLogin);
+			ListenerLogin= new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					setUsuario(null);
+					JOptionPane.showMessageDialog(null, "You logged off correctly",
+							"", JOptionPane.PLAIN_MESSAGE);
+					//setClientMode();
+
+				}
+			};
+			
+			mntmlogin.addActionListener(ListenerLogin);
+
+
+			
+		}
+		
 	
+	
+	//----------
 	
 
 	/**
@@ -122,11 +160,11 @@ public class MainGUI extends JFrame {
 	 * 
 	 * @return javax.swing.JButton
 	 */
-	private JButton getBoton2() {
-		if (boton2 == null) {
-			boton2 = new JButton();
-			boton2.setText(ResourceBundle.getBundle("Etiquetas").getString("SetAvailability"));
-			boton2.addActionListener(new java.awt.event.ActionListener() {
+	private JButton getSetAvailability() {
+		if (setAvailability == null) {
+			setAvailability = new JButton();
+			setAvailability.setText(ResourceBundle.getBundle("Etiquetas").getString("SetAvailability"));
+			setAvailability.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					ApplicationFacadeInterfaceWS facade=MainGUI.getBusinessLogic();
 					Vector<RuralHouse> rhs=facade.getAllRuralHouses();
@@ -135,7 +173,7 @@ public class MainGUI extends JFrame {
 				}
 			});
 		}
-		return boton2;
+		return setAvailability;
 	}
 	
 	/**
@@ -143,11 +181,11 @@ public class MainGUI extends JFrame {
 	 * 
 	 * @return javax.swing.JButton
 	 */
-	private JButton getBoton3() {
-		if (boton3 == null) {
-			boton3 = new JButton();
-			boton3.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryAvailability"));
-			boton3.addActionListener(new java.awt.event.ActionListener() {
+	private JButton getQueryAvailability() {
+		if (queryAvailability == null) {
+			queryAvailability = new JButton();
+			queryAvailability.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryAvailability"));
+			queryAvailability.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					JFrame a = new QueryAvailabilityGUI();
 
@@ -155,7 +193,7 @@ public class MainGUI extends JFrame {
 				}
 			});
 		}
-		return boton3;
+		return queryAvailability;
 	}
 	
 
@@ -220,8 +258,8 @@ public class MainGUI extends JFrame {
 	
 	private void redibujar() {
 		lblNewLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("SelectOption"));
-		boton3.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryAvailability"));
-		boton2.setText(ResourceBundle.getBundle("Etiquetas").getString("SetAvailability"));
+		queryAvailability.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryAvailability"));
+		setAvailability.setText(ResourceBundle.getBundle("Etiquetas").getString("SetAvailability"));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
 	
@@ -265,7 +303,7 @@ public class MainGUI extends JFrame {
 		return mntmRegistrarse;
 	}
 	//----------------------------------------------------
-	
+
 	
 	
 	//----------------metodos de obtencion-----------------------
@@ -278,7 +316,7 @@ public class MainGUI extends JFrame {
 	 * @param usuari
 	 *            the usuario to set
 	 */
-	public static void setLogin(Users login) {
+	public static void setUsuario(Users login) {
 		MainGUI.usuario = usuario;
 	}
 
