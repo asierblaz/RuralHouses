@@ -44,3 +44,22 @@ Caused by: com.objectdb.o.UserException: Attempt to open a database file 'G:\Inf
 	at com.objectdb.jpa.EMF.createEntityManager(EMF.java:150)
 	... 17 more
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-25 12:14:15 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' has been recovered (tr. 75-75)
+
+[2017-02-25 12:14:15 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 11508@ASIER
+
+[2017-02-25 12:16:06 #3 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 11508@ASIER
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-25 12:16:11 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 6560@ASIER
+
+[2017-02-25 12:16:41 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 6560@ASIER
+

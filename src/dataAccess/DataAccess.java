@@ -183,7 +183,7 @@ public class DataAccess {
 		return false;
 	}
 	//--------------------------------------------
-	
+	/*
 	public boolean existsOvelappingClient (String usuario) throws RemoteException,OverlappingClientExists {
 		
 		try{
@@ -198,7 +198,7 @@ public class DataAccess {
 		}
 				
 		return false;
-	}
+	}*/
 	
 //----------------------------------------------------------
 	public void close() {
