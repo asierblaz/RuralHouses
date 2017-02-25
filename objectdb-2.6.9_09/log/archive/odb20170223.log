@@ -1,0 +1,353 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-23 11:13:46 #1 explorer] 
+[ObjectDB 2.6.9_09] javax.persistence.PersistenceException
+Attempt to open a database file 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' that is currently in use by another process (error 141)
+	at com.objectdb.Explorer$1.run(Explorer.java:57)
+	at java.awt.event.InvocationEvent.dispatch(Unknown Source)
+	at java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.awt.EventQueue.access$500(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
+Caused by: com.objectdb.o.UserException: Attempt to open a database file 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' that is currently in use by another process
+	at com.objectdb.o.MSG.d(MSG.java:62)
+	at com.objectdb.o.LFL.G(LFL.java:939)
+	at com.objectdb.o.LFL.B(LFL.java:885)
+	at com.objectdb.o.LFL.B(LFL.java:794)
+	at com.objectdb.o.SFL.<init>(SFL.java:235)
+	at com.objectdb.o.MST.<init>(MST.java:123)
+	at com.objectdb.o.MST.aN(MST.java:105)
+	at com.objectdb.o.MSF.Vn(MSF.java:188)
+	at com.objectdb.o.OMF.an(OMF.java:782)
+	at com.objectdb.jpa.EMF.an(EMF.java:131)
+	at com.objectdb.o.OMF.am(OMF.java:693)
+	at com.objectdb.jpa.EMF.createEntityManager(EMF.java:150)
+	... 17 more
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-23 11:15:40 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' has been recovered (tr. 35-35)
+
+[2017-02-23 11:15:40 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 256@ASIER
+
+[2017-02-23 11:23:26 #3 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 256@ASIER
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-23 11:27:23 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' has been recovered (tr. 36-36)
+
+[2017-02-23 11:27:23 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 6376@ASIER
+
+[2017-02-23 11:29:34 #3 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 6376@ASIER
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-23 11:36:21 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 11804@ASIER
+
+[2017-02-23 11:37:02 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 11804@ASIER
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-23 11:38:25 #1 explorer] 
+[ObjectDB 2.6.9_09] javax.persistence.PersistenceException
+Attempt to open a database file 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' that is currently in use by another process (error 141)
+	at com.objectdb.Explorer$1.run(Explorer.java:57)
+	at java.awt.event.InvocationEvent.dispatch(Unknown Source)
+	at java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.awt.EventQueue.access$500(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
+Caused by: com.objectdb.o.UserException: Attempt to open a database file 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' that is currently in use by another process
+	at com.objectdb.o.MSG.d(MSG.java:62)
+	at com.objectdb.o.LFL.G(LFL.java:939)
+	at com.objectdb.o.LFL.B(LFL.java:885)
+	at com.objectdb.o.LFL.B(LFL.java:794)
+	at com.objectdb.o.SFL.<init>(SFL.java:235)
+	at com.objectdb.o.MST.<init>(MST.java:123)
+	at com.objectdb.o.MST.aN(MST.java:105)
+	at com.objectdb.o.MSF.Vn(MSF.java:188)
+	at com.objectdb.o.OMF.an(OMF.java:782)
+	at com.objectdb.jpa.EMF.an(EMF.java:131)
+	at com.objectdb.o.OMF.am(OMF.java:693)
+	at com.objectdb.jpa.EMF.createEntityManager(EMF.java:150)
+	... 17 more
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-23 11:38:29 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' has been recovered (tr. 37-37)
+
+[2017-02-23 11:38:29 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 7380@ASIER
+
+[2017-02-23 11:39:57 #3 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 7380@ASIER
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-23 11:40:48 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' has been recovered (tr. 38-38)
+
+[2017-02-23 11:40:48 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 11224@ASIER
+
+[2017-02-23 11:41:07 #3 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 11224@ASIER
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-23 11:42:09 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' has been recovered (tr. 39-39)
+
+[2017-02-23 11:42:09 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 1544@ASIER
+
+[2017-02-23 11:43:30 #3 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 1544@ASIER
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-23 12:30:24 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 3716@ASIER
+
+[2017-02-23 12:30:31 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 3716@ASIER
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-23 13:35:54 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 12548@ASIER
+
+[2017-02-23 13:35:56 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 12548@ASIER
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-23 13:36:58 #1 explorer] 
+[ObjectDB 2.6.9_09] javax.persistence.PersistenceException
+Attempt to open a database file 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' that is currently in use by another process (error 141)
+	at com.objectdb.Explorer$1.run(Explorer.java:57)
+	at java.awt.event.InvocationEvent.dispatch(Unknown Source)
+	at java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.awt.EventQueue.access$500(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
+Caused by: com.objectdb.o.UserException: Attempt to open a database file 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' that is currently in use by another process
+	at com.objectdb.o.MSG.d(MSG.java:62)
+	at com.objectdb.o.LFL.G(LFL.java:939)
+	at com.objectdb.o.LFL.B(LFL.java:885)
+	at com.objectdb.o.LFL.B(LFL.java:794)
+	at com.objectdb.o.SFL.<init>(SFL.java:235)
+	at com.objectdb.o.MST.<init>(MST.java:123)
+	at com.objectdb.o.MST.aN(MST.java:105)
+	at com.objectdb.o.MSF.Vn(MSF.java:188)
+	at com.objectdb.o.OMF.an(OMF.java:782)
+	at com.objectdb.jpa.EMF.an(EMF.java:131)
+	at com.objectdb.o.OMF.am(OMF.java:693)
+	at com.objectdb.jpa.EMF.createEntityManager(EMF.java:150)
+	... 17 more
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-23 13:37:09 #1 explorer] 
+[ObjectDB 2.6.9_09] javax.persistence.PersistenceException
+Attempt to open a database file 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' that is currently in use by another process (error 141)
+	at com.objectdb.Explorer$1.run(Explorer.java:57)
+	at java.awt.event.InvocationEvent.dispatch(Unknown Source)
+	at java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.awt.EventQueue.access$500(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
+Caused by: com.objectdb.o.UserException: Attempt to open a database file 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' that is currently in use by another process
+	at com.objectdb.o.MSG.d(MSG.java:62)
+	at com.objectdb.o.LFL.G(LFL.java:939)
+	at com.objectdb.o.LFL.B(LFL.java:885)
+	at com.objectdb.o.LFL.B(LFL.java:794)
+	at com.objectdb.o.SFL.<init>(SFL.java:235)
+	at com.objectdb.o.MST.<init>(MST.java:123)
+	at com.objectdb.o.MST.aN(MST.java:105)
+	at com.objectdb.o.MSF.Vn(MSF.java:188)
+	at com.objectdb.o.OMF.an(OMF.java:782)
+	at com.objectdb.jpa.EMF.an(EMF.java:131)
+	at com.objectdb.o.OMF.am(OMF.java:693)
+	at com.objectdb.jpa.EMF.createEntityManager(EMF.java:150)
+	... 17 more
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-23 13:37:51 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' has been recovered (tr. 46-48)
+
+[2017-02-23 13:37:51 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 11044@ASIER
+
+[2017-02-23 13:39:14 #3 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 11044@ASIER
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-23 13:39:18 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 8400@ASIER
+
+[2017-02-23 13:39:19 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 8400@ASIER
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-23 13:44:28 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 11032@ASIER
+
+[2017-02-23 13:44:54 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 11032@ASIER
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-23 13:52:44 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' has been recovered (tr. 56-57)
+
+[2017-02-23 13:52:44 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 10492@ASIER
+
+[2017-02-23 13:53:35 #3 explorer] 
+java.lang.IllegalArgumentException: Unexpected null argument
+	at com.objectdb.o.ERR.assertNotNull(ERR.java:232)
+	at com.objectdb.jpa.EMImpl.remove(EMImpl.java:432)
+	at com.objectdb.o.ETI.K(ETI.java:146)
+	at com.objectdb.o.ITP.D(ITP.java:456)
+	at com.objectdb.o.ITP.VQ(ITP.java:340)
+	at com.objectdb.o.RTR.VQ(RTR.java:69)
+	at com.objectdb.o.CMD.actionPerformed(CMD.java:470)
+	at javax.swing.AbstractButton.fireActionPerformed(Unknown Source)
+	at javax.swing.AbstractButton$Handler.actionPerformed(Unknown Source)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(Unknown Source)
+	at javax.swing.DefaultButtonModel.setPressed(Unknown Source)
+	at javax.swing.AbstractButton.doClick(Unknown Source)
+	at javax.swing.plaf.basic.BasicMenuItemUI.doClick(Unknown Source)
+	at javax.swing.plaf.basic.BasicMenuItemUI$Handler.mouseReleased(Unknown Source)
+	at java.awt.Component.processMouseEvent(Unknown Source)
+	at javax.swing.JComponent.processMouseEvent(Unknown Source)
+	at java.awt.Component.processEvent(Unknown Source)
+	at java.awt.Container.processEvent(Unknown Source)
+	at java.awt.Component.dispatchEventImpl(Unknown Source)
+	at java.awt.Container.dispatchEventImpl(Unknown Source)
+	at java.awt.Component.dispatchEvent(Unknown Source)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Unknown Source)
+	at java.awt.LightweightDispatcher.processMouseEvent(Unknown Source)
+	at java.awt.LightweightDispatcher.dispatchEvent(Unknown Source)
+	at java.awt.Container.dispatchEventImpl(Unknown Source)
+	at java.awt.Window.dispatchEventImpl(Unknown Source)
+	at java.awt.Component.dispatchEvent(Unknown Source)
+	at java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.awt.EventQueue.access$500(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue$4.run(Unknown Source)
+	at java.awt.EventQueue$4.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
+
+[2017-02-23 13:53:39 #4 explorer] 
+java.lang.IllegalArgumentException: Unexpected null argument
+	at com.objectdb.o.ERR.assertNotNull(ERR.java:232)
+	at com.objectdb.jpa.EMImpl.remove(EMImpl.java:432)
+	at com.objectdb.o.ETI.K(ETI.java:146)
+	at com.objectdb.o.ITP.D(ITP.java:456)
+	at com.objectdb.o.ITP.VQ(ITP.java:340)
+	at com.objectdb.o.RTR.VQ(RTR.java:69)
+	at com.objectdb.o.CMD.actionPerformed(CMD.java:470)
+	at javax.swing.AbstractButton.fireActionPerformed(Unknown Source)
+	at javax.swing.AbstractButton$Handler.actionPerformed(Unknown Source)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(Unknown Source)
+	at javax.swing.DefaultButtonModel.setPressed(Unknown Source)
+	at javax.swing.AbstractButton.doClick(Unknown Source)
+	at javax.swing.plaf.basic.BasicMenuItemUI.doClick(Unknown Source)
+	at javax.swing.plaf.basic.BasicMenuItemUI$Handler.mouseReleased(Unknown Source)
+	at java.awt.Component.processMouseEvent(Unknown Source)
+	at javax.swing.JComponent.processMouseEvent(Unknown Source)
+	at java.awt.Component.processEvent(Unknown Source)
+	at java.awt.Container.processEvent(Unknown Source)
+	at java.awt.Component.dispatchEventImpl(Unknown Source)
+	at java.awt.Container.dispatchEventImpl(Unknown Source)
+	at java.awt.Component.dispatchEvent(Unknown Source)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Unknown Source)
+	at java.awt.LightweightDispatcher.processMouseEvent(Unknown Source)
+	at java.awt.LightweightDispatcher.dispatchEvent(Unknown Source)
+	at java.awt.Container.dispatchEventImpl(Unknown Source)
+	at java.awt.Window.dispatchEventImpl(Unknown Source)
+	at java.awt.Component.dispatchEvent(Unknown Source)
+	at java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.awt.EventQueue.access$500(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue$4.run(Unknown Source)
+	at java.awt.EventQueue$4.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
+
+[2017-02-23 13:54:12 #5 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 10492@ASIER
+

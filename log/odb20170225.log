@@ -1,0 +1,37 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-25 12:12:26 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 6796@ASIER
+
+[2017-02-25 12:12:26 #2 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-02-25 12:12:26 #3 type] 
+Type domain.Offer is not enhanced.
+
+[2017-02-25 12:12:26 #4 type] 
+Type domain.Users is not enhanced.
+
+[2017-02-25 12:12:26 #5 type] 
+Type domain.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-25 12:13:47 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' has been recovered (tr. 73-74)
+
+[2017-02-25 12:13:47 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 4960@ASIER
+
+[2017-02-25 12:13:47 #3 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-02-25 12:13:47 #4 type] 
+Type domain.Offer is not enhanced.
+
+[2017-02-25 12:13:47 #5 type] 
+Type domain.Users is not enhanced.
+
+[2017-02-25 12:13:47 #6 type] 
+Type domain.Client is not enhanced.
+

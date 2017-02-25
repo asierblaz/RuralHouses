@@ -13,7 +13,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlIDREF;
 
 @SuppressWarnings("serial")
-
+@XmlAccessorType(XmlAccessType.FIELD)
+@Entity
 public class Client extends Users implements Serializable {
 
 

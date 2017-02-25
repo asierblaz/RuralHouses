@@ -21,6 +21,7 @@ import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JPasswordField;
 import domain.*;
+import exceptions.OverlappingClientExists;
 import exceptions.OverlappingUsersExists;
 
 public class RegistroGUI extends JFrame {
@@ -103,8 +104,6 @@ public class RegistroGUI extends JFrame {
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFrame vuelta = new MainGUI();
-				vuelta.setVisible(true);
 				setVisible(false);
 			}
 		});
@@ -186,8 +185,10 @@ public class RegistroGUI extends JFrame {
 
 			}
 		});
-
+		
+		
 		return btnRegistro;
+
 	}
 
 	// --------------------------------------------------------------------

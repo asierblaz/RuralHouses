@@ -52,7 +52,7 @@ public class MainGUI extends JFrame {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JMenuBar menuBar;
 	private JMenu mnLogin;
-	private JMenuItem mntmRegistro;
+	private JMenuItem mntmlogin;
 	private JMenuItem mntmRegistrarse;
 	
 	/**
@@ -232,23 +232,22 @@ public class MainGUI extends JFrame {
 	private JMenu getMnLogin() {
 		if (mnLogin == null) {
 			mnLogin = new JMenu(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.mnLogin.text_1")); //$NON-NLS-1$ //$NON-NLS-2$
-			mnLogin.add(getMntmRegistro());
+			mnLogin.add(getMntmlogin());
 			mnLogin.add(getMntmRegistrarse());
 		}
 		return mnLogin;
 	}
-	private JMenuItem getMntmRegistro() {
-		if (mntmRegistro == null) {
-			mntmRegistro = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.mntmRegistro.text")); //$NON-NLS-1$ //$NON-NLS-2$
-			mntmRegistro.addActionListener(new ActionListener() {
+	private JMenuItem getMntmlogin() {
+		if (mntmlogin == null) {
+			mntmlogin = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.mntmRegistro.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			mntmlogin.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					JFrame entrar = new LoginGUI();
 					entrar.setVisible(true);
-					setVisible(false);
 				}
 			});
 		}
-		return mntmRegistro;
+		return mntmlogin;
 	}
 	private JMenuItem getMntmRegistrarse() {
 		if (mntmRegistrarse == null) {
@@ -257,7 +256,6 @@ public class MainGUI extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					JFrame registro = new RegistroGUI();
 					registro.setVisible(true);
-					setVisible(false);
 				}
 			});
 		}

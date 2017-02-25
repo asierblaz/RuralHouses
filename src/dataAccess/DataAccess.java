@@ -18,6 +18,7 @@ import javax.persistence.TypedQuery;
 import configuration.ConfigXML;
 //import domain.Booking;
 import domain.*;
+import exceptions.OverlappingClientExists;
 import exceptions.OverlappingOfferExists;
 import exceptions.OverlappingUsersExists;
 
@@ -73,6 +74,8 @@ public class DataAccess {
 			RuralHouse rh2 = new RuralHouse("Etxetxikia", "Iruna");
 			RuralHouse rh3 = new RuralHouse("Udaletxea", "Bilbo");
 			RuralHouse rh4 = new RuralHouse("Gaztetxea", "Renteria");
+			Client c  = new Client("asier", "asier", "asier", "123");
+			db.persist(c);
 			db.persist(rh1);
 			db.persist(rh2);
 			db.persist(rh3);
@@ -167,18 +170,35 @@ public class DataAccess {
 	public boolean existsOvelappingUsers (String usuario) throws RemoteException,OverlappingUsersExists {
 		
 		try{
-		Users u = db.find(null, usuario, null, null);
+		
+		Users u = db.find(Users.class, usuario);
 		if (u !=null)
 			return true;
 		}catch (Exception e){
+			System.out.println("usuario"+usuario);
 			System.out.println("Error: "+ e.toString());
 			return true;
 		}
 				
 		return false;
 	}
+	//--------------------------------------------
 	
-	
+	public boolean existsOvelappingClient (String usuario) throws RemoteException,OverlappingClientExists {
+		
+		try{
+		
+		Users u = db.find(Users.class, usuario);
+		if (u !=null)
+			return true;
+		}catch (Exception e){
+			System.out.println("usuario"+usuario);
+			System.out.println("Error: "+ e.toString());
+			return true;
+		}
+				
+		return false;
+	}
 	
 //----------------------------------------------------------
 	public void close() {

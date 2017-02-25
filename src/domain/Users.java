@@ -2,6 +2,7 @@ package domain;
 
 import java.io.*;
 import java.util.Date;
+import java.util.Vector;
 
 import javax.jws.soap.SOAPBinding.Use;
 import javax.persistence.Entity;
@@ -20,6 +21,8 @@ public class Users implements Serializable {
 	private String nombre = "";
 	private String usuario ="";
 	private String pass ="";
+	
+
 	
 	public Users(String nombre, String usuario, String pass, String cuenta){
 		this.cuenta= cuenta;

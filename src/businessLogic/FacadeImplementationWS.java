@@ -72,7 +72,8 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		DataAccess dbManager = new DataAccess();
 		Client c = null;
 
-		boolean b = dbManager.existsOvelappingUsers(usuario);
+		boolean b = dbManager.existsOvelappingClient(usuario); //user
+		System.out.println(b);
 		if (!b)
 			c = dbManager.crearCliente(nombre, usuario, pass, cuenta);
 		dbManager.close();
