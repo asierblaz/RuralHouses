@@ -74,8 +74,7 @@ public class DataAccess {
 			RuralHouse rh2 = new RuralHouse("Etxetxikia", "Iruna");
 			RuralHouse rh3 = new RuralHouse("Udaletxea", "Bilbo");
 			RuralHouse rh4 = new RuralHouse("Gaztetxea", "Renteria");
-			Client c  = new Client("asier", "asier", "asier", "123");
-			db.persist(c);
+		
 			db.persist(rh1);
 			db.persist(rh2);
 			db.persist(rh3);
@@ -127,7 +126,25 @@ public class DataAccess {
 		}
 
 	}
-	// ---------------------------------------------------------------
+	// -------------------------Crear owner--------------------------------
+	
+	public Owner crearOwner(String nombre, String usuario, String pass, String cuenta) {
+		System.out.println(">> FacadeImplementationWS: crearCliente=> Nombre= " + nombre + " Usuario= " + usuario
+				+ " Contraseña=" + pass + " Cuenta Bancaria=" + cuenta);
+
+		try {
+			db.getTransaction().begin();
+			Owner o = new Owner(nombre, usuario, pass, cuenta);
+			db.persist(o); // hay q darle persistencia al objeto creado
+			db.getTransaction().commit(); // estupendo!!
+			return o;
+
+		} catch (Exception e) {
+			System.out.println("El Owner no ha sido guardado en la base de datos ");
+			return null;
+		}
+
+	}
 
 	public Vector<RuralHouse> getAllRuralHouses() {
 		System.out.println(">> DataAccess: getAllRuralHouses");
@@ -172,7 +189,7 @@ public class DataAccess {
 		try{
 		
 		Users u = db.find(Users.class, usuario);
-		if (u !=null)
+		if (u !=null)  //preguntar (exception para que no registre usuarios iguales.
 			return true;
 		}catch (Exception e){
 			System.out.println("usuario"+usuario);
@@ -182,6 +199,23 @@ public class DataAccess {
 				
 		return false;
 	}
+	
+	//-----------------------------comprobar usuario----------------------------------------------------
+	public Users comprobarUsuario(String usuario, String pass) throws RemoteException{
+		 
+		try{
+		Users u = db.find(Users.class, usuario);
+		if (u== null) return null;
+		else return null;
+		
+	} finally {					//para mirar.
+
+	}
+		
+		
+		
+	}	
+//-----------------------------------------------------------------------	
 	//--------------------------------------------
 	/*
 	public boolean existsOvelappingClient (String usuario) throws RemoteException,OverlappingClientExists {

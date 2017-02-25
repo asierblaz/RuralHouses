@@ -166,13 +166,16 @@ public class RegistroGUI extends JFrame {
 								System.out.println(u.toString() + "registrado como Cliente;");
 							}
 							if (rdbtnOwner.isSelected()) {
-								System.out.println("no te has registrado porque no esta implementado");
+								Users us= facade.crearOwner(nombre, usuario, pass, cuenta);
+								System.out.println(us.toString() + "registrado como Owner;");
+
 							}
 							siRegistro();
-							dispose();
+							setVisible(false);
 						} else {
 							noRegistro();
-							dispose();
+							setVisible(false);
+							
 						}
 
 					}

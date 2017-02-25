@@ -9,6 +9,8 @@ import javax.swing.*;
 
 import configuration.ConfigXML;
 import domain.RuralHouse;
+
+import domain.Users;
 import businessLogic.ApplicationFacadeInterfaceWS;
 
 import java.awt.Color;
@@ -54,6 +56,7 @@ public class MainGUI extends JFrame {
 	private JMenu mnLogin;
 	private JMenuItem mntmlogin;
 	private JMenuItem mntmRegistrarse;
+	private static Users usuario; //creada.
 	
 	/**
 	 * This is the default constructor
@@ -231,7 +234,7 @@ public class MainGUI extends JFrame {
 	}
 	private JMenu getMnLogin() {
 		if (mnLogin == null) {
-			mnLogin = new JMenu(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.mnLogin.text_1")); //$NON-NLS-1$ //$NON-NLS-2$
+			mnLogin = new JMenu("Login"); //$NON-NLS-1$ //$NON-NLS-2$
 			mnLogin.add(getMntmlogin());
 			mnLogin.add(getMntmRegistrarse());
 		}
@@ -261,5 +264,26 @@ public class MainGUI extends JFrame {
 		}
 		return mntmRegistrarse;
 	}
+	//----------------------------------------------------
+	
+	
+	
+	//----------------metodos de obtencion-----------------------
+	
+	 	public static Users getUsuario() {
+		return usuario;
+	}
+
+	/**
+	 * @param usuari
+	 *            the usuario to set
+	 */
+	public static void setLogin(Users login) {
+		MainGUI.usuario = usuario;
+	}
+
+	//----------------------------------------
+	
+	
 } // @jve:decl-index=0:visual-constraint="0,0"
 

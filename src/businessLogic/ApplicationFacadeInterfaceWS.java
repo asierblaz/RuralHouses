@@ -8,7 +8,9 @@ import java.util.Date;
 import domain.Client;
 //import domain.Booking;
 import domain.Offer;
+import domain.Owner;
 import domain.RuralHouse;
+import domain.Users;
 import exceptions.BadDates;
 import exceptions.OverlappingOfferExists;
 
@@ -59,7 +61,8 @@ public interface ApplicationFacadeInterfaceWS  {
 	
 	@WebMethod public Client crearCliente (String nombre,String usuario, String pass, String cuenta) throws RemoteException, Exception;
 	
-	
+	@WebMethod public Owner crearOwner(String nombre, String usuario, String pass, String cuenta)throws RemoteException, Exception;
+	@WebMethod public Users comprobarUsuario(String usuario, String pass) throws RemoteException, Exception;
 	
 	@WebMethod public Vector<Offer> getOffers( RuralHouse rh, Date firstDay,  Date lastDay) ;
 	

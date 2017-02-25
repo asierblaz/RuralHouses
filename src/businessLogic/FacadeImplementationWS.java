@@ -12,10 +12,9 @@ import javax.jws.WebService;
 
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
-import domain.Client;
+import domain.*;
 //import domain.Booking;
-import domain.Offer;
-import domain.RuralHouse;
+
 import exceptions.*;
 
 //Service Implementation
@@ -64,7 +63,7 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		System.out.println("<< FacadeImplementationWS: createOffer=> O= " + o);
 		return o;
 	}
-
+//-----------------------------crear cliente----------------------------------------
 	public Client crearCliente(String nombre, String usuario, String pass, String cuenta)
 			throws RemoteException, Exception {
 		System.out.println(">> FacadeImplementationWS: crearCliente=> Nombre= " + nombre + " Usuario= " + usuario
@@ -72,7 +71,7 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		DataAccess dbManager = new DataAccess();
 		Client c = null;
 
-		boolean b = dbManager.existsOvelappingClient(usuario); //user
+		boolean b = dbManager.existsOvelappingUsers(usuario); //user
 		System.out.println(b);
 		if (!b)
 			c = dbManager.crearCliente(nombre, usuario, pass, cuenta);
@@ -81,7 +80,32 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		return c;
 
 	}
+//----------------------------crear owner-----------------------------------------------
+	public Owner crearOwner(String nombre, String usuario, String pass, String cuenta)
+			throws RemoteException, Exception {
+		System.out.println(">> FacadeImplementationWS: crearOwner=> Nombre= " + nombre + " Usuario= " + usuario
+				+ " Contraseña=" + pass + " Cuenta Bancaria=" + cuenta);
+		DataAccess dbManager = new DataAccess();
+		Owner o = null;
 
+		boolean b = dbManager.existsOvelappingUsers(usuario); //user
+		System.out.println(b);
+		if (!b)
+			o = dbManager.crearOwner(nombre, usuario, pass, cuenta);
+		dbManager.close();
+		System.out.println("<< FacadeImplementationWS: crearOwner=> o= " + o);
+		return o;
+
+	}
+	
+//---------------------comprobar usuario-----------------------------------------------
+@Override
+public Users comprobarUsuario(String usuario, String pass) throws RemoteException, Exception{
+	return null;
+}
+	
+//-----------------------------------------------------------------------------	
+	
 	public Vector<RuralHouse> getAllRuralHouses() {
 		System.out.println(">> FacadeImplementationWS: getAllRuralHouses");
 
@@ -94,6 +118,7 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		return ruralHouses;
 
 	}
+
 
 	/**
 	 * This method obtains the offers of a ruralHouse in the provided dates

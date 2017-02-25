@@ -15,6 +15,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import javax.swing.JTextArea;
 import java.awt.Font;
@@ -27,7 +29,7 @@ public class LoginGUI extends JFrame {
 
 	private JButton Entrar;
 	private String usuario;
-
+	private String pass;
 	/**
 	 * Launch the application.
 	 */
@@ -107,11 +109,30 @@ public class LoginGUI extends JFrame {
 
 		Entrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				try {
 
-				ApplicationFacadeInterfaceWS facade = MainGUI.getBusinessLogic();
+			ApplicationFacadeInterfaceWS facade = MainGUI.getBusinessLogic();
+			usuario= textUsuario.getText();
+			pass= passwordField.getText();
+			
+			MainGUI.setLogin(facade.comprobarUsuario(usuario, pass));
+			boolean b= MainGUI.getUsuario() != null;
+			
+			textUsuario.setText("");
+			passwordField.setText("");
+			
+			if (b){
+			//	MainGUI.setregistredMode();
+				dispose();
+			}
+			
+			
+			
 				
 				
-				
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
 				
 			}
 		});
@@ -120,5 +141,20 @@ public class LoginGUI extends JFrame {
 	}
 
 	// --------------metodos de alertas del sistema---------------------------
+	private void showLoginMessage(boolean acceso) {
+		String message;
+		if (acceso) {
+			message = "Bienvenido " + usuario;
+			JOptionPane.showMessageDialog(null, message, "Acceso Permitido",
+					JOptionPane.PLAIN_MESSAGE);
+		} else {
+			message = "Error: Datos erroneos, compruebe la contraseña";
+			JOptionPane.showMessageDialog(null, message, "Acceso Denegado",
+					JOptionPane.PLAIN_MESSAGE);
+		}
+		
 
+	}
+	
+	
 }
