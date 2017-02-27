@@ -65,7 +65,7 @@ public interface ApplicationFacadeInterfaceWS  {
 	
 	@WebMethod public Users comprobarUsuario(String usuario, String pass) throws RemoteException, Exception;
 	
-	@WebMethod public RuralHouse crearRuralHouse(String description, String city, String address, Owner owner) throws RemoteException, Exception;
+	@WebMethod public RuralHouse crearRuralHouse(String description, String city) throws RemoteException, Exception;
 	
 	
 	@WebMethod public Vector<Offer> getOffers( RuralHouse rh, Date firstDay,  Date lastDay) ;
