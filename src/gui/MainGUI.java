@@ -60,6 +60,7 @@ public class MainGUI extends JFrame {
 	private static JMenuItem mntmlogin;
 	private static JMenuItem mntmRegistrarse;
 	private static Users usuario; //creada.
+	private JButton btnAadir;
 	
 	/**
 	 * This is the default constructor
@@ -108,7 +109,7 @@ public class MainGUI extends JFrame {
 	private JPanel getJContentPane() {
 		if (jContentPane == null) {
 			jContentPane = new JPanel();
-			jContentPane.setLayout(new GridLayout(4, 1, 0, 0));
+			jContentPane.setLayout(null);
 			jContentPane.add(getLblNewLabel());
 			jContentPane.add(getQueryAvailability());
 			jContentPane.add(getSetAvailability());
@@ -164,6 +165,7 @@ public class MainGUI extends JFrame {
 	private JButton getSetAvailability() {
 		if (setAvailability == null) {
 			setAvailability = new JButton();
+			setAvailability.setBounds(0, 164, 634, 82);
 			setAvailability.setText(ResourceBundle.getBundle("Etiquetas").getString("SetAvailability"));
 			setAvailability.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -185,6 +187,7 @@ public class MainGUI extends JFrame {
 	private JButton getQueryAvailability() {
 		if (queryAvailability == null) {
 			queryAvailability = new JButton();
+			queryAvailability.setBounds(203, 95, 431, 69);
 			queryAvailability.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryAvailability"));
 			queryAvailability.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -201,6 +204,7 @@ public class MainGUI extends JFrame {
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("SelectOption"));
+			lblNewLabel.setBounds(0, 0, 634, 82);
 			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 			lblNewLabel.setForeground(Color.BLACK);
 			lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -250,6 +254,7 @@ public class MainGUI extends JFrame {
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
+			panel.setBounds(0, 246, 634, 82);
 			panel.add(getRdbtnNewRadioButton_1());
 			panel.add(getRdbtnNewRadioButton_2());
 			panel.add(getRdbtnNewRadioButton());
@@ -268,6 +273,7 @@ public class MainGUI extends JFrame {
 		if (menuBar == null) {
 			menuBar = new JMenuBar();
 			menuBar.add(getMnLogin());
+			menuBar.add(getBtnAadir());
 		}
 		return menuBar;
 	}
@@ -324,5 +330,17 @@ public class MainGUI extends JFrame {
 	//----------------------------------------
 	
 	
+	private JButton getBtnAadir() {
+		if (btnAadir == null) {
+			btnAadir = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnAadir.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			btnAadir.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JFrame crearcasa= new crearCasaGUI();
+					crearcasa.setVisible(true);
+				}
+			});
+		}
+		return btnAadir;
+	}
 } // @jve:decl-index=0:visual-constraint="0,0"
 

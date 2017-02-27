@@ -28,8 +28,8 @@ public class crearCasaGUI extends JFrame {
 	private JTextField textDescripcion;
 	private JLabel lblAadirDescripcinDe;
 	private JButton btnAadirCasa;
-	private String ciudad;
-	private String descripcion;
+	private String city;
+	private String description;
 
 	/**
 	 * Launch the application.
@@ -57,81 +57,67 @@ public class crearCasaGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblAadirCasa = new JLabel("Crear Casa");
 		lblAadirCasa.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblAadirCasa.setBounds(184, 13, 122, 29);
 		contentPane.add(lblAadirCasa);
-		
+
 		textCiudad = new JTextField();
 		textCiudad.setBounds(119, 57, 279, 29);
 		contentPane.add(textCiudad);
 		textCiudad.setColumns(10);
-		
+
 		lblNewLabel = new JLabel("Ciudad: ");
 		lblNewLabel.setBounds(26, 61, 56, 16);
 		contentPane.add(lblNewLabel);
-		
+
 		textDescripcion = new JTextField();
 		textDescripcion.setBounds(119, 144, 267, 114);
 		contentPane.add(textDescripcion);
 		textDescripcion.setColumns(10);
-		
+
 		lblAadirDescripcinDe = new JLabel("A\u00F1adir Descripci\u00F3n de la casa: ");
 		lblAadirDescripcinDe.setBounds(122, 115, 207, 16);
 		contentPane.add(lblAadirDescripcinDe);
 		contentPane.add(getCrearCasa());
-		
-		
+
 	}
-	//-----------------añadir casa--------------
-	private JButton getCrearCasa(){
+
+	// -----------------añadir casa--------------
+	private JButton getCrearCasa() {
 		btnAadirCasa = new JButton("A\u00F1adir Casa");
 		btnAadirCasa.setBounds(154, 271, 152, 25);
 		btnAadirCasa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				ApplicationFacadeInterfaceWS facade= MainGUI.getBusinessLogic();
-				ciudad= textCiudad.getText();
-				descripcion= textDescripcion.getText();		
-				
-				
-				
-				
-				
+
+				ApplicationFacadeInterfaceWS facade = MainGUI.getBusinessLogic();
+				try {
+					city = textCiudad.getText();
+					description = textDescripcion.getText();
+
+					if (!ComprobarCamposVacios())
+						if (ConfirmarDatos()) {
+							RuralHouse rh = facade.crearRuralHouse(description, city);
+							System.out.println(rh.toString() + "Casa añadida correctamente");
+							JOptionPane.showMessageDialog(null, "Casa añadida correctamente");
+							dispose();
+						}
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+
 			}
 		});
-		
+
 		return btnAadirCasa;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//----------------------------------------
+
+	// ----------------------------------------
 	private boolean ComprobarCamposVacios() {
 		String message = "Porfavor rellene todos los campos";
 
-		if (ciudad.trim().equals("") || descripcion.trim().equals("")) {
+		if (city.trim().equals("") || description.trim().equals("")) {
 			JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.WARNING_MESSAGE);
 			return true;
 		} else {
@@ -139,5 +125,17 @@ public class crearCasaGUI extends JFrame {
 		}
 
 	}
-	
+
+	private boolean ConfirmarDatos() {
+
+		String nl = System.getProperty("line.separator");
+
+		String message = "Porfavor compruebe que los siguientes datos son correctos:" + nl + "Ciudad" + city + nl
+				+ "Descripción: " + description;
+
+		int selection = JOptionPane.showConfirmDialog(null, message, "Confirmation", JOptionPane.YES_NO_OPTION);
+
+		return selection == 0;
+	}
+
 }

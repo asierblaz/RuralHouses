@@ -19,6 +19,7 @@ import configuration.ConfigXML;
 //import domain.Booking;
 import domain.*;
 import exceptions.OverlappingClientExists;
+import exceptions.OverlappingHouseExists;
 import exceptions.OverlappingOfferExists;
 import exceptions.OverlappingUsersExists;
 
@@ -78,9 +79,9 @@ public class DataAccess {
 		RuralHouse rh4 = new RuralHouse("Gaztetxea", "Renteria");
 		
 			db.persist(rh1);
-		//	db.persist(rh2);
-		//	db.persist(rh3);
-		//	db.persist(rh4);
+			db.persist(rh2);
+			db.persist(rh3);
+			db.persist(rh4);
 			
 			db.getTransaction().commit(); 
 			System.out.println("Db initialized");
@@ -239,7 +240,22 @@ public class DataAccess {
 		
 		
 	}	
-//-----------------------------------------------------------------------	
+//---------------------------------comprobar si la casa existe--------------------------------	
+	public boolean existsOverlappingHouse (String description, String city ) throws RemoteException, OverlappingHouseExists{
+		try{
+			RuralHouse rh= db.find(RuralHouse.class, description);
+			if (rh== null)
+				return true;
+		}catch(Exception e){
+			System.out.println("description"+description);
+			System.out.println("Error"+ e.toString());
+			return true;
+			
+		}
+		return false;
+	}
+		
+	
 	//--------------------------------------------
 	/*
 	public boolean existsOvelappingClient (String usuario) throws RemoteException,OverlappingClientExists {
