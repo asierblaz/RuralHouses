@@ -69,11 +69,11 @@ public class DataAccess {
 
 			while (itr.hasNext()) {
 				RuralHouse rh = itr.next();
-				db.remove(rh);
+				//db.remove(rh);
 			}
 			
 
-			RuralHouse rh1 = new RuralHouse("Ezkioko etxea", "Ezkio");
+		/*	RuralHouse rh1 = new RuralHouse("Ezkioko etxea", "Ezkio");
 		RuralHouse rh2 = new RuralHouse("Etxetxikia", "Iruna");
 			RuralHouse rh3 = new RuralHouse("Udaletxea", "Bilbo");
 		RuralHouse rh4 = new RuralHouse("Gaztetxea", "Renteria");
@@ -81,7 +81,7 @@ public class DataAccess {
 			db.persist(rh1);
 			db.persist(rh2);
 			db.persist(rh3);
-			db.persist(rh4);
+			db.persist(rh4);*/
 			
 			db.getTransaction().commit(); 
 			System.out.println("Db initialized");
@@ -138,8 +138,8 @@ public class DataAccess {
 		try {
 			db.getTransaction().begin();
 			Owner o = new Owner(nombre, usuario, pass, cuenta);
-			db.persist(o); // hay q darle persistencia al objeto creado
-			db.getTransaction().commit(); // estupendo!!
+			db.persist(o); // hay que darle persistencia al objeto creado
+			db.getTransaction().commit(); 
 			return o;
 
 		} catch (Exception e) {
@@ -165,7 +165,6 @@ public class DataAccess {
 	 }
 
 	 
-	 //prueba iñigo
 	
 	//------------------------------------------------------------
 

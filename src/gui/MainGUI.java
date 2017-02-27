@@ -114,6 +114,7 @@ public class MainGUI extends JFrame {
 			jContentPane.add(getQueryAvailability());
 			jContentPane.add(getSetAvailability());
 			jContentPane.add(getPanel());
+			jContentPane.add(getBtnAadir());
 		}
 		return jContentPane;
 	}
@@ -165,7 +166,7 @@ public class MainGUI extends JFrame {
 	private JButton getSetAvailability() {
 		if (setAvailability == null) {
 			setAvailability = new JButton();
-			setAvailability.setBounds(0, 164, 634, 82);
+			setAvailability.setBounds(224, 166, 203, 34);
 			setAvailability.setText(ResourceBundle.getBundle("Etiquetas").getString("SetAvailability"));
 			setAvailability.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -187,7 +188,7 @@ public class MainGUI extends JFrame {
 	private JButton getQueryAvailability() {
 		if (queryAvailability == null) {
 			queryAvailability = new JButton();
-			queryAvailability.setBounds(203, 95, 431, 69);
+			queryAvailability.setBounds(224, 119, 203, 34);
 			queryAvailability.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryAvailability"));
 			queryAvailability.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -204,7 +205,7 @@ public class MainGUI extends JFrame {
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("SelectOption"));
-			lblNewLabel.setBounds(0, 0, 634, 82);
+			lblNewLabel.setBounds(0, 0, 634, 38);
 			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 			lblNewLabel.setForeground(Color.BLACK);
 			lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -273,7 +274,6 @@ public class MainGUI extends JFrame {
 		if (menuBar == null) {
 			menuBar = new JMenuBar();
 			menuBar.add(getMnLogin());
-			menuBar.add(getBtnAadir());
 		}
 		return menuBar;
 	}
@@ -333,6 +333,7 @@ public class MainGUI extends JFrame {
 	private JButton getBtnAadir() {
 		if (btnAadir == null) {
 			btnAadir = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnAadir.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			btnAadir.setBounds(224, 72, 203, 34);
 			btnAadir.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					JFrame crearcasa= new crearCasaGUI();

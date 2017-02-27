@@ -112,8 +112,8 @@ public Users comprobarUsuario(String usuario, String pass) throws RemoteExceptio
 	DataAccess dbManager = new DataAccess();
 		RuralHouse rh= null;
 		
-		boolean b = dbManager.existsOverlappingHouse(description, city);
-		if (!b)
+		//boolean b = dbManager.existsOverlappingHouse(description, city);
+	//	if (!b)
 		rh = dbManager.crearRuralHouse(description, city);
 		dbManager.close();
 		System.out.println("<< FacadeImplementationWS: crearRuralHouse=> rh= " + rh);

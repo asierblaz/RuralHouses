@@ -16,6 +16,7 @@ import javax.swing.JEditorPane;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 
 import domain.*;
@@ -101,7 +102,14 @@ public class crearCasaGUI extends JFrame {
 							RuralHouse rh = facade.crearRuralHouse(description, city);
 							System.out.println(rh.toString() + "Casa añadida correctamente");
 							JOptionPane.showMessageDialog(null, "Casa añadida correctamente");
-							dispose();
+							if (establecerDisponibilidad()){
+								Vector<RuralHouse> rhs=facade.getAllRuralHouses();
+								JFrame a = new SetAvailabilityGUI(rhs);
+								a.setVisible(true);
+								setVisible(false);
+
+							}else dispose();
+							
 						}
 				} catch (Exception ex) {
 					ex.printStackTrace();
@@ -130,12 +138,21 @@ public class crearCasaGUI extends JFrame {
 
 		String nl = System.getProperty("line.separator");
 
-		String message = "Porfavor compruebe que los siguientes datos son correctos:" + nl + "Ciudad" + city + nl
+		String message = "Porfavor compruebe que los siguientes datos son correctos:" + nl + "Ciudad: " + city + nl
 				+ "Descripción: " + description;
 
 		int selection = JOptionPane.showConfirmDialog(null, message, "Confirmation", JOptionPane.YES_NO_OPTION);
 
 		return selection == 0;
 	}
+	private boolean establecerDisponibilidad() {
 
+		String nl = System.getProperty("line.separator");
+
+		String message = "¿Desea establecer dsiponibilidad para la casa: " + city + "?";
+
+		int selection = JOptionPane.showConfirmDialog(null, message, "Confirmation", JOptionPane.YES_NO_OPTION);
+
+		return selection == 0;
+	}
 }
