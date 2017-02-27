@@ -152,9 +152,9 @@ public class DataAccess {
 			System.out.println(">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Descripción=" + description )	;
 		
 		db.getTransaction().begin();
+		 
 		
-		
-		//	RuralHouse rh = new RuralHouse()
+			RuralHouse rh = new RuralHouse()
 		
 		
 		return null;

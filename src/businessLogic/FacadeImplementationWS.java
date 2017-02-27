@@ -112,17 +112,14 @@ public Users comprobarUsuario(String usuario, String pass) throws RemoteExceptio
 	DataAccess dbManager = new DataAccess();
 		RuralHouse rh= null;
 		
-	//	boolean b = dbManager.existsOvelappingHouses(RuralHouse);
-	//	if (!b)
-			//rh = dbManager.crearRuralHouse();
-		dbManager.close();
-		/*boolean b = dbManager.existsOvelappingUsers(usuario); //user
-		System.out.println(b);
+		boolean b = dbManager.existsOvelappingHouses(RuralHouse);
 		if (!b)
-			o = dbManager.crearOwner(nombre, usuario, pass, cuenta);
-		dbManager.close();*/
+		rh = dbManager.crearRuralHouse(description, city);
+		dbManager.close();
+		System.out.println("<< FacadeImplementationWS: crearRuralHouse=> rh= " + rh);
+
 		
-		return null;
+		return rh;
 	}
 //-----------------------------------------------
 	public Vector<RuralHouse> getAllRuralHouses() {
