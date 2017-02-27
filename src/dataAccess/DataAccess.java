@@ -151,15 +151,17 @@ public class DataAccess {
 	 public RuralHouse crearRuralHouse(String description, String city) throws RemoteException, Exception{
 			System.out.println(">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Descripción=" + description )	;
 		
+			try{
 		db.getTransaction().begin();
-		 
-		
-			RuralHouse rh = new RuralHouse()
-		
-		
-		return null;
-	 
- }
+		RuralHouse rh= new RuralHouse(description, city);
+		db.persist(rh);
+		db.getTransaction().commit();
+		return rh;
+			}catch (Exception e){
+				System.out.println("La casa no se ha guardado en la base de datos ");
+				return null;				
+			}	 
+	 }
 
 	
 	//------------------------------------------------------------

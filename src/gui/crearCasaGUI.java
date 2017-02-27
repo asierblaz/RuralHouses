@@ -93,7 +93,8 @@ public class crearCasaGUI extends JFrame {
 				
 				ApplicationFacadeInterfaceWS facade= MainGUI.getBusinessLogic();
 				ciudad= textCiudad.getText();
-				descripcion= textDescripcion.getText();				
+				descripcion= textDescripcion.getText();		
+				
 				
 				
 				
