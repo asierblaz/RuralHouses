@@ -17,9 +17,10 @@ import javax.xml.bind.annotation.XmlIDREF;
 @Entity
 public class Users implements Serializable {
 
+	 
 	private String cuenta ="";
 	private String nombre = "";
-	private String usuario ="";
+@Id	private String usuario ="";
 	private String pass ="";
 	
 

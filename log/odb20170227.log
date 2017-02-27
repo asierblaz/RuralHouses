@@ -498,3 +498,66 @@ Type domain.Client is not enhanced.
 [2017-02-27 15:11:27 #7 type] 
 Type domain.Owner is not enhanced.
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-27 15:34:20 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 13088@ASIER
+
+[2017-02-27 15:34:20 #2 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-02-27 15:34:20 #3 type] 
+Type domain.Offer is not enhanced.
+
+[2017-02-27 15:34:20 #4 type] 
+Type domain.Users is not enhanced.
+
+[2017-02-27 15:34:20 #5 type] 
+Type domain.Client is not enhanced.
+
+[2017-02-27 15:34:20 #6 type] 
+Type domain.Owner is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-27 15:43:31 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' has been recovered (tr. 148-149)
+
+[2017-02-27 15:43:31 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 11496@ASIER
+
+[2017-02-27 15:43:31 #3 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-02-27 15:43:31 #4 type] 
+Type domain.Offer is not enhanced.
+
+[2017-02-27 15:43:31 #5 type] 
+Type domain.Users is not enhanced.
+
+[2017-02-27 15:43:31 #6 type] 
+Type domain.Client is not enhanced.
+
+[2017-02-27 15:43:31 #7 type] 
+Type domain.Owner is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-27 15:48:07 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 11904@ASIER
+
+[2017-02-27 15:48:07 #2 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-02-27 15:48:07 #3 type] 
+Type domain.Offer is not enhanced.
+
+[2017-02-27 15:48:07 #4 type] 
+Type domain.Users is not enhanced.
+
+[2017-02-27 15:48:07 #5 type] 
+Type domain.Client is not enhanced.
+
+[2017-02-27 15:48:07 #6 type] 
+Type domain.Owner is not enhanced.
+
