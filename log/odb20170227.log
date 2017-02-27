@@ -136,3 +136,26 @@ Type domain.Client is not enhanced.
 [2017-02-27 12:44:30 #7 type] 
 Type domain.Owner is not enhanced.
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-27 12:48:44 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' has been recovered (tr. 120-120)
+
+[2017-02-27 12:48:44 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 11244@ASIER
+
+[2017-02-27 12:48:44 #3 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-02-27 12:48:44 #4 type] 
+Type domain.Offer is not enhanced.
+
+[2017-02-27 12:48:44 #5 type] 
+Type domain.Users is not enhanced.
+
+[2017-02-27 12:48:44 #6 type] 
+Type domain.Client is not enhanced.
+
+[2017-02-27 12:48:44 #7 type] 
+Type domain.Owner is not enhanced.
+
