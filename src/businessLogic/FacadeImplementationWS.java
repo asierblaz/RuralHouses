@@ -104,8 +104,28 @@ public Users comprobarUsuario(String usuario, String pass) throws RemoteExceptio
 	return null;
 }
 	
-//-----------------------------------------------------------------------------	
+//-----------------------------crear casa rural-----------------------------------------	
+ public RuralHouse crearRuralHouse(String description, String city, String address, Owner owner) throws RemoteException, Exception{
+	System.out.println(">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Dirección= " + address
+			+ " Descripción=" + description + " Owner=" + owner);	
 	
+	
+	DataAccess dbManager = new DataAccess();
+		RuralHouse rh= null;
+		
+	//	boolean b = dbManager.existsOvelappingHouses(RuralHouse);
+	//	if (!b)
+			//rh = dbManager.crearRuralHouse();
+		dbManager.close();
+		/*boolean b = dbManager.existsOvelappingUsers(usuario); //user
+		System.out.println(b);
+		if (!b)
+			o = dbManager.crearOwner(nombre, usuario, pass, cuenta);
+		dbManager.close();*/
+		
+		return null;
+	}
+//-----------------------------------------------
 	public Vector<RuralHouse> getAllRuralHouses() {
 		System.out.println(">> FacadeImplementationWS: getAllRuralHouses");
 

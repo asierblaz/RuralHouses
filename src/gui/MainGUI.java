@@ -129,6 +129,7 @@ public class MainGUI extends JFrame {
 			Client c= (Client) getUsuario();
 			mntmRegistrarse.setEnabled(false);
 			setAvailability.setEnabled(false);
+			
 			}
 			mntmlogin.removeActionListener(ListenerLogin);
 			ListenerLogin= new ActionListener() {

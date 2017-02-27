@@ -23,6 +23,7 @@ import exceptions.OverlappingOfferExists;
 import exceptions.OverlappingUsersExists;
 
 
+
 public class DataAccess {
 
 	public static String fileName;
@@ -69,8 +70,10 @@ public class DataAccess {
 				RuralHouse rh = itr.next();
 				db.remove(rh);
 			}
+			
+			RuralHouse rh1 = crearRuralHouse("a", "b", address, owner)
 
-			RuralHouse rh1 = new RuralHouse("Ezkioko etxea", "Ezkio");
+		//	RuralHouse rh1 = new RuralHouse("Ezkioko etxea", "Ezkio");
 			RuralHouse rh2 = new RuralHouse("Etxetxikia", "Iruna");
 			RuralHouse rh3 = new RuralHouse("Udaletxea", "Bilbo");
 			RuralHouse rh4 = new RuralHouse("Gaztetxea", "Renteria");
@@ -145,6 +148,23 @@ public class DataAccess {
 		}
 
 	}
+	//-----------------------------------crear casa rural----------------
+	public RuralHouse crearRuralHouse(String description, String city, String address, Owner owner) throws RemoteException, Exception{
+		System.out.println(">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Dirección= " + address
+				+ " Descripción=" + description + " Owner=" + owner);
+		
+		db.getTransaction().begin();
+		
+		
+		//	RuralHouse rh = new RuralHouse()
+		
+		
+		return null;
+	 
+ }
+
+	
+	//------------------------------------------------------------
 
 	public Vector<RuralHouse> getAllRuralHouses() {
 		System.out.println(">> DataAccess: getAllRuralHouses");
@@ -170,6 +190,8 @@ public class DataAccess {
 		res = rhn.getOffers(firstDay, lastDay);
 		return res;
 	}
+	//-------------------------------comprobar si ya existe la offer--------------------------
+
 
 	public boolean existsOverlappingOffer(RuralHouse rh, Date firstDay, Date lastDay) throws OverlappingOfferExists {
 		try {
@@ -182,7 +204,7 @@ public class DataAccess {
 		}
 		return false;
 	}
-//-------------------------------------------------------
+	//------------------------------comprobar si existe el usuario-------------------
 		
 	public boolean existsOvelappingUsers (String usuario) throws RemoteException,OverlappingUsersExists {
 		
@@ -200,7 +222,7 @@ public class DataAccess {
 		return false;
 	}
 	
-	//-----------------------------comprobar usuario----------------------------------------------------
+	//-----------------------------comprobar usuario para logearse----------------------------------------------------
 	public Users comprobarUsuario(String usuario, String pass) throws RemoteException{
 		 
 		try{
