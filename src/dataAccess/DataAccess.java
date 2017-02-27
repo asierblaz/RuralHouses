@@ -82,7 +82,7 @@ public class DataAccess {
 		//	db.persist(rh3);
 		//	db.persist(rh4);
 			
-			db.getTransaction().commit();   //prueba
+			db.getTransaction().commit(); 
 			System.out.println("Db initialized");
 
 		} catch (Exception e) {
@@ -148,9 +148,8 @@ public class DataAccess {
 
 	}
 	//-----------------------------------crear casa rural----------------
-	public RuralHouse crearRuralHouse(String description, String city, String address, Owner owner) throws RemoteException, Exception{
-		System.out.println(">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Dirección= " + address
-				+ " Descripción=" + description + " Owner=" + owner);
+	 public RuralHouse crearRuralHouse(String description, String city) throws RemoteException, Exception{
+			System.out.println(">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Descripción=" + description )	;
 		
 		db.getTransaction().begin();
 		
