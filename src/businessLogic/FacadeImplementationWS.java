@@ -112,8 +112,14 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 //---------------------comprobar usuario-----------------------------------------------
 @Override
 public Users comprobarUsuario(String usuario, String pass) throws RemoteException, Exception{
-	return null;
+	DataAccess dbManager = new DataAccess();
+	return dbManager.comprobarUsuario(usuario, pass);
 }
+
+
+
+
+
 	
 //-----------------------------crear casa rural-----------------------------------------	
  public RuralHouse crearRuralHouse(String description, String city) throws RemoteException, Exception{

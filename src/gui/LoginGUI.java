@@ -25,11 +25,11 @@ public class LoginGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JPasswordField passwordField;
-	private JTextArea textUsuario;
 
 	private JButton Entrar;
 	private String usuario;
 	private String pass;
+	private JTextField textUsuario;
 	/**
 	 * Launch the application.
 	 */
@@ -78,10 +78,6 @@ public class LoginGUI extends JFrame {
 		lblNombreDeUsuario.setBounds(30, 71, 135, 25);
 		contentPane.add(lblNombreDeUsuario);
 
-		textUsuario = new JTextArea();
-		textUsuario.setBounds(178, 72, 163, 22);
-		contentPane.add(textUsuario);
-
 		JLabel lblLogin = new JLabel("Login");
 		lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblLogin.setBounds(222, 13, 249, 45);
@@ -98,6 +94,11 @@ public class LoginGUI extends JFrame {
 		btnnoTienesCuenta.setBounds(43, 277, 177, 25);
 		contentPane.add(btnnoTienesCuenta);
 		contentPane.add(getEntrar());
+		
+		textUsuario = new JTextField();
+		textUsuario.setBounds(178, 72, 163, 25);
+		contentPane.add(textUsuario);
+		textUsuario.setColumns(10);
 	}
 
 	// --implementación del boton entrar---
@@ -108,30 +109,29 @@ public class LoginGUI extends JFrame {
 
 		Entrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try {
-
+				
+			try{
 			ApplicationFacadeInterfaceWS facade = MainGUI.getBusinessLogic();
 			usuario= textUsuario.getText();
 			pass= passwordField.getText();
 			
 			MainGUI.setUsuario(facade.comprobarUsuario(usuario, pass));
 			boolean b= MainGUI.getUsuario() != null;
+			System.out.println(b);
+			showLoginMessage(b);
 			
 			textUsuario.setText("");
 			passwordField.setText("");
 			
 			if (b){
-			//	MainGUI.setregistredMode();
-				dispose();
+			MainGUI.setModoRegistro();
+			dispose();}
+			} catch (Exception ex) {
+				ex.printStackTrace();
 			}
 			
 			
-			
-				
-				
-				} catch (Exception ex) {
-					ex.printStackTrace();
-				}
+				 
 				
 			}
 		});
@@ -154,6 +154,4 @@ public class LoginGUI extends JFrame {
 		
 
 	}
-	
-	
 }

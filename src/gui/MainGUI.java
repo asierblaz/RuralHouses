@@ -61,6 +61,7 @@ public class MainGUI extends JFrame {
 	private static JMenuItem mntmRegistrarse;
 	private static Users usuario; //creada.
 	private JButton btnAadir;
+	private JButton btndescription;
 	
 	/**
 	 * This is the default constructor
@@ -95,7 +96,7 @@ public class MainGUI extends JFrame {
 	 */
 	private void initialize() {
 		// this.setSize(271, 295);
-		this.setSize(652, 402);
+		this.setSize(714, 494);
 		setJMenuBar(getMenuBar_1());
 		this.setContentPane(getJContentPane());
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
@@ -115,6 +116,7 @@ public class MainGUI extends JFrame {
 			jContentPane.add(getSetAvailability());
 			jContentPane.add(getPanel());
 			jContentPane.add(getBtnAadir());
+			jContentPane.add(getBtndescription());
 		}
 		return jContentPane;
 	}
@@ -255,7 +257,7 @@ public class MainGUI extends JFrame {
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
-			panel.setBounds(0, 246, 634, 82);
+			panel.setBounds(12, 308, 634, 82);
 			panel.add(getRdbtnNewRadioButton_1());
 			panel.add(getRdbtnNewRadioButton_2());
 			panel.add(getRdbtnNewRadioButton());
@@ -323,7 +325,7 @@ public class MainGUI extends JFrame {
 	 * @param usuari
 	 *            the usuario to set
 	 */
-	public static void setUsuario(Users login) {
+	public static void setUsuario(Users usuario) {
 		MainGUI.usuario = usuario;
 	}
 
@@ -342,6 +344,13 @@ public class MainGUI extends JFrame {
 			});
 		}
 		return btnAadir;
+	}
+	private JButton getBtndescription() {
+		if (btndescription == null) {
+			btndescription = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			btndescription.setBounds(224, 210, 203, 38);
+		}
+		return btndescription;
 	}
 } // @jve:decl-index=0:visual-constraint="0,0"
 
