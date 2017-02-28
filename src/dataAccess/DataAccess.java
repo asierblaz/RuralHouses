@@ -239,21 +239,7 @@ public class DataAccess {
 		}
 	}
 
-	// ---------------------------------comprobar si la casa existe--------------------------------
-	public boolean existsOverlappingHouse(String description, String city)
-			throws RemoteException, OverlappingHouseExists {
-		try {
-			RuralHouse rh = db.find(RuralHouse.class, description);
-			if (rh == null)
-				return true;
-		} catch (Exception e) {
-			System.out.println("description" + description);
-			System.out.println("Error" + e.toString());
-			return true;
 
-		}
-		return false;
-	}
 
 	public void close() {
 		db.close();

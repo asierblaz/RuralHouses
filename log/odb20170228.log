@@ -942,3 +942,63 @@ Type domain.Client is not enhanced.
 [2017-02-28 16:18:13 #6 type] 
 Type domain.Owner is not enhanced.
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-28 16:33:44 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 12972@ASIER
+
+[2017-02-28 16:33:44 #2 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-02-28 16:33:44 #3 type] 
+Type domain.Offer is not enhanced.
+
+[2017-02-28 16:33:44 #4 type] 
+Type domain.Users is not enhanced.
+
+[2017-02-28 16:33:44 #5 type] 
+Type domain.Client is not enhanced.
+
+[2017-02-28 16:33:44 #6 type] 
+Type domain.Owner is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-28 16:35:41 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 10324@ASIER
+
+[2017-02-28 16:35:41 #2 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-02-28 16:35:41 #3 type] 
+Type domain.Offer is not enhanced.
+
+[2017-02-28 16:35:41 #4 type] 
+Type domain.Users is not enhanced.
+
+[2017-02-28 16:35:41 #5 type] 
+Type domain.Client is not enhanced.
+
+[2017-02-28 16:35:41 #6 type] 
+Type domain.Owner is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-02-28 16:39:37 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 17028@ASIER
+
+[2017-02-28 16:39:37 #2 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-02-28 16:39:37 #3 type] 
+Type domain.Offer is not enhanced.
+
+[2017-02-28 16:39:37 #4 type] 
+Type domain.Users is not enhanced.
+
+[2017-02-28 16:39:37 #5 type] 
+Type domain.Client is not enhanced.
+
+[2017-02-28 16:39:37 #6 type] 
+Type domain.Owner is not enhanced.
+
