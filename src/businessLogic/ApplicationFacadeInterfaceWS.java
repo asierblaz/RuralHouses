@@ -57,7 +57,8 @@ public interface ApplicationFacadeInterfaceWS  {
 	 * @param lastDay, last day in a period range
 	 * @return the first offer that overlaps with those dates, or null if there is no overlapping offer
 	 */
-
+	@WebMethod 	public Vector<RuralHouse> getRhDescription();
+	
 	
 	@WebMethod public Client crearCliente (String nombre,String usuario, String pass, String cuenta) throws RemoteException, Exception;
 	

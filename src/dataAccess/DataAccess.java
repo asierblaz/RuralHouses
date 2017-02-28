@@ -10,6 +10,7 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Vector;
 
+import javax.jdo.annotations.Queries;
 import javax.jws.WebMethod;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -180,8 +181,13 @@ public class DataAccess {
 			res.add(itr.next());
 		}
 
-		return res;
-
+		return res;}
+	//---------------------------------------------------------
+		public Vector<RuralHouse>  getRhDescription(RuralHouse rh){
+			
+		RuralHouse	des=  db.find(RuralHouse.class, rh.getDescription());
+			
+			return null;
 	}
 
 	public Vector<Offer> getOffers(RuralHouse rh, Date firstDay, Date lastDay) {

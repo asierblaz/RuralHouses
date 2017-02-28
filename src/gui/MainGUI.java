@@ -61,7 +61,7 @@ public class MainGUI extends JFrame {
 	private static JMenuItem mntmDesconectar;
 	private static Users usuario; // creada.
 	private static JButton btnAadir;
-	private static JButton btndescription;
+	private static JButton btnVerDatos;
 
 	/**
 	 * This is the default constructor
@@ -116,7 +116,7 @@ public class MainGUI extends JFrame {
 			jContentPane.add(getSetAvailability());
 			jContentPane.add(getPanel());
 			jContentPane.add(getBtnAadir());
-			jContentPane.add(getBtndescription());
+			jContentPane.add(getBtnVerDatos());
 		}
 		return jContentPane;
 	}
@@ -132,7 +132,7 @@ public class MainGUI extends JFrame {
 			setAvailability.setEnabled(true);
 			queryAvailability.setEnabled(true);
 			btnAadir.setEnabled(true);
-			btndescription.setEnabled(true);
+			btnVerDatos.setEnabled(true);
 
 		} else {
 			Client c = (Client) getUsuario();
@@ -142,7 +142,7 @@ public class MainGUI extends JFrame {
 			setAvailability.setEnabled(false);
 			queryAvailability.setEnabled(true);
 			btnAadir.setEnabled(false);
-			btndescription.setEnabled(true);
+			btnVerDatos.setEnabled(true);
 
 		}
 
@@ -157,7 +157,7 @@ public class MainGUI extends JFrame {
 		setAvailability.setEnabled(false);
 		queryAvailability.setEnabled(false);
 		btnAadir.setEnabled(false);
-		btndescription.setEnabled(true);
+		btnVerDatos.setEnabled(true);
 		mntmDesconectar.setEnabled(false);
 		mntmlogin.setEnabled(true);
 
@@ -377,17 +377,17 @@ public class MainGUI extends JFrame {
 		return btnAadir;
 	}
 
-	private JButton getBtndescription() {
-		if (btndescription == null) {
-			btndescription = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
-			btndescription.addActionListener(new ActionListener() {
+	private JButton getBtnVerDatos() {
+		if (btnVerDatos == null) {
+			btnVerDatos = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			btnVerDatos.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					JFrame ver = new VerDescripcionGUI();
+					JFrame ver = new VerDatosCasaGUI();
 					ver.setVisible(true);
 				}
 			});
-			btndescription.setBounds(224, 210, 203, 38);
+			btnVerDatos.setBounds(224, 210, 203, 38);
 		}
-		return btndescription;
+		return btnVerDatos;
 	}
 } // @jve:decl-index=0:visual-constraint="0,0"
