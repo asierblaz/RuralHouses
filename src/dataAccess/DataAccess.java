@@ -239,14 +239,6 @@ public class DataAccess {
 		}
 	}
 
-	/*
-	 * public boolean comprobarUsuario(String usuario, String pass) throws
-	 * RemoteException {
-	 * 
-	 * Users u = db.find(Users.class, usuario); if (u == null) return true; else
-	 * { if (u.getUsuario().compareTo(usuario) == 0) { return false; } else {
-	 * return true; } } }
-	 */
 	// ---------------------------------comprobar si la casa existe--------------------------------
 	public boolean existsOverlappingHouse(String description, String city)
 			throws RemoteException, OverlappingHouseExists {

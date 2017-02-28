@@ -115,11 +115,6 @@ public Users comprobarUsuario(String usuario, String pass) throws RemoteExceptio
 	DataAccess dbManager = new DataAccess();
 	return dbManager.comprobarUsuario(usuario, pass);
 }
-
-
-
-
-
 	
 //-----------------------------crear casa rural-----------------------------------------	
  public RuralHouse crearRuralHouse(String description, String city) throws RemoteException, Exception{
