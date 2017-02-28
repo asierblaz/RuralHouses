@@ -5,10 +5,12 @@ import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.Vector;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
+import javax.swing.JOptionPane;
 
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
@@ -75,6 +77,9 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		System.out.println(b);
 		if (!b)
 			c = dbManager.crearCliente(nombre, usuario, pass, cuenta);
+		else{String message = "El nombre de  Usuario: " + usuario + " esta ocupado!";
+		JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);}
+
 		dbManager.close();
 		System.out.println("<< FacadeImplementationWS: crearCliente=> c= " + c);
 		return c;
@@ -92,11 +97,17 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		System.out.println(b);
 		if (!b)
 			o = dbManager.crearOwner(nombre, usuario, pass, cuenta);
+		else {
+			String message = "El nombre de  Usuario: " + usuario + " esta ocupado!";
+			JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
+
+		}
 		dbManager.close();
 		System.out.println("<< FacadeImplementationWS: crearOwner=> o= " + o);
 		return o;
 
 	}
+	
 	
 //---------------------comprobar usuario-----------------------------------------------
 @Override

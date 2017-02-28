@@ -225,17 +225,14 @@ public class DataAccess {
 	}
 	
 	//-----------------------------comprobar usuario para logearse----------------------------------------------------
-	public Users comprobarUsuario(String usuario, String pass) throws RemoteException{
+	public boolean comprobarUsuario(String usuario, String pass){ 
 		 
-		try{
+		
 		Users u = db.find(Users.class, usuario);
-		if (u== null) return null;
-		else return null;
+		if (u== null) return true;
+		else return false;
 		
-	} finally {					//para mirar.
-
-	}
-		
+	
 		
 		
 	}	
@@ -255,25 +252,7 @@ public class DataAccess {
 	}
 		
 	
-	//--------------------------------------------
-	/*
-	public boolean existsOvelappingClient (String usuario) throws RemoteException,OverlappingClientExists {
-		
-		try{
-		
-		Users u = db.find(Users.class, usuario);
-		if (u !=null)
-			return true;
-		}catch (Exception e){
-			System.out.println("usuario"+usuario);
-			System.out.println("Error: "+ e.toString());
-			return true;
-		}
-				
-		return false;
-	}*/
 	
-//----------------------------------------------------------
 	public void close() {
 		db.close();
 		System.out.println("DataBase closed");

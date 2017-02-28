@@ -38,7 +38,7 @@ public class RegistroGUI extends JFrame {
 	private JTextField textNombre;
 	private JTextField textUsuario;
 	private JTextField textCuenta;
-	
+
 	private JButton btnRegistro;
 	private JPasswordField passwordField;
 
@@ -123,11 +123,13 @@ public class RegistroGUI extends JFrame {
 		contentPane.add(btnEntrarEnEl);
 
 		rdbtnCliente = new JRadioButton("Cliente");
+		rdbtnCliente.setSelected(true);
 		TipoUsuario.add(rdbtnCliente);
 		rdbtnCliente.setBounds(166, 214, 67, 25);
 		contentPane.add(rdbtnCliente);
 
 		rdbtnOwner = new JRadioButton("Owner");
+		rdbtnOwner.setSelected(true);
 		TipoUsuario.add(rdbtnOwner);
 		rdbtnOwner.setBounds(268, 214, 67, 25);
 		contentPane.add(rdbtnOwner);
@@ -158,38 +160,37 @@ public class RegistroGUI extends JFrame {
 					nombre = textNombre.getText();
 					usuario = textUsuario.getText();
 					cuenta = textCuenta.getText();
-					pass= passwordField.getText();
+					pass = passwordField.getText();
 					if (!ComprobarCamposVacios()) {
-						if (ConfirmarDatos()) {
-							if (rdbtnCliente.isSelected()) {
-								Users u = facade.crearCliente(nombre, usuario, pass, cuenta);
-								System.out.println(u.toString() + "registrado como Cliente;");
-							}
-							if (rdbtnOwner.isSelected()) {
-								Users us= facade.crearOwner(nombre, usuario, pass, cuenta);
-								System.out.println(us.toString() + "registrado como Owner;");
+							if (ConfirmarDatos()) {
+								if (rdbtnCliente.isSelected()) {
+									Users u = facade.crearCliente(nombre, usuario, pass, cuenta);
+									System.out.println(u.toString() + "registrado como Cliente;");
+								}
+								if (rdbtnOwner.isSelected()) {
+									Users us = facade.crearOwner(nombre, usuario, pass, cuenta);
+									System.out.println(us.toString() + "registrado como Owner;");
+
+								}
+								siRegistro();
+								setVisible(false);
+							} else {
+								noRegistro();
+								setVisible(false);
 
 							}
-							siRegistro();
-							setVisible(false);
-						} else {
-							noRegistro();
-							setVisible(false);
-							
-						}
-
+					
 					}
 
-				} catch (OverlappingUsersExists e) { //over
+				} catch (OverlappingUsersExists e) { // over
 					usuarioExiste();
-					} catch (Exception ex) {
+				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
 
 			}
 		});
-		
-		
+
 		return btnRegistro;
 
 	}
@@ -198,10 +199,6 @@ public class RegistroGUI extends JFrame {
 	// metodos para alertas
 	private boolean ComprobarCamposVacios() {
 		String message = "Porfavor rellene todos los campos";
-		System.out.println(cuenta.trim());
-		System.out.println(pass.trim());
-		System.out.println(usuario.trim());
-		System.out.println(nombre.trim());
 
 		if (cuenta.trim().equals("") || pass.trim().equals("") || usuario.trim().equals("")
 				|| nombre.trim().equals("")) {
@@ -246,10 +243,10 @@ public class RegistroGUI extends JFrame {
 		passwordField.setText("");
 		textCuenta.setText("");
 	}
+
 	private void usuarioExiste() {
 		String message = "El usuario ya esta registrado";
-		JOptionPane.showMessageDialog(null, message, "Error",
-				JOptionPane.WARNING_MESSAGE);
+		JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.WARNING_MESSAGE);
 		textNombre.setText("");
 		textUsuario.setText("");
 		passwordField.setText("");

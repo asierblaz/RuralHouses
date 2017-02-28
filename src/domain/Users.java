@@ -20,7 +20,7 @@ public class Users implements Serializable {
 	 
 	private String cuenta ="";
 	private String nombre = "";
-@Id	private String usuario ="";
+@Id	private String usuario =""; //solo puede haber un tipo de usuario
 	private String pass ="";
 	
 
