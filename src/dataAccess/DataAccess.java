@@ -239,6 +239,7 @@ public class DataAccess {
 			if (u == null)
 				return null;
 			else
+				u = db.find(Users.class, pass);
 				return u;
 		} finally {
 
