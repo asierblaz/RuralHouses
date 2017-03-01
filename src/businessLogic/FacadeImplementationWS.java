@@ -146,15 +146,6 @@ public Users comprobarUsuario(String usuario, String pass) throws RemoteExceptio
 
 	}
 
-//--------------------get ruralhouses description---------
-	public Vector<RuralHouse> getRhDescription(){
-		
-		DataAccess dbManager = new DataAccess();
-		Vector<RuralHouse> rh;
-		dbManager.close();
-		
-		return null;
-	}
 	/**
 	 * This method obtains the offers of a ruralHouse in the provided dates
 	 * 

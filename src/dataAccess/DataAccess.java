@@ -18,10 +18,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
-//import domain.Booking;
 import domain.*;
-import exceptions.OverlappingClientExists;
-import exceptions.OverlappingHouseExists;
 import exceptions.OverlappingOfferExists;
 import exceptions.OverlappingUsersExists;
 

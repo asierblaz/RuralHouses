@@ -21,7 +21,6 @@ import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JPasswordField;
 import domain.*;
-import exceptions.OverlappingClientExists;
 import exceptions.OverlappingUsersExists;
 
 public class RegistroGUI extends JFrame {

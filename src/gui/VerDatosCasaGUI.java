@@ -89,9 +89,7 @@ public class VerDatosCasaGUI extends JFrame {
 	 comboBox = new JComboBox(rhs);
 	 comboBox.addActionListener(new ActionListener() {
 	 	public void actionPerformed(ActionEvent e) {
-	 		
-	 		//aqui tenemos que meter lo que pasa cuando hacemos click
-	 		
+	 			 		
 	 		
 	 	}
 	 });
