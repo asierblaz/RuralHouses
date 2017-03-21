@@ -122,7 +122,7 @@ public Users comprobarUsuario(String usuario, String pass) throws RemoteExceptio
 	
 	
 	DataAccess dbManager = new DataAccess();
-		RuralHouse rh= null;
+		RuralHouse rh= null; //la inicializamos a null
 		
 
 		rh = dbManager.crearRuralHouse(description, city);

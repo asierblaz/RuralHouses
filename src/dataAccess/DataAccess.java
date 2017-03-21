@@ -66,18 +66,18 @@ public class DataAccess {
 
 			while (itr.hasNext()) {
 				RuralHouse rh = itr.next();
-				// db.remove(rh);
+				db.remove(rh);
 			}
 
-			/*
-			 * RuralHouse rh1 = new RuralHouse("Ezkioko etxea", "Ezkio");
-			 * RuralHouse rh2 = new RuralHouse("Etxetxikia", "Iruna");
-			 * RuralHouse rh3 = new RuralHouse("Udaletxea", "Bilbo"); RuralHouse
-			 * rh4 = new RuralHouse("Gaztetxea", "Renteria");
-			 * 
-			 * db.persist(rh1); db.persist(rh2); db.persist(rh3);
-			 * db.persist(rh4);
-			 */
+			
+			 RuralHouse rh1 = new RuralHouse("Ezkioko etxea", "Ezkio");
+			 RuralHouse rh2 = new RuralHouse("Etxetxikia", "Iruna");
+			 RuralHouse rh3 = new RuralHouse("Udaletxea", "Bilbo"); RuralHouse
+			 rh4 = new RuralHouse("Gaztetxea", "Renteria");
+			 
+			 db.persist(rh1); db.persist(rh2); db.persist(rh3);
+			 db.persist(rh4);
+			 
 
 			db.getTransaction().commit();
 			System.out.println("Db initialized");
