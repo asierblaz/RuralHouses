@@ -27,6 +27,7 @@ import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+
 public class MainGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -62,6 +63,7 @@ public class MainGUI extends JFrame {
 	private static Users usuario; // creada.
 	private static JButton btnAadir;
 	private static JButton btnVerDatos;
+	private static JButton ModificarCasa;
 
 	/**
 	 * This is the default constructor
@@ -96,7 +98,7 @@ public class MainGUI extends JFrame {
 	 */
 	private void initialize() {
 		// this.setSize(271, 295);
-		this.setSize(714, 494);
+		this.setSize(774, 579);
 		setJMenuBar(getMenuBar_1());
 		this.setContentPane(getJContentPane());
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
@@ -117,6 +119,7 @@ public class MainGUI extends JFrame {
 			jContentPane.add(getPanel());
 			jContentPane.add(getBtnAadir());
 			jContentPane.add(getBtnVerDatos());
+			jContentPane.add(getModificarCasa());
 		}
 		return jContentPane;
 	}
@@ -133,6 +136,7 @@ public class MainGUI extends JFrame {
 			queryAvailability.setEnabled(true);
 			btnAadir.setEnabled(true);
 			btnVerDatos.setEnabled(true);
+			
 
 		} else {
 			Client c = (Client) getUsuario();
@@ -267,7 +271,7 @@ public class MainGUI extends JFrame {
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
-			panel.setBounds(12, 308, 634, 82);
+			panel.setBounds(12, 354, 634, 82);
 			panel.add(getRdbtnNewRadioButton_1());
 			panel.add(getRdbtnNewRadioButton_2());
 			panel.add(getRdbtnNewRadioButton());
@@ -382,12 +386,26 @@ public class MainGUI extends JFrame {
 			btnVerDatos = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
 			btnVerDatos.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					JFrame ver = new VerDatosCasaGUI();
+					JFrame ver = new VerDatosCasaGUI(); 
 					ver.setVisible(true);
 				}
 			});
 			btnVerDatos.setBounds(224, 210, 203, 38);
 		}
 		return btnVerDatos;
+	}
+	private JButton getModificarCasa() {
+		if (ModificarCasa == null) {
+			ModificarCasa = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text_1")); //$NON-NLS-1$ //$NON-NLS-2$
+			ModificarCasa.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					Vector<RuralHouse> listadecasas =null;
+					JFrame modificar = new ModificarCasaGUI(listadecasas);
+					modificar.setVisible(true);
+				}
+			});
+			ModificarCasa.setBounds(224, 261, 203, 38);
+		}
+		return ModificarCasa;
 	}
 } // @jve:decl-index=0:visual-constraint="0,0"

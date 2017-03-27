@@ -70,16 +70,16 @@ public class DataAccess {
 			}
 
 			
-			 RuralHouse rh1 = new RuralHouse("Ezkioko etxea", "Ezkio");
+		/*	 RuralHouse rh1 = new RuralHouse("Ezkioko etxea", "Ezkio");
 			 RuralHouse rh2 = new RuralHouse("Etxetxikia", "Iruna");
 			 RuralHouse rh3 = new RuralHouse("Udaletxea", "Bilbo"); RuralHouse
 			 rh4 = new RuralHouse("Gaztetxea", "Renteria");
 			 
 			 db.persist(rh1); db.persist(rh2); db.persist(rh3);
 			 db.persist(rh4);
-			 
+			
 
-			db.getTransaction().commit();
+			db.getTransaction().commit();*/
 			System.out.println("Db initialized");
 
 		} catch (Exception e) {
@@ -147,13 +147,13 @@ public class DataAccess {
 	}
 
 	// -----------------------------------crear casa rural----------------
-	public RuralHouse crearRuralHouse(String description, String city) throws RemoteException, Exception {
+	public RuralHouse crearRuralHouse(String description, String city, Owner owner) throws RemoteException, Exception {
 		System.out.println(
 				">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Descripción=" + description);
 
 		try {
 			db.getTransaction().begin();
-			RuralHouse rh = new RuralHouse(description, city);
+			RuralHouse rh = new RuralHouse(description, city, owner);
 			db.persist(rh);
 			db.getTransaction().commit();
 			return rh;

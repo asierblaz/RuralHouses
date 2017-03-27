@@ -117,7 +117,7 @@ public Users comprobarUsuario(String usuario, String pass) throws RemoteExceptio
 }
 	
 //-----------------------------crear casa rural-----------------------------------------	
- public RuralHouse crearRuralHouse(String description, String city) throws RemoteException, Exception{
+ public RuralHouse crearRuralHouse(String description, String city,Owner owner) throws RemoteException, Exception{
 	System.out.println(">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Descripción=" + description )	;
 	
 	
@@ -125,7 +125,7 @@ public Users comprobarUsuario(String usuario, String pass) throws RemoteExceptio
 		RuralHouse rh= null; //la inicializamos a null
 		
 
-		rh = dbManager.crearRuralHouse(description, city);
+		rh = dbManager.crearRuralHouse(description, city, owner);
 		dbManager.close();
 		System.out.println("<< FacadeImplementationWS: crearRuralHouse=> rh= " + rh);
 

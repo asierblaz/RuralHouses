@@ -20,6 +20,7 @@ import java.util.Vector;
 import java.awt.event.ActionEvent;
 
 import domain.*;
+import gui.*;
 
 public class crearCasaGUI extends JFrame {
 
@@ -31,11 +32,12 @@ public class crearCasaGUI extends JFrame {
 	private JButton btnAadirCasa;
 	private String city;
 	private String description;
+	private RuralHouse rh;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -46,12 +48,12 @@ public class crearCasaGUI extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
 	 */
-	public crearCasaGUI() {
+	public crearCasaGUI(boolean modificarCasa, RuralHouse casa) {
 	setBounds(100, 100, 489, 361);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -81,6 +83,14 @@ public class crearCasaGUI extends JFrame {
 		lblAadirDescripcinDe.setBounds(122, 115, 207, 16);
 		contentPane.add(lblAadirDescripcinDe);
 		contentPane.add(getCrearCasa());
+		
+		if (modificarCasa){
+			rh = casa;
+			textCiudad.setText(casa.getCity());
+			textDescripcion.setText(casa.getDescription());
+			
+			
+		}
 
 	}
 
@@ -98,7 +108,7 @@ public class crearCasaGUI extends JFrame {
 
 					if (!ComprobarCamposVacios())
 						if (ConfirmarDatos()) {
-							RuralHouse rh = facade.crearRuralHouse(description, city);
+							 rh = facade.crearRuralHouse(description, city, (Owner) MainGUI.getUsuario());
 							System.out.println(rh.toString() + "Casa añadida correctamente");
 							JOptionPane.showMessageDialog(null, "Casa añadida correctamente");
 							if (establecerDisponibilidad()){

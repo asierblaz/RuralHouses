@@ -25,6 +25,7 @@ public class RuralHouse implements Serializable {
 	private Integer houseNumber;
 	private String description;
 	private String city; 
+	private Owner owner;
 	public Vector<Offer> offers;
 	
 
@@ -32,9 +33,10 @@ public class RuralHouse implements Serializable {
 		super();
 	}
 
-	public RuralHouse(String description, String city) {
+	public RuralHouse(String description,String city, Owner owner) {
 		this.description = description;
 		this.city = city;
+		this.owner = owner;
 		offers=new Vector<Offer>();
 	}
 
