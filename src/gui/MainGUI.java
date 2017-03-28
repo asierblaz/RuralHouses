@@ -310,7 +310,6 @@ public class MainGUI extends JFrame {
 
 					JOptionPane.showMessageDialog(null, "Sesión cerrada", "", JOptionPane.PLAIN_MESSAGE);
 
-					// mierfda
 					mntmlogin.removeActionListener(ListenerLogin);
 
 					aLoBruto();
@@ -400,7 +399,8 @@ public class MainGUI extends JFrame {
 			ModificarCasa.setBounds(224, 261, 203, 38);
 			ModificarCasa.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					Vector<RuralHouse> rhlista=null;
+					ApplicationFacadeInterfaceWS facade= getBusinessLogic();
+					Vector<RuralHouse> rhlista= facade.getAllRuralHouses();
 					//boolean vacia= true;
 					try{
 						if(getUsuario() instanceof Owner){

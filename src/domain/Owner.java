@@ -27,9 +27,7 @@ public class Owner extends Users implements Serializable {
 		
 		
 	}
-	public Vector<RuralHouse> getRuralHouses() {
-		return ruralHouses;
-	}
+
 
 	public RuralHouse anadirCasaRural (String description,String city, Owner owner){
 		
@@ -37,6 +35,9 @@ public class Owner extends Users implements Serializable {
 		ruralHouses.add(rh);
 		return rh;
 		
+	}
+	public Vector<RuralHouse> getRuralHouses() {
+		return ruralHouses;
 	}
 	
 	

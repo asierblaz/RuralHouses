@@ -140,9 +140,11 @@ public Users comprobarUsuario(String usuario, String pass) throws RemoteExceptio
 		Boolean b = dbManager.actualizarRuralHouse(rh, description, city);
 		if(b)
 			rh = null;
+		System.out.println("Actualizar rh= "+ rh + "descripcion"+ description );
 		dbManager.close();
-		System.out.println("Actualizar rh= "+ rh);
+
 		return b;
+
  }
  
 //-----------------------------------------------

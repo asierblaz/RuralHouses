@@ -162,7 +162,7 @@ public class DataAccess {
 			return null;
 		}
 	}
-	//-----------------------------------------------------------------
+	//---------------------------------actualizar rural house--------------------------------
 	public boolean actualizarRuralHouse (RuralHouse rh, String description, String city) throws RemoteException, Exception{
 		System.out.println(">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Descripción=" + description + "RuralHouse= " + rh );
 			try{

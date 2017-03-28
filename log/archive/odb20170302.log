@@ -1,0 +1,20 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-03-02 08:20:17 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 6960@ASIER
+
+[2017-03-02 08:20:17 #2 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-03-02 08:20:17 #3 type] 
+Type domain.Offer is not enhanced.
+
+[2017-03-02 08:20:17 #4 type] 
+Type domain.Users is not enhanced.
+
+[2017-03-02 08:20:17 #5 type] 
+Type domain.Client is not enhanced.
+
+[2017-03-02 08:20:17 #6 type] 
+Type domain.Owner is not enhanced.
+
