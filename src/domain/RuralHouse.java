@@ -64,6 +64,13 @@ public class RuralHouse implements Serializable {
 	public void setCity(String city) {
 		this.city=city;
 	}
+	
+	public Owner getOwner(){
+		return owner;
+	}
+	public void setOwner(Owner owner){
+		this.owner= owner;
+	}
 
 	
 		

@@ -118,7 +118,7 @@ public Users comprobarUsuario(String usuario, String pass) throws RemoteExceptio
 	
 //-----------------------------crear casa rural-----------------------------------------	
  public RuralHouse crearRuralHouse(String description, String city,Owner owner) throws RemoteException, Exception{
-	System.out.println(">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Descripción=" + description )	;
+	System.out.println(">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Descripción=" + description + "Owner= " + owner )	;
 	
 	
 	DataAccess dbManager = new DataAccess();
@@ -132,6 +132,19 @@ public Users comprobarUsuario(String usuario, String pass) throws RemoteExceptio
 		
 		return rh;
 	}
+ //---------------------------------Actualizar Casa Rural------------------
+ public boolean actualizarRuralHouse (RuralHouse rh, String description, String city) throws RemoteException, Exception{
+		System.out.println(">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Descripción=" + description + "rural House"+ rh )	;
+	
+		DataAccess dbManager = new DataAccess();
+		Boolean b = dbManager.actualizarRuralHouse(rh, description, city);
+		if(b)
+			rh = null;
+		dbManager.close();
+		System.out.println("Actualizar rh= "+ rh);
+		return b;
+ }
+ 
 //-----------------------------------------------
 	public Vector<RuralHouse> getAllRuralHouses() {
 		System.out.println(">> FacadeImplementationWS: getAllRuralHouses");

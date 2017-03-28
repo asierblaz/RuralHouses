@@ -162,6 +162,22 @@ public class DataAccess {
 			return null;
 		}
 	}
+	//-----------------------------------------------------------------
+	public boolean actualizarRuralHouse (RuralHouse rh, String description, String city) throws RemoteException, Exception{
+		System.out.println(">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Descripción=" + description + "RuralHouse= " + rh );
+			try{
+				db.getTransaction().begin();
+				rh.setCity(city);
+				rh.setDescription(description);				
+				db.persist(rh);
+				db.getTransaction().commit();
+				System.out.println("La casa "+ rh.toString()+ "ha sido actualizada");
+							
+		return true;
+	} catch (Exception e1) {
+		return false;
+	}
+			}
 
 	// ------------------------------------------------------------
 

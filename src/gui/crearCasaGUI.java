@@ -37,24 +37,18 @@ public class crearCasaGUI extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					crearCasaGUI frame = new crearCasaGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
+	/*
+	 * public static void main(String[] args) { EventQueue.invokeLater(new
+	 * Runnable() { public void run() { try { crearCasaGUI frame = new
+	 * crearCasaGUI(); frame.setVisible(true); } catch (Exception e) {
+	 * e.printStackTrace(); } } }); }
+	 */
 
 	/**
 	 * Create the frame.
 	 */
 	public crearCasaGUI(boolean modificarCasa, RuralHouse casa) {
-	setBounds(100, 100, 489, 361);
+		setBounds(100, 100, 489, 361);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -82,50 +76,82 @@ public class crearCasaGUI extends JFrame {
 		lblAadirDescripcinDe = new JLabel("A\u00F1adir Descripci\u00F3n de la casa: ");
 		lblAadirDescripcinDe.setBounds(122, 115, 207, 16);
 		contentPane.add(lblAadirDescripcinDe);
-		contentPane.add(getCrearCasa());
-		
-		if (modificarCasa){
+		contentPane.add(getCrearCasa(modificarCasa));
+
+		if (modificarCasa) {
 			rh = casa;
 			textCiudad.setText(casa.getCity());
 			textDescripcion.setText(casa.getDescription());
-			
-			
+
 		}
 
 	}
 
 	// -----------------añadir casa--------------
-	private JButton getCrearCasa() {
+	private JButton getCrearCasa(boolean modificarCasa) {
 		btnAadirCasa = new JButton("A\u00F1adir Casa");
 		btnAadirCasa.setBounds(154, 271, 152, 25);
-		btnAadirCasa.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		// añadimos un if para saber si añadimos o modificamos casa
 
-				ApplicationFacadeInterfaceWS facade = MainGUI.getBusinessLogic();
-				try {
-					city = textCiudad.getText();
-					description = textDescripcion.getText();
+		if (!modificarCasa) {
 
-					if (!ComprobarCamposVacios())
-						if (ConfirmarDatos()) {
-							 rh = facade.crearRuralHouse(description, city, (Owner) MainGUI.getUsuario());
-							System.out.println(rh.toString() + "Casa añadida correctamente");
-							JOptionPane.showMessageDialog(null, "Casa añadida correctamente");
-							if (establecerDisponibilidad()){
-								Vector<RuralHouse> rhs=facade.getAllRuralHouses(); //para guardarla en el vector de casas rh
-								JFrame a = new SetAvailabilityGUI(rhs);
-								a.setVisible(true);
-								setVisible(false);
+			btnAadirCasa.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
 
-							}else dispose();
-							
-						}
-				} catch (Exception ex) {
-					ex.printStackTrace();
+					ApplicationFacadeInterfaceWS facade = MainGUI.getBusinessLogic();
+					try {
+						city = textCiudad.getText();
+						description = textDescripcion.getText();
+
+						if (!ComprobarCamposVacios())
+							if (ConfirmarDatos()) {
+								rh = facade.crearRuralHouse(description, city, (Owner) MainGUI.getUsuario());
+								System.out.println(rh.toString() + "Casa añadida correctamente");
+								JOptionPane.showMessageDialog(null, "Casa añadida correctamente");
+								if (establecerDisponibilidad()) {
+									Vector<RuralHouse> rhs = facade.getAllRuralHouses(); //Se_guardan_en_el_vector_de_casas
+									JFrame a = new SetAvailabilityGUI(rhs);
+									a.setVisible(true);
+									setVisible(false);
+
+								} else
+									dispose();
+
+							}
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
+
 				}
+			});
+		} else {
+			btnAadirCasa.setText("Actualizar Casa");
+			btnAadirCasa.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					ApplicationFacadeInterfaceWS facade = MainGUI.getBusinessLogic();
+					try {
+						city = textCiudad.getText();
+						description = textDescripcion.getText();
 
-			}
-		});
+						if (!ComprobarCamposVacios())
+							if (ConfirmarDatos()) {
+								if(facade.actualizarRuralHouse(rh, description, city)){
+									System.out.println(rh.toString() + "Casa actualizada correctamente");
+									JOptionPane.showMessageDialog(null, "Casa actualizada correctamente");
+								}
+								
+							}else {
+								System.out.println(rh.toString() + "La casa no se ha añadido correctamente");
+								JOptionPane.showMessageDialog(null, "La casa no se ha añadido correctamente");
+							}
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
+
+				}
+			});
+
+		}
 
 		return btnAadirCasa;
 	}
@@ -154,6 +180,7 @@ public class crearCasaGUI extends JFrame {
 
 		return selection == 0;
 	}
+
 	private boolean establecerDisponibilidad() {
 
 		String nl = System.getProperty("line.separator");

@@ -31,6 +31,13 @@ public class Owner extends Users implements Serializable {
 		return ruralHouses;
 	}
 
+	public RuralHouse anadirCasaRural (String description,String city, Owner owner){
+		
+		RuralHouse rh = new RuralHouse(description, city, owner);
+		ruralHouses.add(rh);
+		return rh;
+		
+	}
 	
 	
 }

@@ -373,7 +373,7 @@ public class MainGUI extends JFrame {
 			btnAadir.setEnabled(false);
 			btnAadir.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					JFrame crearcasa = new crearCasaGUI();
+					JFrame crearcasa = new crearCasaGUI(false, null);
 					crearcasa.setVisible(true);
 				}
 			});
@@ -384,27 +384,44 @@ public class MainGUI extends JFrame {
 	private JButton getBtnVerDatos() {
 		if (btnVerDatos == null) {
 			btnVerDatos = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			btnVerDatos.setBounds(224, 210, 203, 38);
 			btnVerDatos.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					JFrame ver = new VerDatosCasaGUI(); 
 					ver.setVisible(true);
 				}
 			});
-			btnVerDatos.setBounds(224, 210, 203, 38);
 		}
 		return btnVerDatos;
 	}
 	private JButton getModificarCasa() {
 		if (ModificarCasa == null) {
 			ModificarCasa = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text_1")); //$NON-NLS-1$ //$NON-NLS-2$
+			ModificarCasa.setBounds(224, 261, 203, 38);
 			ModificarCasa.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					Vector<RuralHouse> listadecasas =null;
-					JFrame modificar = new ModificarCasaGUI(listadecasas);
-					modificar.setVisible(true);
+					Vector<RuralHouse> rhlista=null;
+					//boolean vacia= true;
+					try{
+						if(getUsuario() instanceof Owner){
+							Owner owner = (Owner) getUsuario();	
+							rhlista = owner.getRuralHouses();
+							System.out.println(rhlista);
+						}
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+					if(rhlista.isEmpty() !=true ){
+						JFrame modificar = new ModificarCasaGUI(rhlista);
+						modificar.setVisible(true);					
+					} else if (rhlista.isEmpty() == true){
+						JOptionPane.showMessageDialog(null,
+							"Debes añadir una casa primero", "Error",JOptionPane.PLAIN_MESSAGE);
+						System.out.println(rhlista);
+					}
 				}
 			});
-			ModificarCasa.setBounds(224, 261, 203, 38);
 		}
 		return ModificarCasa;
 	}
