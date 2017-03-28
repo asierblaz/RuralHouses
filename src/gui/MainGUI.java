@@ -64,6 +64,8 @@ public class MainGUI extends JFrame {
 	private static JButton btnAadir;
 	private static JButton btnVerDatos;
 	private static JButton ModificarCasa;
+	private static JButton btnReserva;
+	
 
 	/**
 	 * This is the default constructor
@@ -120,6 +122,7 @@ public class MainGUI extends JFrame {
 			jContentPane.add(getBtnAadir());
 			jContentPane.add(getBtnVerDatos());
 			jContentPane.add(getModificarCasa());
+			jContentPane.add(getBtnReserva());
 		}
 		return jContentPane;
 	}
@@ -136,6 +139,7 @@ public class MainGUI extends JFrame {
 			queryAvailability.setEnabled(true);
 			btnAadir.setEnabled(true);
 			btnVerDatos.setEnabled(true);
+			btnReserva.setEnabled(false);
 			
 
 		} else {
@@ -147,6 +151,7 @@ public class MainGUI extends JFrame {
 			queryAvailability.setEnabled(true);
 			btnAadir.setEnabled(false);
 			btnVerDatos.setEnabled(true);
+			btnReserva.setEnabled(true);
 
 		}
 
@@ -164,6 +169,7 @@ public class MainGUI extends JFrame {
 		btnVerDatos.setEnabled(true);
 		mntmDesconectar.setEnabled(false);
 		mntmlogin.setEnabled(true);
+		btnReserva.setEnabled(false);
 
 	}
 
@@ -175,7 +181,7 @@ public class MainGUI extends JFrame {
 	private JButton getSetAvailability() {
 		if (setAvailability == null) {
 			setAvailability = new JButton();
-			setAvailability.setBounds(224, 166, 203, 34);
+			setAvailability.setBounds(-99, 119, 203, 34);
 			setAvailability.setText(ResourceBundle.getBundle("Etiquetas").getString("SetAvailability"));
 			setAvailability.setEnabled(false);
 			setAvailability.addActionListener(new java.awt.event.ActionListener() {
@@ -424,5 +430,18 @@ public class MainGUI extends JFrame {
 			});
 		}
 		return ModificarCasa;
+	}
+	private JButton getBtnReserva() {
+		if (btnReserva == null) {
+			btnReserva = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text_2")); //$NON-NLS-1$ //$NON-NLS-2$
+			setAvailability.setBounds(224, 166, 203, 34);
+			btnReserva.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					JFrame reserva = new ReservarCasaGUI();
+					reserva.setVisible(true);
+				}
+			});
+		}
+		return btnReserva;
 	}
 } // @jve:decl-index=0:visual-constraint="0,0"
