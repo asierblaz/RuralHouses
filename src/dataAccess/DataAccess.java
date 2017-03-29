@@ -75,16 +75,16 @@ public class DataAccess {
 			}
 
 			
-		/*	 RuralHouse rh1 = new RuralHouse("Ezkioko etxea", "Ezkio");
-			 RuralHouse rh2 = new RuralHouse("Etxetxikia", "Iruna");
-			 RuralHouse rh3 = new RuralHouse("Udaletxea", "Bilbo"); RuralHouse
-			 rh4 = new RuralHouse("Gaztetxea", "Renteria");
+		//	 RuralHouse rh1 = new RuralHouse("Ezkioko etxea", "Ezkio");
+		//	 RuralHouse rh2 = new RuralHouse("Etxetxikia", "Iruna");
+		//	 RuralHouse rh3 = new RuralHouse("Udaletxea", "Bilbo"); RuralHouse
+			// rh4 = new RuralHouse("Gaztetxea", "Renteria");
 			 
-			 db.persist(rh1); db.persist(rh2); db.persist(rh3);
-			 db.persist(rh4);
+		//	 db.persist(rh1); db.persist(rh2); db.persist(rh3);
+		//	 db.persist(rh4);
 			
 
-			db.getTransaction().commit();*/
+			db.getTransaction().commit();
 			System.out.println("Db initialized");
 
 		} catch (Exception e) {
@@ -169,7 +169,8 @@ public class DataAccess {
  	try {
 		db.getTransaction().begin();
 			RuralHouse rh = new RuralHouse(description, city, owner);
-			owner.anadirCasaRural(description, city, owner);
+			//owner.anadirCasaRural(rh.getDescription(), rh.getCity(), rh.getOwner());
+			//db.persist(owner);
 			db.persist(rh);
 			db.getTransaction().commit();
 			return rh;
@@ -210,6 +211,8 @@ public class DataAccess {
 		}
 
 		return res;}
+	//-----------------------
+
 	//---------------------------------------------------------
 		public Vector<RuralHouse>  getRhDescription(RuralHouse rh){
 			

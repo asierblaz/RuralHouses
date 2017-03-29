@@ -133,11 +133,13 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		RuralHouse rh = null; // la inicializamos a null
 
 		rh = dbManager.crearRuralHouse(description, city, owner);
+		owner.anadirCasaRural(rh.getDescription(), rh.getCity(), rh.getOwner());
 		dbManager.close();
 		System.out.println("<< FacadeImplementationWS: crearRuralHouse=> rh= " + rh);
 
 		return rh;
 	}
+	
 
 	// ---------------------------------Actualizar Casa Rural------------------
 	public boolean actualizarRuralHouse(RuralHouse rh, String description, String city)
@@ -169,6 +171,7 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		return ruralHouses;
 
 	}
+//---------------
 
 	// --------------------------reservar casa----------------------
 	public Reserva reservarCasa(RuralHouse rh, Date primerDia, Date ultimaNoche,

@@ -138,6 +138,7 @@ public class crearCasaGUI extends JFrame {
 								if(facade.actualizarRuralHouse(rh, description, city)){
 									System.out.println(rh.toString() + "Casa actualizada correctamente");
 									JOptionPane.showMessageDialog(null, "Casa actualizada correctamente");
+									dispose();
 								}
 								
 							}else {
