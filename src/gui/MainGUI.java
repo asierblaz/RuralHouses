@@ -65,6 +65,7 @@ public class MainGUI extends JFrame {
 	private static JButton btnVerDatos;
 	private static JButton ModificarCasa;
 	private static JButton btnReserva;
+	private static JButton btnEliminarCasa;
 	
 
 	/**
@@ -100,7 +101,7 @@ public class MainGUI extends JFrame {
 	 */
 	private void initialize() {
 		// this.setSize(271, 295);
-		this.setSize(774, 579);
+		this.setSize(709, 586);
 		setJMenuBar(getMenuBar_1());
 		this.setContentPane(getJContentPane());
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
@@ -123,6 +124,7 @@ public class MainGUI extends JFrame {
 			jContentPane.add(getBtnVerDatos());
 			jContentPane.add(getModificarCasa());
 			jContentPane.add(getBtnReserva());
+			jContentPane.add(getBtnEliminarCasa());
 		}
 		return jContentPane;
 	}
@@ -135,11 +137,13 @@ public class MainGUI extends JFrame {
 			mntmDesconectar.setEnabled(true);
 			mntmlogin.setEnabled(false);
 			mntmRegistrarse.setEnabled(false);
-			setAvailability.setEnabled(true);
-			queryAvailability.setEnabled(true);
-			btnAadir.setEnabled(true);
-			btnVerDatos.setEnabled(true);
-			btnReserva.setEnabled(false);
+			setAvailability.setVisible(true);
+			queryAvailability.setVisible(true);
+			btnAadir.setVisible(true);
+			btnVerDatos.setVisible(true);
+			btnReserva.setVisible(false);
+			ModificarCasa.setVisible(true);
+			btnEliminarCasa.setVisible(true);
 			
 
 		} else {
@@ -147,11 +151,13 @@ public class MainGUI extends JFrame {
 			mntmDesconectar.setEnabled(true);
 			mntmlogin.setEnabled(false);
 			mntmRegistrarse.setEnabled(false);
-			setAvailability.setEnabled(false);
-			queryAvailability.setEnabled(true);
-			btnAadir.setEnabled(false);
-			btnVerDatos.setEnabled(true);
-			btnReserva.setEnabled(true);
+			setAvailability.setVisible(false);
+			queryAvailability.setVisible(true);
+			btnAadir.setVisible(false);
+			btnVerDatos.setVisible(true);
+			btnReserva.setVisible(true);
+			ModificarCasa.setVisible(false);
+			btnEliminarCasa.setVisible(false);
 
 		}
 
@@ -163,13 +169,16 @@ public class MainGUI extends JFrame {
 // esta funcion sirve para hacer log out.
 		
 		mntmRegistrarse.setEnabled(true);
-		setAvailability.setEnabled(false);
-		queryAvailability.setEnabled(false);
-		btnAadir.setEnabled(false);
-		btnVerDatos.setEnabled(true);
+		setAvailability.setVisible(false);
+		queryAvailability.setVisible(false);
+		btnAadir.setVisible(false);
+		btnVerDatos.setVisible(true);
 		mntmDesconectar.setEnabled(false);
 		mntmlogin.setEnabled(true);
-		btnReserva.setEnabled(false);
+		btnReserva.setVisible(false);
+		ModificarCasa.setVisible(false);
+		btnEliminarCasa.setVisible(false);
+		
 
 	}
 
@@ -181,9 +190,9 @@ public class MainGUI extends JFrame {
 	private JButton getSetAvailability() {
 		if (setAvailability == null) {
 			setAvailability = new JButton();
-			setAvailability.setBounds(-99, 119, 203, 34);
+			setAvailability.setBounds(224, 148, 203, 34);
 			setAvailability.setText(ResourceBundle.getBundle("Etiquetas").getString("SetAvailability"));
-			setAvailability.setEnabled(false);
+			setAvailability.setVisible(false);
 			setAvailability.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					ApplicationFacadeInterfaceWS facade = MainGUI.getBusinessLogic();
@@ -204,9 +213,9 @@ public class MainGUI extends JFrame {
 	private JButton getQueryAvailability() {
 		if (queryAvailability == null) {
 			queryAvailability = new JButton();
-			queryAvailability.setBounds(224, 119, 203, 34);
+			queryAvailability.setBounds(224, 101, 203, 34);
 			queryAvailability.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryAvailability"));
-			queryAvailability.setEnabled(false);
+			queryAvailability.setVisible(false);
 			queryAvailability.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					JFrame a = new QueryAvailabilityGUI();
@@ -277,7 +286,7 @@ public class MainGUI extends JFrame {
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
-			panel.setBounds(12, 354, 634, 82);
+			panel.setBounds(32, 412, 634, 82);
 			panel.add(getRdbtnNewRadioButton_1());
 			panel.add(getRdbtnNewRadioButton_2());
 			panel.add(getRdbtnNewRadioButton());
@@ -374,8 +383,8 @@ public class MainGUI extends JFrame {
 	private JButton getBtnAadir() {
 		if (btnAadir == null) {
 			btnAadir = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnAadir.text")); //$NON-NLS-1$ //$NON-NLS-2$
-			btnAadir.setBounds(224, 72, 203, 34);
-			btnAadir.setEnabled(false);
+			btnAadir.setBounds(224, 195, 203, 34);
+			btnAadir.setVisible(false);
 			btnAadir.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					JFrame crearcasa = new crearCasaGUI(false, null);
@@ -389,10 +398,10 @@ public class MainGUI extends JFrame {
 	private JButton getBtnVerDatos() {
 		if (btnVerDatos == null) {
 			btnVerDatos = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
-			btnVerDatos.setBounds(224, 210, 203, 38);
+			btnVerDatos.setBounds(224, 51, 203, 34);
 			btnVerDatos.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					JFrame ver = new VerDatosCasaGUI(); 
+					JFrame ver = new VerDatosCasaMenuGUI(); 
 					ver.setVisible(true);
 				}
 			});
@@ -402,11 +411,13 @@ public class MainGUI extends JFrame {
 	private JButton getModificarCasa() {
 		if (ModificarCasa == null) {
 			ModificarCasa = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text_1")); //$NON-NLS-1$ //$NON-NLS-2$
-			ModificarCasa.setBounds(224, 261, 203, 38);
+			ModificarCasa.setBounds(224, 289, 203, 34);
+			ModificarCasa.setVisible(false);
+			//ModificarCasa.setVisible(false);;
 			ModificarCasa.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					ApplicationFacadeInterfaceWS facade= getBusinessLogic();
-					Vector<RuralHouse> rhlista= facade.getAllRuralHouses();
+					Vector<RuralHouse> rhlista=null;
 					//boolean vacia= true;
 					try{
 						if(getUsuario() instanceof Owner){
@@ -434,7 +445,8 @@ public class MainGUI extends JFrame {
 	private JButton getBtnReserva() {
 		if (btnReserva == null) {
 			btnReserva = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text_2")); //$NON-NLS-1$ //$NON-NLS-2$
-			setAvailability.setBounds(224, 166, 203, 34);
+			btnReserva.setBounds(224, 148, 203, 34);
+			btnReserva.setVisible(false);
 			btnReserva.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					JFrame reserva = new ReservarCasaGUI();
@@ -443,5 +455,20 @@ public class MainGUI extends JFrame {
 			});
 		}
 		return btnReserva;
+	}
+
+	private JButton getBtnEliminarCasa() {
+		if (btnEliminarCasa == null) {
+			btnEliminarCasa = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text_3")); //$NON-NLS-1$ //$NON-NLS-2$
+			btnEliminarCasa.setVisible(false);
+			btnEliminarCasa.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JFrame eliminar = new EliminarCasaGUI();
+					eliminar.setVisible(true);
+				}
+			});
+			btnEliminarCasa.setBounds(224, 242, 203, 34);
+		}
+		return btnEliminarCasa;
 	}
 } // @jve:decl-index=0:visual-constraint="0,0"

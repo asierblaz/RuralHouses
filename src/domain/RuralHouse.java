@@ -33,7 +33,8 @@ public class RuralHouse implements Serializable {
 		super();
 	}
 
-	public RuralHouse(String description,String city, Owner owner) {
+	public RuralHouse( String description,String city, Owner owner) {
+		this.houseNumber = houseNumber;
 		this.description = description;
 		this.city = city;
 		this.owner = owner;

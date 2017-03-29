@@ -120,23 +120,22 @@ public class ReservarCasaGUI extends JFrame {
 				// codigo casa
 				RuralHouse casaRural = (RuralHouse) comboBoxRh.getSelectedItem();
 				// primer Dia
-				Date PrimerDia = trim(new Date(jCalendar1.getCalendar()
+				Date primerDia = trim(new Date(jCalendar1.getCalendar()
 						.getTime().getTime()));
 
-				System.out.println("PrimerDia=" + PrimerDia);
+				System.out.println("PrimerDia=" + primerDia);
 				
 				// Numero de noches en milisegundos
 				long noche = 1000 * 60 * 60 * 24
 						* Integer.parseInt(jTextFieldNumNoches.getText());
-				Date ultimaNoche = new Date((long) (PrimerDia.getTime() + noche));
+				Date ultimoDia = new Date((long) (primerDia.getTime() + noche));
 				// telefono contact
-				System.out.println("ultimaNoche=" + ultimaNoche);
+				System.out.println("ultimoDia=" + ultimoDia);
 
+			
 				String telefono = jTextFieldTelefono.getText();
 				try {
 
-					// Obtain the business logic from a StartWindow class (local
-					// or remote)
 					ApplicationFacadeInterfaceWS facade = MainGUI.getBusinessLogic();
 					Users u = MainGUI.getUsuario();
 				

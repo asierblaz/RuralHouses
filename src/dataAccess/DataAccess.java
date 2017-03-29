@@ -17,8 +17,11 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
+
 import configuration.ConfigXML;
 import domain.*;
+import exceptions.CasaNoReservada;
+import exceptions.DB4oManagerCreationException;
 import exceptions.OverlappingOfferExists;
 import exceptions.OverlappingUsersExists;
 
@@ -27,8 +30,10 @@ public class DataAccess {
 	public static String fileName;
 	protected static EntityManagerFactory emf;
 	protected static EntityManager db;
-
+	private static DataAccess datamanageraux;
+	
 	ConfigXML c;
+	private int houseNumber;
 
 	public DataAccess() {
 
@@ -86,6 +91,16 @@ public class DataAccess {
 			e.printStackTrace();
 		}
 	}
+	//---------------------reservar Casa---------------------
+	public Reserva reservarCasa(RuralHouse rh, Date primerDia, Date ultimaNoche,
+			String telefono, Users u) throws CasaNoReservada{
+		Reserva r =null;
+		RuralHouse rhs = db.find(RuralHouse.class, rh.getHouseNumber());
+		db.getTransaction().begin();
+		
+		return r;
+	}
+	//-------------------------------------------------------
 
 	public Offer createOffer(RuralHouse ruralHouse, Date firstDay, Date lastDay, float price) {
 		System.out.println(">> DataAccess: createOffer=> ruralHouse= " + ruralHouse + " firstDay= " + firstDay
@@ -107,8 +122,7 @@ public class DataAccess {
 		}
 	}
 
-	// ---------------------crear
-	// cliente------------------------------------------
+	// ---------------------crear cliente------------------------------------------
 	public Client crearCliente(String nombre, String usuario, String pass, String cuenta) {
 		System.out.println(">> FacadeImplementationWS: crearCliente=> Nombre= " + nombre + " Usuario= " + usuario
 				+ " Contraseña=" + pass + " Cuenta Bancaria=" + cuenta);
@@ -149,11 +163,13 @@ public class DataAccess {
 	// -----------------------------------crear casa rural----------------
 	public RuralHouse crearRuralHouse(String description, String city, Owner owner) throws RemoteException, Exception {
 		System.out.println(
-				">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Descripción=" + description);
+	">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Descripción=" + description);
 
-		try {
-			db.getTransaction().begin();
+		
+ 	try {
+		db.getTransaction().begin();
 			RuralHouse rh = new RuralHouse(description, city, owner);
+			owner.anadirCasaRural(description, city, owner);
 			db.persist(rh);
 			db.getTransaction().commit();
 			return rh;
@@ -178,7 +194,6 @@ public class DataAccess {
 		return false;
 	}
 			}
-
 	// ------------------------------------------------------------
 
 	public Vector<RuralHouse> getAllRuralHouses() {
@@ -258,7 +273,24 @@ public class DataAccess {
 
 		}
 	}
+//--------------------------eliminar una casa------------------
+	public boolean BorrarCasa (RuralHouse rh, Owner o)throws RemoteException, Exception{
+		try {
+		db.getTransaction().begin();
 
+		Offer of= new Offer(null, null, 0, rh);
+		o.getRuralHouses().removeElement(rh);
+		db.remove(rh);
+		db.persist(o);
+		db.getTransaction().commit();
+		System.out.println("borrada");
+		
+		return true;
+		} catch (Exception e1) {
+			e1.printStackTrace();
+			return false;
+		}
+	}
 
 
 	public void close() {

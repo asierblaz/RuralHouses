@@ -29,7 +29,7 @@ public class Owner extends Users implements Serializable {
 	}
 
 
-	public RuralHouse anadirCasaRural (String description,String city, Owner owner){
+	public RuralHouse anadirCasaRural ( String description,String city, Owner owner){
 		
 		RuralHouse rh = new RuralHouse(description, city, owner);
 		ruralHouses.add(rh);

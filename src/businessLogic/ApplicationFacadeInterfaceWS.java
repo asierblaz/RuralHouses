@@ -9,9 +9,11 @@ import domain.Client;
 //import domain.Booking;
 import domain.Offer;
 import domain.Owner;
+import domain.Reserva;
 import domain.RuralHouse;
 import domain.Users;
 import exceptions.BadDates;
+import exceptions.CasaNoReservada;
 import exceptions.OverlappingOfferExists;
 
 import javax.jws.WebMethod;
@@ -56,7 +58,8 @@ public interface ApplicationFacadeInterfaceWS  {
 	 * @param firstDay, first day in a period range 
 	 * @param lastDay, last day in a period range
 	 * @return the first offer that overlaps with those dates, or null if there is no overlapping offer
-	 */	
+	 */
+	@WebMethod public boolean BorrarCasa (RuralHouse rh, Owner o)throws RemoteException, Exception;
 	
 	@WebMethod public Client crearCliente (String nombre,String usuario, String pass, String cuenta) throws RemoteException, Exception;
 	
@@ -66,7 +69,8 @@ public interface ApplicationFacadeInterfaceWS  {
 	@WebMethod public RuralHouse crearRuralHouse(String description, String city, Owner owner) throws RemoteException, Exception;
 	
 	@WebMethod public boolean actualizarRuralHouse (RuralHouse rh, String description, String city) throws RemoteException, Exception;
-
+	
+	@WebMethod public Reserva reservarCasa(RuralHouse rh, Date primerDia, Date ultimaNoche, String telefono, Users u) throws CasaNoReservada;
 	@WebMethod public Vector<Offer> getOffers( RuralHouse rh, Date firstDay,  Date lastDay) ;
 	
 	@WebMethod public void initializeBD();

@@ -19,14 +19,14 @@ public class Reserva implements Serializable {
 
 	private Date fechaReserva;
 	private int numReserva;
-	private int numTelf;
+	private int telefono;
 	private Offer oferta;
 	private Users client;
 	
-	public Reserva(Date fechaReserva, int numReserva, int numTelf, Offer oferta, Users client) {
-		this.fechaReserva = fechaReserva;
+	public Reserva(Date fechaReserva, int numReserva, int telefono, Offer oferta, Users client) {
+		this.fechaReserva = new Date(System.currentTimeMillis());
 		this.numReserva = numReserva;
-		this.numTelf = numTelf;
+		this.telefono = telefono;
 		this.oferta = oferta;
 		this.client = client;
 	}
@@ -60,17 +60,17 @@ public class Reserva implements Serializable {
 	}
 
 	/**
-	 * @return the numTelf
+	 * @return the telefono
 	 */
-	public int getNumTelf() {
-		return numTelf;
+	public int gettelefono() {
+		return telefono;
 	}
 
 	/**
-	 * @param numTelf the numTelf to set
+	 * @param telefono the telefono to set
 	 */
-	public void setNumTelf(int numTelf) {
-		this.numTelf = numTelf;
+	public void settelefono(int telefono) {
+		this.telefono = telefono;
 	}
 
 	/**

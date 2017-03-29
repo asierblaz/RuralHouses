@@ -26,7 +26,8 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 	/**
 	 * 
 	 */
-
+	Vector<Owner> owners;
+	Vector<RuralHouse> ruralHouses;
 	public FacadeImplementationWS() {
 		ConfigXML c = ConfigXML.getInstance();
 		if (c.getDataBaseOpenMode().equals("initialize")) {
@@ -65,7 +66,9 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		System.out.println("<< FacadeImplementationWS: createOffer=> O= " + o);
 		return o;
 	}
-//-----------------------------crear cliente----------------------------------------
+
+	// -----------------------------crear
+	// cliente----------------------------------------
 	public Client crearCliente(String nombre, String usuario, String pass, String cuenta)
 			throws RemoteException, Exception {
 		System.out.println(">> FacadeImplementationWS: crearCliente=> Nombre= " + nombre + " Usuario= " + usuario
@@ -73,19 +76,23 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		DataAccess dbManager = new DataAccess();
 		Client c = null;
 
-		boolean b = dbManager.existsOvelappingUsers(usuario); //user
+		boolean b = dbManager.existsOvelappingUsers(usuario); // user
 		System.out.println(b);
 		if (!b)
 			c = dbManager.crearCliente(nombre, usuario, pass, cuenta);
-		else{String message = "El nombre de  Usuario: " + usuario + " esta ocupado!";
-		JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);}
+		else {
+			String message = "El nombre de  Usuario: " + usuario + " esta ocupado!";
+			JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
+		}
 
 		dbManager.close();
 		System.out.println("<< FacadeImplementationWS: crearCliente=> c= " + c);
 		return c;
 
 	}
-//----------------------------crear owner-----------------------------------------------
+
+	// ----------------------------crear
+	// owner-----------------------------------------------
 	public Owner crearOwner(String nombre, String usuario, String pass, String cuenta)
 			throws RemoteException, Exception {
 		System.out.println(">> FacadeImplementationWS: crearOwner=> Nombre= " + nombre + " Usuario= " + usuario
@@ -93,7 +100,7 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		DataAccess dbManager = new DataAccess();
 		Owner o = null;
 
-		boolean b = dbManager.existsOvelappingUsers(usuario); //user
+		boolean b = dbManager.existsOvelappingUsers(usuario); // user
 		System.out.println(b);
 		if (!b)
 			o = dbManager.crearOwner(nombre, usuario, pass, cuenta);
@@ -107,47 +114,49 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		return o;
 
 	}
-	
-	
-//---------------------comprobar usuario-----------------------------------------------
-@Override
-public Users comprobarUsuario(String usuario, String pass) throws RemoteException, Exception{
-	DataAccess dbManager = new DataAccess();
-	return dbManager.comprobarUsuario(usuario, pass);
-}
-	
-//-----------------------------crear casa rural-----------------------------------------	
- public RuralHouse crearRuralHouse(String description, String city,Owner owner) throws RemoteException, Exception{
-	System.out.println(">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Descripción=" + description + "Owner= " + owner )	;
-	
-	
-	DataAccess dbManager = new DataAccess();
-		RuralHouse rh= null; //la inicializamos a null
-		
+
+	// ---------------------comprobar
+	// usuario-----------------------------------------------
+	@Override
+	public Users comprobarUsuario(String usuario, String pass) throws RemoteException, Exception {
+		DataAccess dbManager = new DataAccess();
+		return dbManager.comprobarUsuario(usuario, pass);
+	}
+
+	// -----------------------------crear casa
+	// rural-----------------------------------------
+	public RuralHouse crearRuralHouse(String description, String city, Owner owner) throws RemoteException, Exception {
+		System.out.println(">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Descripción="
+				+ description + "Owner= " + owner);
+
+		DataAccess dbManager = new DataAccess();
+		RuralHouse rh = null; // la inicializamos a null
 
 		rh = dbManager.crearRuralHouse(description, city, owner);
 		dbManager.close();
 		System.out.println("<< FacadeImplementationWS: crearRuralHouse=> rh= " + rh);
 
-		
 		return rh;
 	}
- //---------------------------------Actualizar Casa Rural------------------
- public boolean actualizarRuralHouse (RuralHouse rh, String description, String city) throws RemoteException, Exception{
-		System.out.println(">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Descripción=" + description + "rural House"+ rh )	;
-	
+
+	// ---------------------------------Actualizar Casa Rural------------------
+	public boolean actualizarRuralHouse(RuralHouse rh, String description, String city)
+			throws RemoteException, Exception {
+		System.out.println(">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Descripción="
+				+ description + "rural House" + rh);
+
 		DataAccess dbManager = new DataAccess();
 		Boolean b = dbManager.actualizarRuralHouse(rh, description, city);
-		if(b)
+		if (b)
 			rh = null;
-		System.out.println("Actualizar rh= "+ rh + "descripcion"+ description );
+		System.out.println("Actualizar rh= " + rh + "descripcion" + description);
 		dbManager.close();
 
 		return b;
 
- }
- 
-//-----------------------------------------------
+	}
+
+	// -----------------------------------------------
 	public Vector<RuralHouse> getAllRuralHouses() {
 		System.out.println(">> FacadeImplementationWS: getAllRuralHouses");
 
@@ -161,6 +170,33 @@ public Users comprobarUsuario(String usuario, String pass) throws RemoteExceptio
 
 	}
 
+	// --------------------------reservar casa----------------------
+	public Reserva reservarCasa(RuralHouse rh, Date primerDia, Date ultimaNoche,
+			String telefono, Users u) throws CasaNoReservada{
+		
+		owners=null;
+		ruralHouses= null;
+		
+		DataAccess dbManager = new DataAccess();
+		//return dbManager.actualizarRuralHouse(rh, description, city);
+
+		 
+		Reserva r = null;
+		return r;
+	}
+	//---------------------------eliminar casa-----------------------
+	public boolean BorrarCasa (RuralHouse rh, Owner o)throws RemoteException, Exception{
+		
+		DataAccess dbManager = new DataAccess();
+		
+		boolean b=dbManager.BorrarCasa(rh, o);
+		if(b)
+			ruralHouses=null;
+		return b;
+	}
+	
+
+	// -----------------------------------------------
 	/**
 	 * This method obtains the offers of a ruralHouse in the provided dates
 	 * 
