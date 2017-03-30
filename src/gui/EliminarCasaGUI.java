@@ -79,16 +79,8 @@ public class EliminarCasaGUI extends JFrame {
 				city= rh.getCity();
 				description= rh.getDescription();
 				if (ConfirmarDatos()){
-					if (facade.BorrarCasa(rh,
-							(Owner) MainGUI.getUsuario())) {
-						JOptionPane.showMessageDialog(null,
-								"La casa ha siido eliminada");
-
-						dispose();
-					} else {
-						mostrarMensajeError();
-						dispose();
-					}
+					facade.BorrarCasa(rh);
+					dispose();
 
 				}
 			} catch (Exception e1) {
@@ -96,7 +88,7 @@ public class EliminarCasaGUI extends JFrame {
 				e1.printStackTrace();
 			}
 		}
-	});
+	}); 
 
 		btnEliminar.setBounds(327, 121, 97, 25);
 		return btnEliminar;
@@ -107,7 +99,7 @@ public class EliminarCasaGUI extends JFrame {
 
 		String nl = System.getProperty("line.separator");
 
-		String message = "Porfavor compruebe que los siguientes datos son correctos:" + nl + "Ciudad: " + city + nl
+		String message = "¿Está seguro de que quiere eliminar la siguiente casa?:" + nl + "Ciudad: " + city + nl
 				+ "Descripción: " + description;
 
 		int selection = JOptionPane.showConfirmDialog(null, message, "Confirmation", JOptionPane.YES_NO_OPTION);

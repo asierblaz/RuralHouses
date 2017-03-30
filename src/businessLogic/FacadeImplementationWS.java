@@ -188,16 +188,19 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		return r;
 	}
 	//---------------------------eliminar casa-----------------------
-	public boolean BorrarCasa (RuralHouse rh, Owner o)throws RemoteException, Exception{
+	public void BorrarCasa (RuralHouse rh) throws RemoteException, Exception{
 		
 		DataAccess dbManager = new DataAccess();
-		
-		boolean b=dbManager.BorrarCasa(rh, o);
-		if(b)
-			ruralHouses=null;
-		return b;
-	}
-	
+		boolean b= 	dbManager.BorrarCasa(rh);
+		if (b){
+			System.out.println("casa borrada correctamente");
+			String a= "La casa en "+ rh.getCity()+"  ha sido borrada con exito!";
+			JOptionPane.showMessageDialog(null, a, "Bien!", JOptionPane.INFORMATION_MESSAGE);
+		}		else {
+			String message = "La casa en" + rh.getCity()+ "no ha sido borrada";
+			JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);}
+			System.out.println("casa no borrada");
+		}
 
 	// -----------------------------------------------
 	/**

@@ -192,6 +192,7 @@ public class DataAccess {
 							
 		return true;
 	} catch (Exception e1) {
+		System.out.println("casa no actualizada");
 		return false;
 	}
 			}
@@ -248,7 +249,7 @@ public class DataAccess {
 		try {
 
 			Users u = db.find(Users.class, usuario);
-			if (u != null) // preguntar (exception para que no registre usuarios
+			if (u != null) // preguntar (excemption para que no registre usuarios
 							// iguales.
 				return true;
 		} catch (Exception e) {
@@ -276,25 +277,25 @@ public class DataAccess {
 
 		}
 	}
-//--------------------------eliminar una casa------------------
-	public boolean BorrarCasa (RuralHouse rh, Owner o)throws RemoteException, Exception{
-		try {
-		db.getTransaction().begin();
+	
 
-		Offer of= new Offer(null, null, 0, rh);
-		o.getRuralHouses().removeElement(rh);
-		db.remove(rh);
-		db.persist(o);
-		db.getTransaction().commit();
-		System.out.println("borrada");
+//--------------------------eliminar una casa------------------
+	public boolean BorrarCasa (RuralHouse rh)throws RemoteException, Exception{
+		try{
+			
+		rh=db.find(RuralHouse.class, rh.getHouseNumber());
 		
-		return true;
+		db.getTransaction().begin();
+		db.remove(rh);
+		System.out.println("Borrado");
+		db.getTransaction().commit();
+		
+			return true;
 		} catch (Exception e1) {
-			e1.printStackTrace();
 			return false;
 		}
 	}
-
+	
 
 	public void close() {
 		db.close();

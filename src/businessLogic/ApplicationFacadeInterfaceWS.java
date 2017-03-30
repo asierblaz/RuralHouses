@@ -59,7 +59,7 @@ public interface ApplicationFacadeInterfaceWS  {
 	 * @param lastDay, last day in a period range
 	 * @return the first offer that overlaps with those dates, or null if there is no overlapping offer
 	 */
-	@WebMethod public boolean BorrarCasa (RuralHouse rh, Owner o)throws RemoteException, Exception;
+	@WebMethod public void BorrarCasa (RuralHouse rh) throws RemoteException, Exception;
 	
 	@WebMethod public Client crearCliente (String nombre,String usuario, String pass, String cuenta) throws RemoteException, Exception;
 	

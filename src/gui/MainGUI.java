@@ -170,7 +170,7 @@ public class MainGUI extends JFrame {
 		
 		mntmRegistrarse.setEnabled(true);
 		setAvailability.setVisible(false);
-		queryAvailability.setVisible(false);
+		queryAvailability.setVisible(true);
 		btnAadir.setVisible(false);
 		btnVerDatos.setVisible(true);
 		mntmDesconectar.setEnabled(false);
@@ -215,7 +215,7 @@ public class MainGUI extends JFrame {
 			queryAvailability = new JButton();
 			queryAvailability.setBounds(224, 101, 203, 34);
 			queryAvailability.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryAvailability"));
-			queryAvailability.setVisible(false);
+			queryAvailability.setVisible(true);
 			queryAvailability.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					JFrame a = new QueryAvailabilityGUI();
@@ -413,7 +413,6 @@ public class MainGUI extends JFrame {
 			ModificarCasa = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text_1")); //$NON-NLS-1$ //$NON-NLS-2$
 			ModificarCasa.setBounds(224, 289, 203, 34);
 			ModificarCasa.setVisible(false);
-			//ModificarCasa.setVisible(false);;
 			ModificarCasa.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					ApplicationFacadeInterfaceWS facade= getBusinessLogic();
@@ -459,15 +458,34 @@ public class MainGUI extends JFrame {
 
 	private JButton getBtnEliminarCasa() {
 		if (btnEliminarCasa == null) {
-			btnEliminarCasa = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text_3")); //$NON-NLS-1$ //$NON-NLS-2$
+			btnEliminarCasa = new JButton(
+					ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text_3")); //$NON-NLS-1$ //$NON-NLS-2$
+			btnEliminarCasa.setBounds(224, 242, 203, 34);
 			btnEliminarCasa.setVisible(false);
 			btnEliminarCasa.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					JFrame eliminar = new EliminarCasaGUI();
-					eliminar.setVisible(true);
+					ApplicationFacadeInterfaceWS facade = getBusinessLogic();
+					Vector<RuralHouse> rhlista = null;
+					try {
+						if (getUsuario() instanceof Owner) {
+							Owner owner = (Owner) getUsuario();
+							rhlista = owner.getRuralHouses();
+							System.out.println(rhlista);
+						}
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+
+					if (rhlista.isEmpty() != true) {
+						JFrame eliminar = new EliminarCasaGUI();
+						eliminar.setVisible(true);
+					} else if (rhlista.isEmpty() == true) {
+						JOptionPane.showMessageDialog(null, "Debes añadir una casa primero", "Error",
+								JOptionPane.PLAIN_MESSAGE);
+						System.out.println(rhlista);
+					}
 				}
 			});
-			btnEliminarCasa.setBounds(224, 242, 203, 34);
 		}
 		return btnEliminarCasa;
 	}
