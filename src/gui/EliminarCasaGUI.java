@@ -31,7 +31,7 @@ public class EliminarCasaGUI extends JFrame {
 	private JButton btnEliminar;
 	
 	
-	public EliminarCasaGUI() {
+	public EliminarCasaGUI(Vector<RuralHouse> rhs) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 454, 206);
 		contentPane = new JPanel();
@@ -49,8 +49,8 @@ public class EliminarCasaGUI extends JFrame {
 		contentPane.add(lblSeleccioneUnaCasa);
 		ApplicationFacadeInterfaceWS facade=MainGUI.getBusinessLogic();
 		
-		Vector<RuralHouse> rhs=facade.getAllRuralHouses();
 		
+		 
 		comboBox = new JComboBox(rhs);
 		//comboBox.setModel(new DefaultComboBoxModel(rhs));
 

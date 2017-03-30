@@ -477,7 +477,7 @@ public class MainGUI extends JFrame {
 					}
 
 					if (rhlista.isEmpty() != true) {
-						JFrame eliminar = new EliminarCasaGUI();
+						JFrame eliminar = new EliminarCasaGUI(rhlista);
 						eliminar.setVisible(true);
 					} else if (rhlista.isEmpty() == true) {
 						JOptionPane.showMessageDialog(null, "Debes añadir una casa primero", "Error",
