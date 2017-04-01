@@ -28,6 +28,7 @@ public class EliminarCasaGUI extends JFrame {
 	private JComboBox comboBox;
 	private String city;
 	private String description;
+	
 	private JButton btnEliminar;
 	
 	
@@ -78,6 +79,7 @@ public class EliminarCasaGUI extends JFrame {
 				RuralHouse rh = (RuralHouse) comboBox.getSelectedItem();
 				city= rh.getCity();
 				description= rh.getDescription();
+				
 				if (ConfirmarDatos()){
 					facade.BorrarCasa(rh);
 					dispose();
@@ -99,7 +101,7 @@ public class EliminarCasaGUI extends JFrame {
 
 		String nl = System.getProperty("line.separator");
 
-		String message = "¿Está seguro de que quiere eliminar la siguiente casa?:" + nl + "Ciudad: " + city + nl
+		String message = "¿Está seguro de que quiere eliminar la siguiente casa?: " + nl + "Ciudad: " + city + nl
 				+ "Descripción: " + description;
 
 		int selection = JOptionPane.showConfirmDialog(null, message, "Confirmation", JOptionPane.YES_NO_OPTION);

@@ -1,5 +1,4 @@
 /gui/
 /businessLogic/
-/domain/
-/exceptions/
 /dataAccess/
+/domain/

@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import java.awt.Color;
 import javax.swing.JTextArea;
 import java.awt.Font;
+import javax.swing.ImageIcon;
 
 public class LoginGUI extends JFrame {
 
@@ -57,12 +58,12 @@ public class LoginGUI extends JFrame {
 		contentPane.setLayout(null);
 
 		passwordField = new JPasswordField();
-		passwordField.setBounds(178, 122, 163, 25);
+		passwordField.setBounds(355, 122, 163, 25);
 		contentPane.add(passwordField);
 
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
 		lblContrasea.setForeground(new Color(0, 0, 0));
-		lblContrasea.setBounds(43, 122, 97, 25);
+		lblContrasea.setBounds(207, 122, 97, 25);
 		contentPane.add(lblContrasea);
 
 		JButton volver = new JButton("Volver");
@@ -75,7 +76,7 @@ public class LoginGUI extends JFrame {
 		contentPane.add(volver);
 
 		JLabel lblNombreDeUsuario = new JLabel("Nombre de Usuario");
-		lblNombreDeUsuario.setBounds(30, 71, 135, 25);
+		lblNombreDeUsuario.setBounds(207, 71, 135, 25);
 		contentPane.add(lblNombreDeUsuario);
 
 		JLabel lblLogin = new JLabel("Login");
@@ -96,16 +97,21 @@ public class LoginGUI extends JFrame {
 		contentPane.add(getEntrar());
 		
 		textUsuario = new JTextField();
-		textUsuario.setBounds(178, 72, 163, 25);
+		textUsuario.setBounds(355, 72, 163, 25);
 		contentPane.add(textUsuario);
 		textUsuario.setColumns(10);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon("G:\\Informatika\\4 curso\\Ingenieria del software\\RuralHouses\\login.png"));
+		label.setBounds(-44, 13, 258, 231);
+		contentPane.add(label);
 	}
 
 	// --implementación del boton entrar---
 
 	private JButton getEntrar() {
 		Entrar = new JButton("Entrar");
-		Entrar.setBounds(192, 220, 97, 25);
+		Entrar.setBounds(207, 219, 97, 25);
 
 		Entrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

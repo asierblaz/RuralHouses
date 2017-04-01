@@ -27,17 +27,17 @@ public class Owner extends Users implements Serializable {
 		
 		
 	}
+	public Vector<RuralHouse> getRuralHouses() {
+		return ruralHouses;
+	}
+	
 
-
-	public RuralHouse anadirCasaRural ( String description,String city, Owner owner){
+	public RuralHouse anadirCasaRural (String description,String city,String direccion,String m2, String numHabitaciones, Owner owner){
 		
-		RuralHouse rh = new RuralHouse(description, city, owner);
+		RuralHouse rh = new RuralHouse(description, city, direccion, numHabitaciones, m2, owner);
 		ruralHouses.add(rh);
 		return rh;
 		
-	}
-	public Vector<RuralHouse> getRuralHouses() {
-		return ruralHouses;
 	}
 	
 	

@@ -50,7 +50,7 @@ public class VerDatosCasaMenuGUI extends JFrame {
 		ApplicationFacadeInterfaceWS facade=MainGUI.getBusinessLogic();
 		
 		Vector<RuralHouse> rhs=facade.getAllRuralHouses();
-		
+		//Vector<RuralHouse> rhs=facade.getRuralHousesByOwner();
 		comboBox = new JComboBox(rhs);
 		//comboBox.setModel(new DefaultComboBoxModel(rhs));
 

@@ -66,6 +66,8 @@ public class MainGUI extends JFrame {
 	private static JButton ModificarCasa;
 	private static JButton btnReserva;
 	private static JButton btnEliminarCasa;
+	private JLabel lblGestinDeCasas;
+	private JButton btnBuscar;
 	
 
 	/**
@@ -73,6 +75,7 @@ public class MainGUI extends JFrame {
 	 */
 	public MainGUI() {
 		super();
+		setResizable(false);
 
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -101,7 +104,7 @@ public class MainGUI extends JFrame {
 	 */
 	private void initialize() {
 		// this.setSize(271, 295);
-		this.setSize(709, 586);
+		this.setSize(654, 629);
 		setJMenuBar(getMenuBar_1());
 		this.setContentPane(getJContentPane());
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
@@ -125,6 +128,13 @@ public class MainGUI extends JFrame {
 			jContentPane.add(getModificarCasa());
 			jContentPane.add(getBtnReserva());
 			jContentPane.add(getBtnEliminarCasa());
+			
+			JLabel lblNewLabel_1 = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.lblNewLabel_1.text"));
+			lblNewLabel_1.setBounds(0, 332, 902, 305);
+			jContentPane.add(lblNewLabel_1);
+			lblNewLabel_1.setIcon(new ImageIcon("G:\\Informatika\\4 curso\\Ingenieria del software\\RuralHouses\\casas.png"));
+			jContentPane.add(getLblGestinDeCasas());
+			jContentPane.add(getBtnBuscar());
 		}
 		return jContentPane;
 	}
@@ -190,13 +200,13 @@ public class MainGUI extends JFrame {
 	private JButton getSetAvailability() {
 		if (setAvailability == null) {
 			setAvailability = new JButton();
-			setAvailability.setBounds(224, 148, 203, 34);
+			setAvailability.setBounds(224, 208, 203, 34);
 			setAvailability.setText(ResourceBundle.getBundle("Etiquetas").getString("SetAvailability"));
 			setAvailability.setVisible(false);
 			setAvailability.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					ApplicationFacadeInterfaceWS facade = MainGUI.getBusinessLogic();
-					Vector<RuralHouse> rhs = facade.getAllRuralHouses();
+					Vector<RuralHouse> rhs = facade.getRuralHousesByOwner();
 					JFrame a = new SetAvailabilityGUI(rhs);
 					a.setVisible(true);
 				}
@@ -213,7 +223,7 @@ public class MainGUI extends JFrame {
 	private JButton getQueryAvailability() {
 		if (queryAvailability == null) {
 			queryAvailability = new JButton();
-			queryAvailability.setBounds(224, 101, 203, 34);
+			queryAvailability.setBounds(224, 158, 203, 34);
 			queryAvailability.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryAvailability"));
 			queryAvailability.setVisible(true);
 			queryAvailability.addActionListener(new java.awt.event.ActionListener() {
@@ -230,7 +240,7 @@ public class MainGUI extends JFrame {
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("SelectOption"));
-			lblNewLabel.setBounds(0, 0, 634, 38);
+			lblNewLabel.setBounds(0, 73, 634, 38);
 			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 			lblNewLabel.setForeground(Color.BLACK);
 			lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -286,6 +296,7 @@ public class MainGUI extends JFrame {
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
+			panel.setVisible(false);
 			panel.setBounds(32, 412, 634, 82);
 			panel.add(getRdbtnNewRadioButton_1());
 			panel.add(getRdbtnNewRadioButton_2());
@@ -369,7 +380,7 @@ public class MainGUI extends JFrame {
 	public static Users getUsuario() {
 		return usuario;
 	}
-
+	
 	/**
 	 * @param usuari
 	 *            the usuario to set
@@ -383,7 +394,7 @@ public class MainGUI extends JFrame {
 	private JButton getBtnAadir() {
 		if (btnAadir == null) {
 			btnAadir = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnAadir.text")); //$NON-NLS-1$ //$NON-NLS-2$
-			btnAadir.setBounds(224, 195, 203, 34);
+			btnAadir.setBounds(224, 255, 203, 34);
 			btnAadir.setVisible(false);
 			btnAadir.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -398,7 +409,7 @@ public class MainGUI extends JFrame {
 	private JButton getBtnVerDatos() {
 		if (btnVerDatos == null) {
 			btnVerDatos = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
-			btnVerDatos.setBounds(224, 51, 203, 34);
+			btnVerDatos.setBounds(224, 111, 203, 34);
 			btnVerDatos.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					JFrame ver = new VerDatosCasaMenuGUI(); 
@@ -411,7 +422,7 @@ public class MainGUI extends JFrame {
 	private JButton getModificarCasa() {
 		if (ModificarCasa == null) {
 			ModificarCasa = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text_1")); //$NON-NLS-1$ //$NON-NLS-2$
-			ModificarCasa.setBounds(224, 289, 203, 34);
+			ModificarCasa.setBounds(224, 349, 203, 34);
 			ModificarCasa.setVisible(false);
 			ModificarCasa.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
@@ -421,13 +432,13 @@ public class MainGUI extends JFrame {
 					try{
 						if(getUsuario() instanceof Owner){
 							Owner owner = (Owner) getUsuario();	
-							rhlista = owner.getRuralHouses();
+							rhlista = facade.getRuralHousesByOwner();
 							System.out.println(rhlista);
 						}
 					}catch (Exception e) {
 						e.printStackTrace();
 					}
-					
+					 
 					if(rhlista.isEmpty() !=true ){
 						JFrame modificar = new ModificarCasaGUI(rhlista);
 						modificar.setVisible(true);					
@@ -444,7 +455,7 @@ public class MainGUI extends JFrame {
 	private JButton getBtnReserva() {
 		if (btnReserva == null) {
 			btnReserva = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text_2")); //$NON-NLS-1$ //$NON-NLS-2$
-			btnReserva.setBounds(224, 148, 203, 34);
+			btnReserva.setBounds(224, 208, 203, 34);
 			btnReserva.setVisible(false);
 			btnReserva.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
@@ -460,7 +471,7 @@ public class MainGUI extends JFrame {
 		if (btnEliminarCasa == null) {
 			btnEliminarCasa = new JButton(
 					ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text_3")); //$NON-NLS-1$ //$NON-NLS-2$
-			btnEliminarCasa.setBounds(224, 242, 203, 34);
+			btnEliminarCasa.setBounds(224, 302, 203, 34);
 			btnEliminarCasa.setVisible(false);
 			btnEliminarCasa.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -469,7 +480,7 @@ public class MainGUI extends JFrame {
 					try {
 						if (getUsuario() instanceof Owner) {
 							Owner owner = (Owner) getUsuario();
-							rhlista = owner.getRuralHouses();
+							rhlista = facade.getRuralHousesByOwner();
 							System.out.println(rhlista);
 						}
 					} catch (Exception e1) {
@@ -488,5 +499,26 @@ public class MainGUI extends JFrame {
 			});
 		}
 		return btnEliminarCasa;
+	}
+	private JLabel getLblGestinDeCasas() {
+		if (lblGestinDeCasas == null) {
+			lblGestinDeCasas = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.lblGestinDeCasas.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			lblGestinDeCasas.setFont(new Font("Tahoma", Font.PLAIN, 30));
+			lblGestinDeCasas.setBounds(73, 24, 579, 36);
+		}
+		return lblGestinDeCasas;
+	}
+	private JButton getBtnBuscar() {
+		if (btnBuscar == null) {
+			btnBuscar = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnBuscar.text_1")); //$NON-NLS-1$ //$NON-NLS-2$
+			btnBuscar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JFrame bus = new BuscarCiudadGUI();
+					bus.setVisible(true);
+				}
+			});
+			btnBuscar.setBounds(52, 260, 97, 25);
+		}
+		return btnBuscar;
 	}
 } // @jve:decl-index=0:visual-constraint="0,0"

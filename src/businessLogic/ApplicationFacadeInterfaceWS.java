@@ -50,6 +50,8 @@ public interface ApplicationFacadeInterfaceWS  {
 	 * @return a Set of rural houses
 	 */
 	@WebMethod public Vector<RuralHouse> getAllRuralHouses();
+	@WebMethod public Vector<RuralHouse> getRuralHousesByOwner();
+	@WebMethod public Vector<RuralHouse> getRuralHouseByCiudad(String ciudad);
 	
 	/**
 	 * This method obtains the  offers of a ruralHouse in the provided dates 
@@ -66,9 +68,9 @@ public interface ApplicationFacadeInterfaceWS  {
 	@WebMethod public Owner crearOwner(String nombre, String usuario, String pass, String cuenta)throws RemoteException, Exception;
 	@WebMethod public Users comprobarUsuario(String usuario, String pass) throws RemoteException, Exception;
 	
-	@WebMethod public RuralHouse crearRuralHouse(String description, String city, Owner owner) throws RemoteException, Exception;
+	@WebMethod public RuralHouse crearRuralHouse(String description, String city,String direccion, String m2,String numHabitaciones, Owner owner) throws RemoteException, Exception;
 	
-	@WebMethod public boolean actualizarRuralHouse (RuralHouse rh, String description, String city) throws RemoteException, Exception;
+	@WebMethod public boolean actualizarRuralHouse(RuralHouse rh, String description, String city,String direccion,String numHabitaciones,String m2)throws RemoteException, Exception;
 	
 	@WebMethod public Reserva reservarCasa(RuralHouse rh, Date primerDia, Date ultimaNoche, String telefono, Users u) throws CasaNoReservada;
 	@WebMethod public Vector<Offer> getOffers( RuralHouse rh, Date firstDay,  Date lastDay) ;

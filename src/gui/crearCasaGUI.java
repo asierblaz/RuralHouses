@@ -21,34 +21,35 @@ import java.awt.event.ActionEvent;
 
 import domain.*;
 import gui.*;
+import javax.swing.JTextPane;
+import javax.swing.ImageIcon;
 
 public class crearCasaGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textCiudad;
 	private JLabel lblNewLabel;
-	private JTextField textDescripcion;
 	private JLabel lblAadirDescripcinDe;
 	private JButton btnAadirCasa;
 	private String city;
 	private String description;
 	private RuralHouse rh;
+	private JTextField tDireccion;
+	private JTextField tNumHabitaciones;
+	private JTextField tm2;
+	private JTextPane textDescripcion;
+	private String direccion;
+	private String numHabitaciones;
+	private String m2;
 
 	/**
-	 * Launch the application.
-	 */
-	/*
-	 * public static void main(String[] args) { EventQueue.invokeLater(new
-	 * Runnable() { public void run() { try { crearCasaGUI frame = new
-	 * crearCasaGUI(); frame.setVisible(true); } catch (Exception e) {
-	 * e.printStackTrace(); } } }); }
-	 */
+	
 
 	/**
 	 * Create the frame.
 	 */
 	public crearCasaGUI(boolean modificarCasa, RuralHouse casa) {
-		setBounds(100, 100, 489, 361);
+		setBounds(100, 100, 492, 553);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -68,20 +69,56 @@ public class crearCasaGUI extends JFrame {
 		lblNewLabel.setBounds(26, 61, 56, 16);
 		contentPane.add(lblNewLabel);
 
-		textDescripcion = new JTextField();
-		textDescripcion.setBounds(119, 144, 267, 114);
-		contentPane.add(textDescripcion);
-		textDescripcion.setColumns(10);
-
 		lblAadirDescripcinDe = new JLabel("A\u00F1adir Descripci\u00F3n de la casa: ");
-		lblAadirDescripcinDe.setBounds(122, 115, 207, 16);
+		lblAadirDescripcinDe.setBounds(26, 276, 207, 16);
 		contentPane.add(lblAadirDescripcinDe);
 		contentPane.add(getCrearCasa(modificarCasa));
+		
+		JLabel lblDireccin = new JLabel("Direcci\u00F3n:");
+		lblDireccin.setBounds(26, 105, 81, 16);
+		contentPane.add(lblDireccin);
+		
+		tDireccion = new JTextField();
+		tDireccion.setBounds(119, 99, 279, 29);
+		contentPane.add(tDireccion);
+		tDireccion.setColumns(10);
+		
+		JLabel lable = new JLabel("N\u00FAmero de Habitaciones:");
+		lable.setBounds(26, 144, 169, 16);
+		contentPane.add(lable);
+		
+		tNumHabitaciones = new JTextField();
+		tNumHabitaciones.setText("0");
+		tNumHabitaciones.setBounds(184, 141, 36, 22);
+		contentPane.add(tNumHabitaciones);
+		tNumHabitaciones.setColumns(10);
+		
+		tm2 = new JTextField();
+		tm2.setText("80");
+		tm2.setBounds(184, 191, 36, 22);
+		contentPane.add(tm2);
+		tm2.setColumns(10);
+		
+		JLabel lblMetrosCuadradosm = new JLabel("Metros Cuadrados (m\u00B2):");
+		lblMetrosCuadradosm.setBounds(26, 194, 146, 16);
+		contentPane.add(lblMetrosCuadradosm);
+		
+		textDescripcion = new JTextPane();
+		textDescripcion.setBounds(26, 305, 420, 114);
+		contentPane.add(textDescripcion);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon("G:\\Informatika\\4 curso\\Ingenieria del software\\RuralHouses\\b1f6df5208cf1cdb159e9ba300f6e8d9.png"));
+		lblNewLabel_1.setBounds(90, 226, 410, 364);
+		contentPane.add(lblNewLabel_1);
 
 		if (modificarCasa) {
 			rh = casa;
 			textCiudad.setText(casa.getCity());
 			textDescripcion.setText(casa.getDescription());
+			tDireccion.setText(casa.getDireccion());
+			tm2.setText(casa.getM2());
+			tNumHabitaciones.setText(casa.getNumHabitaciones());
 
 		}
 
@@ -90,7 +127,7 @@ public class crearCasaGUI extends JFrame {
 	// -----------------añadir casa--------------
 	private JButton getCrearCasa(boolean modificarCasa) {
 		btnAadirCasa = new JButton("A\u00F1adir Casa");
-		btnAadirCasa.setBounds(154, 271, 152, 25);
+		btnAadirCasa.setBounds(154, 450, 152, 25);
 		// añadimos un if para saber si añadimos o modificamos casa
 
 		if (!modificarCasa) {
@@ -98,17 +135,23 @@ public class crearCasaGUI extends JFrame {
 			btnAadirCasa.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 
+						
 					ApplicationFacadeInterfaceWS facade = MainGUI.getBusinessLogic();
 					try {
+						
 						city = textCiudad.getText();
 						description = textDescripcion.getText();
+						direccion= tDireccion.getText();
+						m2= tm2.getText();
+						numHabitaciones = tNumHabitaciones.getText();
 
 						if (!ComprobarCamposVacios())
 							if (ConfirmarDatos()) {
-								rh = facade.crearRuralHouse(description, city, (Owner) MainGUI.getUsuario());
+							rh= facade.crearRuralHouse(description, city, direccion, m2, numHabitaciones, (Owner) MainGUI.getUsuario());
 								System.out.println(rh.toString() + "Casa añadida correctamente");
 								JOptionPane.showMessageDialog(null, "Casa añadida correctamente");
-								if (establecerDisponibilidad()) {
+								
+							if (establecerDisponibilidad()) {
 									Vector<RuralHouse> rhs = facade.getAllRuralHouses(); //Se_guardan_en_el_vector_de_casas
 									JFrame a = new SetAvailabilityGUI(rhs);
 									a.setVisible(true);
@@ -132,10 +175,13 @@ public class crearCasaGUI extends JFrame {
 					try {
 						city = textCiudad.getText();
 						description = textDescripcion.getText();
+						direccion= tDireccion.getText();
+						m2= tm2.getText();
+						numHabitaciones = tNumHabitaciones.getText();
 
 						if (!ComprobarCamposVacios())
 							if (ConfirmarDatos()) {
-								if(facade.actualizarRuralHouse(rh, description, city)){
+								if(facade.actualizarRuralHouse(rh, description, city, direccion, numHabitaciones, m2)){
 									System.out.println(rh.toString() + "Casa actualizada correctamente");
 									JOptionPane.showMessageDialog(null, "Casa actualizada correctamente");
 									dispose();
@@ -161,7 +207,7 @@ public class crearCasaGUI extends JFrame {
 	private boolean ComprobarCamposVacios() {
 		String message = "Porfavor rellene todos los campos";
 
-		if (city.trim().equals("") || description.trim().equals("")) {
+		if (city.trim().equals("") || description.trim().equals("")|| numHabitaciones.trim().equals("")|| direccion.trim().equals("")|| m2.trim().equals("")) {
 			JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.WARNING_MESSAGE);
 			return true;
 		} else {
@@ -175,7 +221,7 @@ public class crearCasaGUI extends JFrame {
 		String nl = System.getProperty("line.separator");
 
 		String message = "Porfavor compruebe que los siguientes datos son correctos:" + nl + "Ciudad: " + city + nl
-				+ "Descripción: " + description;
+				+ "Descripción: " + description + nl+"Dirección: "+direccion +nl +"Número de habitaciones: "+ numHabitaciones + nl+"Metros Cuadrados: "+ m2;
 
 		int selection = JOptionPane.showConfirmDialog(null, message, "Confirmation", JOptionPane.YES_NO_OPTION);
 
@@ -184,7 +230,7 @@ public class crearCasaGUI extends JFrame {
 
 	private boolean establecerDisponibilidad() {
 
-		String nl = System.getProperty("line.separator");
+		//String nl = System.getProperty("line.separator");
 
 		String message = "¿Desea establecer dsiponibilidad para la casa: " + city + "?";
 

@@ -22,6 +22,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JPasswordField;
 import domain.*;
 import exceptions.OverlappingUsersExists;
+import javax.swing.ImageIcon;
 
 public class RegistroGUI extends JFrame {
 
@@ -61,7 +62,7 @@ public class RegistroGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public RegistroGUI() {
-		setBounds(100, 100, 396, 398);
+		setBounds(100, 100, 576, 398);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -141,6 +142,11 @@ public class RegistroGUI extends JFrame {
 		contentPane.add(passwordField);
 
 		contentPane.add(getJButton(), null); // añadimos el boton en la interfaz
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon("G:\\Informatika\\4 curso\\Ingenieria del software\\RuralHouses\\registro.png"));
+		label.setBounds(308, 0, 270, 340);
+		contentPane.add(label);
 	}
 
 	// ------------- botón de registro------------------------------------

@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 
@@ -28,6 +29,8 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 	 */
 	Vector<Owner> owners;
 	Vector<RuralHouse> ruralHouses;
+	Owner owner;
+	
 	public FacadeImplementationWS() {
 		ConfigXML c = ConfigXML.getInstance();
 		if (c.getDataBaseOpenMode().equals("initialize")) {
@@ -125,15 +128,13 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 
 	// -----------------------------crear casa
 	// rural-----------------------------------------
-	public RuralHouse crearRuralHouse(String description, String city, Owner owner) throws RemoteException, Exception {
+	public RuralHouse crearRuralHouse(String description, String city,String direccion, String m2,String numHabitaciones, Owner owner) throws RemoteException, Exception {
 		System.out.println(">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Descripción="
 				+ description + "Owner= " + owner);
 
 		DataAccess dbManager = new DataAccess();
-		RuralHouse rh = null; // la inicializamos a null
-
-		rh = dbManager.crearRuralHouse(description, city, owner);
-		owner.anadirCasaRural(rh.getDescription(), rh.getCity(), rh.getOwner());
+		RuralHouse rh = dbManager.crearRuralHouse( description, city, direccion, numHabitaciones, m2, owner);
+		owner.anadirCasaRural(rh.getDescription(), rh.getCity(), rh.getDireccion(), rh.getM2(), rh.getNumHabitaciones(),rh.getOwner());
 		dbManager.close();
 		System.out.println("<< FacadeImplementationWS: crearRuralHouse=> rh= " + rh);
 
@@ -142,15 +143,13 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 	
 
 	// ---------------------------------Actualizar Casa Rural------------------
-	public boolean actualizarRuralHouse(RuralHouse rh, String description, String city)
+	public boolean actualizarRuralHouse(RuralHouse rh, String description, String city,String direccion,String numHabitaciones,String m2)
 			throws RemoteException, Exception {
 		System.out.println(">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Descripción="
 				+ description + "rural House" + rh);
 
 		DataAccess dbManager = new DataAccess();
-		Boolean b = dbManager.actualizarRuralHouse(rh, description, city);
-		if (b)
-			rh = null;
+		Boolean b = dbManager.actualizarRuralHouse(rh, description, city, direccion, numHabitaciones, m2);
 		System.out.println("Actualizar rh= " + rh + "descripcion" + description);
 		dbManager.close();
 
@@ -172,7 +171,30 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 
 	}
 //---------------
+	public Vector<RuralHouse> getRuralHousesByOwner() {
+		System.out.println(">> FacadeImplementationWS: getRuralHousesByOwner");
 
+		DataAccess dbManager = new DataAccess();
+
+		Vector<RuralHouse> ruralHouses = dbManager.getRuralHouseByOwner();
+		dbManager.close();
+		System.out.println("<< FacadeImplementationWS:: getRuralHousesByOwner");
+
+		return ruralHouses;
+	}
+	
+	//-------------------------------
+	public Vector<RuralHouse> getRuralHouseByCiudad(String ciudad){
+		System.out.println(">> FacadeImplementationWS: getRuralHousesByciudad");
+
+		DataAccess dbManager = new DataAccess();
+
+		Vector<RuralHouse> ruralHouses = dbManager.getRuralHouseByCiudad(ciudad);
+		dbManager.close();
+		System.out.println("<< FacadeImplementationWS:: getRuralHousesByOwner");
+
+		return ruralHouses;
+	}
 	// --------------------------reservar casa----------------------
 	public Reserva reservarCasa(RuralHouse rh, Date primerDia, Date ultimaNoche,
 			String telefono, Users u) throws CasaNoReservada{
@@ -197,7 +219,7 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 			String a= "La casa en "+ rh.getCity()+"  ha sido borrada con exito!";
 			JOptionPane.showMessageDialog(null, a, "Bien!", JOptionPane.INFORMATION_MESSAGE);
 		}		else {
-			String message = "La casa en" + rh.getCity()+ "no ha sido borrada";
+			String message = "La casa en " + rh.getCity()+ "no ha sido borrada";
 			JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);}
 			System.out.println("casa no borrada");
 		}

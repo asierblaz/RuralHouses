@@ -17,28 +17,77 @@ import javax.persistence.*;
 public class RuralHouse implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@XmlID
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	@Id
 	@GeneratedValue
 	private Integer houseNumber;
 	private String description;
-	private String city; 
+	private String city;
+	private String direccion;
+	private String numHabitaciones;
+	private String m2;
 	private Owner owner;
 	public Vector<Offer> offers;
-	
 
 	public RuralHouse() {
 		super();
 	}
 
-	public RuralHouse( String description,String city, Owner owner) {
+	public RuralHouse(String description, String city, String direccion, String numHabitaciones,
+			String m2, Owner owner) {
+
 		this.houseNumber = houseNumber;
 		this.description = description;
 		this.city = city;
+		this.direccion = direccion;
+		this.numHabitaciones=numHabitaciones;
+		this.m2 = m2;
 		this.owner = owner;
-		offers=new Vector<Offer>();
+		offers = new Vector<Offer>();
+	}
+
+	/**
+	 * @return the direccion
+	 */
+	public String getDireccion() {
+		return direccion;
+	}
+
+	/**
+	 * @param direccion the direccion to set
+	 */
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	/**
+	 * @return the numHabitaciones
+	 */
+	public String getNumHabitaciones() {
+		return numHabitaciones;
+	}
+
+	/**
+	 * @param numHabitaciones the numHabitaciones to set
+	 */
+	public void setNumHabitaciones(String numHabitaciones) {
+		numHabitaciones = numHabitaciones;
+	}
+
+	/**
+	 * @return the m2
+	 */
+	public String getM2() {
+		return m2;
+	}
+
+	/**
+	 * @param m2 the m2 to set
+	 */
+	public void setM2(String m2) {
+		this.m2 = m2;
 	}
 
 	public Integer getHouseNumber() {
@@ -52,44 +101,43 @@ public class RuralHouse implements Serializable {
 	public String getDescription() {
 		return description;
 	}
-	
+
 	public void setDescription(String description) {
-		this.description=description;
+		this.description = description;
 	}
 
-	
 	public String getCity() {
 		return city;
 	}
-	
+
 	public void setCity(String city) {
-		this.city=city;
-	}
-	
-	public Owner getOwner(){
-		return owner;
-	}
-	public void setOwner(Owner owner){
-		this.owner= owner;
+		this.city = city;
 	}
 
-	
-		
+	public Owner getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Owner owner) {
+		this.owner = owner;
+	}
+
 	/**
-	 * This method creates an offer with a house number, first day, last day and price
+	 * This method creates an offer with a house number, first day, last day and
+	 * price
 	 * 
 	 * @param House
 	 *            number, start day, last day and price
 	 * @return None
 	 */
-	public Offer createOffer(Date firstDay, Date lastDay, float price)  {
-        System.out.println("LLAMADA RuralHouse createOffer, offerNumber="+" firstDay="+firstDay+" lastDay="+lastDay+" price="+price);
-        Offer off=new Offer(firstDay,lastDay,price,this);
-        offers.add(off);
-        return off;
+	public Offer createOffer(Date firstDay, Date lastDay, float price) {
+		System.out.println("LLAMADA RuralHouse createOffer, offerNumber=" + " firstDay=" + firstDay + " lastDay="
+				+ lastDay + " price=" + price);
+		Offer off = new Offer(firstDay, lastDay, price, this);
+		offers.add(off);
+		return off;
 	}
 
-	
 	@Override
 	public int hashCode() {
 
@@ -108,59 +156,66 @@ public class RuralHouse implements Serializable {
 	public boolean equals(Object obj) {
 		RuralHouse other = (RuralHouse) obj;
 		if (this == obj)
-		  return true;
+			return true;
 		if (obj == null)
-		  return false;
+			return false;
 		if (getClass() != obj.getClass())
-		  return false;
-//		if (houseNumber != other.houseNumber) // NO COMPARAR ASÍ ya que houseNumber NO ES "int" sino objeto de "java.lang.Integer"
+			return false;
+		// if (houseNumber != other.houseNumber) // NO COMPARAR ASÍ ya que
+		// houseNumber NO ES "int" sino objeto de "java.lang.Integer"
 		if (!houseNumber.equals(other.houseNumber))
-		  return false;
-   	    return true;
+			return false;
+		return true;
 	}
-	
+
 	/**
-	 * This method obtains available offers for a concrete house in a certain period 
+	 * This method obtains available offers for a concrete house in a certain
+	 * period
 	 * 
-	 * @param houseNumber, the house number where the offers must be obtained 
-	 * @param firstDay, first day in a period range 
-	 * @param lastDay, last day in a period range
-	 * @return a vector of offers(Offer class)  available  in this period
+	 * @param houseNumber,
+	 *            the house number where the offers must be obtained
+	 * @param firstDay,
+	 *            first day in a period range
+	 * @param lastDay,
+	 *            last day in a period range
+	 * @return a vector of offers(Offer class) available in this period
 	 */
-	public Vector<Offer> getOffers( Date firstDay,  Date lastDay) {
-		
-		Vector<Offer> availableOffers=new Vector<Offer>();
-		Iterator<Offer> e=offers.iterator();
+	public Vector<Offer> getOffers(Date firstDay, Date lastDay) {
+
+		Vector<Offer> availableOffers = new Vector<Offer>();
+		Iterator<Offer> e = offers.iterator();
 		Offer offer;
-		while (e.hasNext()){
-			offer=e.next();
-			if ( (offer.getFirstDay().compareTo(firstDay)>=0) && (offer.getLastDay().compareTo(lastDay)<=0)  )
+		while (e.hasNext()) {
+			offer = e.next();
+			if ((offer.getFirstDay().compareTo(firstDay) >= 0) && (offer.getLastDay().compareTo(lastDay) <= 0))
 				availableOffers.add(offer);
 		}
 		return availableOffers;
-		
+
 	}
-	
-	
+
 	/**
 	 * This method obtains the first offer that overlaps with the provided dates
 	 * 
-	 * @param firstDay, first day in a period range 
-	 * @param lastDay, last day in a period range
-	 * @return the first offer that overlaps with those dates, or null if there is no overlapping offer
+	 * @param firstDay,
+	 *            first day in a period range
+	 * @param lastDay,
+	 *            last day in a period range
+	 * @return the first offer that overlaps with those dates, or null if there
+	 *         is no overlapping offer
 	 */
 
-	public Offer overlapsWith( Date firstDay,  Date lastDay) {
-		
-		Iterator<Offer> e=offers.iterator();
-		Offer offer=null;
-		while (e.hasNext()){
-			offer=e.next();
-			if ( (offer.getFirstDay().compareTo(lastDay)<0) && (offer.getLastDay().compareTo(firstDay)>0))
+	public Offer overlapsWith(Date firstDay, Date lastDay) {
+
+		Iterator<Offer> e = offers.iterator();
+		Offer offer = null;
+		while (e.hasNext()) {
+			offer = e.next();
+			if ((offer.getFirstDay().compareTo(lastDay) < 0) && (offer.getLastDay().compareTo(firstDay) > 0))
 				return offer;
 		}
 		return null;
-		
+
 	}
 
 }

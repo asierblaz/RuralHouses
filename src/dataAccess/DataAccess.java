@@ -1,6 +1,7 @@
 package dataAccess;
 
 import java.io.ObjectStreamException;
+import java.lang.management.ThreadMXBean;
 import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.HashMap;
@@ -14,29 +15,30 @@ import javax.jdo.annotations.Queries;
 import javax.jws.WebMethod;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityResult;
+import javax.persistence.Id;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
+import com.objectdb.o.BDP;
 
 import configuration.ConfigXML;
 import domain.*;
 import exceptions.CasaNoReservada;
-import exceptions.DB4oManagerCreationException;
 import exceptions.OverlappingOfferExists;
 import exceptions.OverlappingUsersExists;
+import gui.MainGUI;
+
 
 public class DataAccess {
 
 	public static String fileName;
 	protected static EntityManagerFactory emf;
 	protected static EntityManager db;
-	private static DataAccess datamanageraux;
 	
 	ConfigXML c;
-	private int houseNumber;
 
 	public DataAccess() {
-
 		c = ConfigXML.getInstance();
 
 		System.out.println("Creating objectdb instance => isDatabaseLocal: " + c.isDatabaseLocal()
@@ -70,7 +72,7 @@ public class DataAccess {
 			Iterator<RuralHouse> itr = results.iterator();
 
 			while (itr.hasNext()) {
-				RuralHouse rh = itr.next();
+				 RuralHouse rh = itr.next();
 				db.remove(rh);
 			}
 
@@ -82,7 +84,7 @@ public class DataAccess {
 			 
 		//	 db.persist(rh1); db.persist(rh2); db.persist(rh3);
 		//	 db.persist(rh4);
-			
+	
 
 			db.getTransaction().commit();
 			System.out.println("Db initialized");
@@ -91,11 +93,15 @@ public class DataAccess {
 			e.printStackTrace();
 		}
 	}
+	
+
+
+	
 	//---------------------reservar Casa---------------------
 	public Reserva reservarCasa(RuralHouse rh, Date primerDia, Date ultimaNoche,
 			String telefono, Users u) throws CasaNoReservada{
 		Reserva r =null;
-		RuralHouse rhs = db.find(RuralHouse.class, rh.getHouseNumber());
+		//RuralHouse rhs = db.find(RuralHouse.class, rh.getHouseNumber());
 		db.getTransaction().begin();
 		
 		return r;
@@ -107,6 +113,8 @@ public class DataAccess {
 				+ " lastDay=" + lastDay + " price=" + price);
 
 		try {
+			
+			
 			RuralHouse rh = db.find(RuralHouse.class, ruralHouse.getHouseNumber());
 
 			db.getTransaction().begin();
@@ -161,16 +169,18 @@ public class DataAccess {
 	}
 
 	// -----------------------------------crear casa rural----------------
-	public RuralHouse crearRuralHouse(String description, String city, Owner owner) throws RemoteException, Exception {
+	public RuralHouse crearRuralHouse(String description, String city,String direccion,String numHabitaciones,String m2, Owner owner) throws RemoteException, Exception {
 		System.out.println(
 	">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Descripción=" + description);
 
 		
+		
  	try {
 		db.getTransaction().begin();
-			RuralHouse rh = new RuralHouse(description, city, owner);
-			//owner.anadirCasaRural(rh.getDescription(), rh.getCity(), rh.getOwner());
-			//db.persist(owner);
+	
+			RuralHouse rh = new RuralHouse(description, city, direccion, numHabitaciones, m2, owner);
+			//owner.anadirCasaRural(rh.getDescription(), rh.getCity(), rh.getDireccion(), rh.getM2(), rh.getNumHabitaciones(), owner);
+		//	db.persist(owner);
 			db.persist(rh);
 			db.getTransaction().commit();
 			return rh;
@@ -180,18 +190,22 @@ public class DataAccess {
 		}
 	}
 	//---------------------------------actualizar rural house--------------------------------
-	public boolean actualizarRuralHouse (RuralHouse rh, String description, String city) throws RemoteException, Exception{
-		System.out.println(">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Descripción=" + description + "RuralHouse= " + rh );
+	public boolean actualizarRuralHouse (RuralHouse rh,String description, String city,String direccion,String numHabitaciones,String m2) throws RemoteException, Exception{
+		//System.out.println(">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Descripción=" + description + "RuralHouse= " + rh );
 			try{
 				db.getTransaction().begin();
 				rh.setCity(city);
-				rh.setDescription(description);				
+				rh.setDescription(description);	
+				rh.setDireccion(direccion);
+				rh.setM2(m2);
+				rh.setNumHabitaciones(numHabitaciones);
 				db.persist(rh);
 				db.getTransaction().commit();
 				System.out.println("La casa "+ rh.toString()+ "ha sido actualizada");
 							
 		return true;
 	} catch (Exception e1) {
+		
 		System.out.println("casa no actualizada");
 		return false;
 	}
@@ -201,8 +215,25 @@ public class DataAccess {
 	public Vector<RuralHouse> getAllRuralHouses() {
 		System.out.println(">> DataAccess: getAllRuralHouses");
 		Vector<RuralHouse> res = new Vector<>();
+	
 
 		TypedQuery<RuralHouse> query = db.createQuery("SELECT c FROM RuralHouse c", RuralHouse.class);
+		List<RuralHouse> results = query.getResultList();
+		Iterator<RuralHouse> itr = results.iterator();
+		while (itr.hasNext()) {
+			res.add(itr.next());
+		}
+
+		return res;}
+	//--------------------obetener casa mediante owner---
+	public Vector<RuralHouse> getRuralHouseByOwner(){
+		System.out.println(">> DataAccess: geRuralHouseByOwner");
+		Vector<RuralHouse> res = new Vector<>();
+		
+		Owner owner = (Owner) MainGUI.getUsuario();
+		String OwnerConectado=owner.getUsuario();
+		TypedQuery<RuralHouse> query = db.createQuery("SELECT c FROM RuralHouse c WHERE c.owner.getUsuario()='"+OwnerConectado+"'",RuralHouse.class);
+		//"SELECT p FROM Pilot p WHERE p.nationality='"+naz+"'",Pilot.class
 		List<RuralHouse> results = query.getResultList();
 
 		Iterator<RuralHouse> itr = results.iterator();
@@ -210,10 +241,30 @@ public class DataAccess {
 		while (itr.hasNext()) {
 			res.add(itr.next());
 		}
+		
+		return res;
+		
+	}
+	//----------------obtener casa mediante ciudad-----------
+	public Vector<RuralHouse> getRuralHouseByCiudad(String ciudad){
+		System.out.println(">> DataAccess: geRuralHouseByOwner");
+		Vector<RuralHouse> res = new Vector<>();
+		
+		
+		TypedQuery<RuralHouse> query = db.createQuery("SELECT c FROM RuralHouse c WHERE c.city='"+ciudad+"'",RuralHouse.class);
+		//"SELECT p FROM Pilot p WHERE p.nationality='"+naz+"'",Pilot.class
+		List<RuralHouse> results = query.getResultList();
 
-		return res;}
-	//-----------------------
+		Iterator<RuralHouse> itr = results.iterator();
 
+		while (itr.hasNext()) {
+			res.add(itr.next());
+		}
+		
+		return res;
+		
+	}
+	
 	//---------------------------------------------------------
 		public Vector<RuralHouse>  getRhDescription(RuralHouse rh){
 			
