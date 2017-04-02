@@ -52,7 +52,12 @@ public interface ApplicationFacadeInterfaceWS  {
 	@WebMethod public Vector<RuralHouse> getAllRuralHouses();
 	@WebMethod public Vector<RuralHouse> getRuralHousesByOwner();
 	@WebMethod public Vector<RuralHouse> getRuralHouseByCiudad(String ciudad);
-	
+	@WebMethod public Vector<RuralHouse> getRuralHouseByDireccion(String direccion);
+	@WebMethod public Vector<RuralHouse> getRuralHouseByHabitaciones(String habitaciones);
+	@WebMethod public Vector<RuralHouse> getRuralHouseByMetros(String metros);
+	@WebMethod public Vector<RuralHouse> getRuralHouseByDescripcion(String descripcion);
+
+
 	/**
 	 * This method obtains the  offers of a ruralHouse in the provided dates 
 	 * 

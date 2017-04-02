@@ -191,7 +191,56 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 
 		Vector<RuralHouse> ruralHouses = dbManager.getRuralHouseByCiudad(ciudad);
 		dbManager.close();
-		System.out.println("<< FacadeImplementationWS:: getRuralHousesByOwner");
+		System.out.println("<< FacadeImplementationWS:: getRuralHousesByciudad");
+
+		return ruralHouses;
+	}
+	//-------------------------------
+		public Vector<RuralHouse> getRuralHouseByDescripcion(String descripcion){
+			System.out.println(">> FacadeImplementationWS: getRuralHousesByDescripcion");
+
+			DataAccess dbManager = new DataAccess();
+
+			Vector<RuralHouse> ruralHouses = dbManager.getRuralHouseByDescripcion(descripcion);
+			dbManager.close();
+			System.out.println("<< FacadeImplementationWS:: getRuralHousesByDescription");
+
+			return ruralHouses;
+		}
+
+	// -------------------------------
+		public Vector<RuralHouse> getRuralHouseByDireccion(String direccion) {
+		System.out.println(">> FacadeImplementationWS: getRuralHousesByDireccion");
+
+		DataAccess dbManager = new DataAccess();
+
+		Vector<RuralHouse> ruralHouses = dbManager.getRuralHouseByDireccion(direccion);
+		dbManager.close();
+		System.out.println("<< FacadeImplementationWS:: getRuralHousesByDireccion");
+
+		return ruralHouses;
+	}
+		// -------------------------------
+		public Vector<RuralHouse> getRuralHouseByHabitaciones(String habitaciones) {
+		System.out.println(">> FacadeImplementationWS: getRuralHousesByHabitaciones");
+
+		DataAccess dbManager = new DataAccess();
+
+		Vector<RuralHouse> ruralHouses = dbManager.getRuralHouseByHabitaciones(habitaciones);
+		dbManager.close();
+		System.out.println("<< FacadeImplementationWS:: getRuralHousesByHabitaciones");
+
+		return ruralHouses;
+	}
+		// -------------------------------
+		public Vector<RuralHouse> getRuralHouseByMetros(String metros) {
+		System.out.println(">> FacadeImplementationWS: getRuralHousesByMetros");
+
+		DataAccess dbManager = new DataAccess();
+
+		Vector<RuralHouse> ruralHouses = dbManager.getRuralHouseByMetros(metros);
+		dbManager.close();
+		System.out.println("<< FacadeImplementationWS:: getRuralHousesByMetros");
 
 		return ruralHouses;
 	}

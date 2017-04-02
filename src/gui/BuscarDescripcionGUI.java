@@ -21,19 +21,19 @@ import java.awt.event.ActionListener;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 
-public class BuscarCiudadGUI extends JFrame {
+public class BuscarDescripcionGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JComboBox comboBox;
-	private String city;
+	private String description;
 	private Vector<RuralHouse> rhs = null;
 	ApplicationFacadeInterfaceWS facade = MainGUI.getBusinessLogic();
 
 	/**
 	 * Create the frame.
 	 */
-	public BuscarCiudadGUI() {
+	public BuscarDescripcionGUI() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 364, 328);
 		contentPane = new JPanel();
@@ -41,12 +41,12 @@ public class BuscarCiudadGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblBuscarCasaPor = new JLabel("Buscar Casa por Ciudad");
+		JLabel lblBuscarCasaPor = new JLabel("Buscar Casa por Descripcion");
 		lblBuscarCasaPor.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblBuscarCasaPor.setBounds(77, 13, 203, 16);
 		contentPane.add(lblBuscarCasaPor);
 
-		JLabel label = new JLabel("Ciudad:");
+		JLabel label = new JLabel("Descripción:");
 		label.setBounds(32, 62, 56, 16);
 		contentPane.add(label);
 
@@ -58,11 +58,11 @@ public class BuscarCiudadGUI extends JFrame {
 
 		// vector
 
-		city = TextoCiudad.getCity();
-		System.out.println(city);
-		textField.setText(city);
+		description = TextoDescripcion.getdescription();
+		System.out.println(description);
+		textField.setText(description);
 
-		rhs = facade.getRuralHouseByCiudad(city);
+		rhs = facade.getRuralHouseByDescripcion(description);
 		if(NoHayDatos()){
 			dispose();
 		}
@@ -93,7 +93,6 @@ public class BuscarCiudadGUI extends JFrame {
 		contentPane.add(btnVerDatos);
 
 	}
-
 	private boolean NoHayDatos() {
 		String message = "No se han encontrado datos, inentelo con otras palabras.";
 
@@ -106,5 +105,5 @@ public class BuscarCiudadGUI extends JFrame {
 
 	}
 	
-	
+
 }

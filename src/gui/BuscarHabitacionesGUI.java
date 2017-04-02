@@ -21,19 +21,19 @@ import java.awt.event.ActionListener;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 
-public class BuscarCiudadGUI extends JFrame {
+public class BuscarHabitacionesGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JComboBox comboBox;
-	private String city;
+	private String habita;
 	private Vector<RuralHouse> rhs = null;
 	ApplicationFacadeInterfaceWS facade = MainGUI.getBusinessLogic();
 
 	/**
 	 * Create the frame.
 	 */
-	public BuscarCiudadGUI() {
+	public BuscarHabitacionesGUI() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 364, 328);
 		contentPane = new JPanel();
@@ -41,28 +41,27 @@ public class BuscarCiudadGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblBuscarCasaPor = new JLabel("Buscar Casa por Ciudad");
+		JLabel lblBuscarCasaPor = new JLabel("Buscar Casa por NºHabitaciones");
 		lblBuscarCasaPor.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblBuscarCasaPor.setBounds(77, 13, 203, 16);
+		lblBuscarCasaPor.setBounds(32, 13, 284, 16);
 		contentPane.add(lblBuscarCasaPor);
 
-		JLabel label = new JLabel("Ciudad:");
-		label.setBounds(32, 62, 56, 16);
+		JLabel label = new JLabel("Habitaciones:");
+		label.setBounds(32, 62, 77, 16);
 		contentPane.add(label);
 
 		textField = new JTextField();
 		textField.setEditable(false);
 		textField.setColumns(10);
-		textField.setBounds(111, 59, 116, 22);
+		textField.setBounds(121, 59, 46, 22);
 		contentPane.add(textField);
 
 		// vector
+		habita= TextoHabitaciones.gethabita();
+		System.out.println(habita);
+		textField.setText(habita);
 
-		city = TextoCiudad.getCity();
-		System.out.println(city);
-		textField.setText(city);
-
-		rhs = facade.getRuralHouseByCiudad(city);
+		rhs = facade.getRuralHouseByHabitaciones(habita);
 		if(NoHayDatos()){
 			dispose();
 		}

@@ -67,7 +67,8 @@ public class MainGUI extends JFrame {
 	private static JButton btnReserva;
 	private static JButton btnEliminarCasa;
 	private JLabel lblGestinDeCasas;
-	private JButton btnBuscar;
+	private static JButton btnBuscar;
+	private static JMenu mnBusqueda;
 	
 
 	/**
@@ -154,6 +155,9 @@ public class MainGUI extends JFrame {
 			btnReserva.setVisible(false);
 			ModificarCasa.setVisible(true);
 			btnEliminarCasa.setVisible(true);
+			btnBuscar.setVisible(false);
+			mnBusqueda.setEnabled(false);
+			
 			
 
 		} else {
@@ -168,6 +172,8 @@ public class MainGUI extends JFrame {
 			btnReserva.setVisible(true);
 			ModificarCasa.setVisible(false);
 			btnEliminarCasa.setVisible(false);
+			btnBuscar.setVisible(true);
+			mnBusqueda.setEnabled(true);
 
 		}
 
@@ -188,6 +194,9 @@ public class MainGUI extends JFrame {
 		btnReserva.setVisible(false);
 		ModificarCasa.setVisible(false);
 		btnEliminarCasa.setVisible(false);
+		btnBuscar.setVisible(true);
+		mnBusqueda.setEnabled(true);
+
 		
 
 	}
@@ -316,6 +325,7 @@ public class MainGUI extends JFrame {
 		if (menuBar == null) {
 			menuBar = new JMenuBar();
 			menuBar.add(getMnLogin());
+			menuBar.add(getMnBusqueda());
 		}
 		return menuBar;
 	}
@@ -455,7 +465,7 @@ public class MainGUI extends JFrame {
 	private JButton getBtnReserva() {
 		if (btnReserva == null) {
 			btnReserva = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text_2")); //$NON-NLS-1$ //$NON-NLS-2$
-			btnReserva.setBounds(224, 208, 203, 34);
+			btnReserva.setBounds(224, 255, 203, 34);
 			btnReserva.setVisible(false);
 			btnReserva.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
@@ -513,12 +523,64 @@ public class MainGUI extends JFrame {
 			btnBuscar = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnBuscar.text_1")); //$NON-NLS-1$ //$NON-NLS-2$
 			btnBuscar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					JFrame bus = new BuscarCiudadGUI();
+					JFrame bus = new BuscarGUI();
 					bus.setVisible(true);
 				}
 			});
-			btnBuscar.setBounds(52, 260, 97, 25);
+			btnBuscar.setBounds(224, 208, 203, 34);
 		}
 		return btnBuscar;
+	}
+	private JMenu getMnBusqueda() {
+		if (mnBusqueda == null) {
+			mnBusqueda = new JMenu(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.mnBusqueda.text_1")); //$NON-NLS-1$ //$NON-NLS-2$
+			
+			JMenuItem mntmPorCiudad = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.mntmPorCiudad.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			mntmPorCiudad.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JFrame bus = new TextoCiudad();
+					bus.setVisible(true);
+					
+				}
+			});
+			mnBusqueda.add(mntmPorCiudad);
+			
+			JMenuItem mntmDireccin = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.mntmDireccin.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			mntmDireccin.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JFrame bus = new TextoDireccion();
+					bus.setVisible(true);
+				}
+			});
+			mnBusqueda.add(mntmDireccin);
+			
+			JMenuItem mntmNhabitaciones = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.mntmNhabitaciones.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			mntmNhabitaciones.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JFrame bus = new TextoHabitaciones();
+					bus.setVisible(true);
+				}
+			});
+			mnBusqueda.add(mntmNhabitaciones);
+			
+			JMenuItem mntmMetrosCuadrados = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.mntmMetrosCuadrados.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			mntmMetrosCuadrados.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JFrame bus = new TextoMetros();
+					bus.setVisible(true);
+				}
+			});
+			mnBusqueda.add(mntmMetrosCuadrados);
+			
+			JMenuItem mntmDescripcin = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.mntmDescripcin.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			mntmDescripcin.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JFrame bus = new TextoDescripcion();
+					bus.setVisible(true);
+				}
+			});
+			mnBusqueda.add(mntmDescripcin);
+		}
+		return mnBusqueda;
 	}
 } // @jve:decl-index=0:visual-constraint="0,0"

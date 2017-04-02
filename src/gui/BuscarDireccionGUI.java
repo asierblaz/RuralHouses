@@ -21,19 +21,19 @@ import java.awt.event.ActionListener;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 
-public class BuscarCiudadGUI extends JFrame {
+public class BuscarDireccionGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JComboBox comboBox;
-	private String city;
+	private String dir;
 	private Vector<RuralHouse> rhs = null;
 	ApplicationFacadeInterfaceWS facade = MainGUI.getBusinessLogic();
 
 	/**
 	 * Create the frame.
 	 */
-	public BuscarCiudadGUI() {
+	public BuscarDireccionGUI() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 364, 328);
 		contentPane = new JPanel();
@@ -41,12 +41,12 @@ public class BuscarCiudadGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblBuscarCasaPor = new JLabel("Buscar Casa por Ciudad");
+		JLabel lblBuscarCasaPor = new JLabel("Buscar Casa por Dirección");
 		lblBuscarCasaPor.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblBuscarCasaPor.setBounds(77, 13, 203, 16);
 		contentPane.add(lblBuscarCasaPor);
 
-		JLabel label = new JLabel("Ciudad:");
+		JLabel label = new JLabel("Dirección:");
 		label.setBounds(32, 62, 56, 16);
 		contentPane.add(label);
 
@@ -58,11 +58,11 @@ public class BuscarCiudadGUI extends JFrame {
 
 		// vector
 
-		city = TextoCiudad.getCity();
-		System.out.println(city);
-		textField.setText(city);
+		dir = TextoDireccion.getdir();
+		System.out.println(dir);
+		textField.setText(dir);
 
-		rhs = facade.getRuralHouseByCiudad(city);
+		rhs = facade.getRuralHouseByDireccion(dir);
 		if(NoHayDatos()){
 			dispose();
 		}

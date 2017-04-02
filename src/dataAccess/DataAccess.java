@@ -247,7 +247,6 @@ public class DataAccess {
 	}
 	//----------------obtener casa mediante ciudad-----------
 	public Vector<RuralHouse> getRuralHouseByCiudad(String ciudad){
-		System.out.println(">> DataAccess: geRuralHouseByOwner");
 		Vector<RuralHouse> res = new Vector<>();
 		
 		
@@ -264,7 +263,80 @@ public class DataAccess {
 		return res;
 		
 	}
-	
+	//----------------obtener casa mediante direccion-----------
+	public Vector<RuralHouse> getRuralHouseByDireccion(String direccion){
+		Vector<RuralHouse> res = new Vector<>();
+		
+		
+		TypedQuery<RuralHouse> query = db.createQuery("SELECT c FROM RuralHouse c WHERE c.direccion='"+direccion+"'",RuralHouse.class);
+		//"SELECT p FROM Pilot p WHERE p.nationality='"+naz+"'",Pilot.class
+		List<RuralHouse> results = query.getResultList();
+
+		Iterator<RuralHouse> itr = results.iterator();
+
+		while (itr.hasNext()) {
+			res.add(itr.next());
+		}
+		
+		return res;
+		
+	}
+	//----------------obtener casa mediante descripcion-----------
+	public Vector<RuralHouse> getRuralHouseByDescripcion(String descripcion){
+		Vector<RuralHouse> res = new Vector<>();
+		
+		
+		TypedQuery<RuralHouse> query = db.createQuery("SELECT c FROM RuralHouse c WHERE c.description='"+descripcion+"'",RuralHouse.class);
+		//"SELECT p FROM Pilot p WHERE p.nationality='"+naz+"'",Pilot.class
+		List<RuralHouse> results = query.getResultList();
+
+		Iterator<RuralHouse> itr = results.iterator();
+
+		while (itr.hasNext()) {
+			res.add(itr.next());
+		}
+		
+		return res;
+		
+	}
+	//----------------obtener casa mediante habitacion-----------
+	public Vector<RuralHouse> getRuralHouseByHabitaciones(String habitaciones){
+		System.out.println(">> DataAccess: geRuralHouseByOwner");
+		Vector<RuralHouse> res = new Vector<>();
+		
+		
+		TypedQuery<RuralHouse> query = db.createQuery("SELECT c FROM RuralHouse c WHERE c.numHabitaciones='"+habitaciones+"'",RuralHouse.class);
+		//"SELECT p FROM Pilot p WHERE p.nationality='"+naz+"'",Pilot.class
+		List<RuralHouse> results = query.getResultList();
+
+		Iterator<RuralHouse> itr = results.iterator();
+
+		while (itr.hasNext()) {
+			res.add(itr.next());
+		}
+		
+		return res;
+		
+	}
+	//----------------obtener casa mediante metros-----------
+	public Vector<RuralHouse> getRuralHouseByMetros(String metros){
+		System.out.println(">> DataAccess: geRuralHouseByOwner");
+		Vector<RuralHouse> res = new Vector<>();
+		
+		
+		TypedQuery<RuralHouse> query = db.createQuery("SELECT c FROM RuralHouse c WHERE c.m2='"+metros+"'",RuralHouse.class);
+		//"SELECT p FROM Pilot p WHERE p.nationality='"+naz+"'",Pilot.class
+		List<RuralHouse> results = query.getResultList();
+
+		Iterator<RuralHouse> itr = results.iterator();
+
+		while (itr.hasNext()) {
+			res.add(itr.next());
+		}
+		
+		return res;
+		
+	}
 	//---------------------------------------------------------
 		public Vector<RuralHouse>  getRhDescription(RuralHouse rh){
 			
