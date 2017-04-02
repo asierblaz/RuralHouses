@@ -54,7 +54,7 @@ public class BuscarCiudadGUI extends JFrame {
 		textField.setBounds(111, 59, 116, 22);
 		contentPane.add(textField);
 
-		rhs=facade.getRuralHouseByCiudad(city);
+		rhs=facade.getRuralHouseByCiudad(city); //k
 
 		
 		JButton btnBuscar = new JButton("Buscar");
