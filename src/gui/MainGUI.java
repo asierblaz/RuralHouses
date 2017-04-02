@@ -187,7 +187,7 @@ public class MainGUI extends JFrame {
 		mntmRegistrarse.setEnabled(true);
 		setAvailability.setVisible(false);
 		queryAvailability.setVisible(true);
-		btnAadir.setVisible(false);
+		btnAadir.setVisible(false); 
 		btnVerDatos.setVisible(true);
 		mntmDesconectar.setEnabled(false);
 		mntmlogin.setEnabled(true);
