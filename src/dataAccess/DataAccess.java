@@ -407,7 +407,7 @@ public class DataAccess {
 		}
 	}
 	
-
+//
 //--------------------------eliminar una casa------------------
 	public boolean BorrarCasa (RuralHouse rh)throws RemoteException, Exception{
 		try{
