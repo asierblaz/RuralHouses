@@ -108,7 +108,7 @@ public class BuscarGUI extends JFrame {
 		contentPane.add(btnDescripcin);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("G:\\Informatika\\4 curso\\Ingenieria del software\\RuralHouses\\casabus.png"));
+		label.setIcon(new ImageIcon("G:\\Informatika\\4 curso\\Ingenieria del software\\RuralHouses\\Find_Home-512.png"));
 		label.setBounds(333, 26, 469, 334);
 		contentPane.add(label);
 	}
