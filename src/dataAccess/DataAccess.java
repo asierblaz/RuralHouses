@@ -22,6 +22,7 @@ import javax.persistence.TypedQuery;
 
 import com.objectdb.o.BDP;
 
+import businessLogic.ApplicationFacadeInterfaceWS;
 import configuration.ConfigXML;
 import domain.*;
 import exceptions.CasaNoReservada;
@@ -194,19 +195,23 @@ public class DataAccess {
 	public boolean actualizarRuralHouse (RuralHouse rh,String description, String city,String direccion,String numHabitaciones,String m2) throws RemoteException, Exception{
 		//System.out.println(">> FacadeImplementationWS: crearRuralHouse=> Ciudad= " + city + " Descripción=" + description + "RuralHouse= " + rh );
 			try{
+				rh=db.find(RuralHouse.class, rh.getHouseNumber());
+
 				db.getTransaction().begin();
 				rh.setCity(city);
 				rh.setDescription(description);	
 				rh.setDireccion(direccion);
+				
 				rh.setM2(m2);
 				rh.setNumHabitaciones(numHabitaciones);
 				db.persist(rh);
+				
 				db.getTransaction().commit();
 				System.out.println("La casa "+ rh.toString()+ "ha sido actualizada");
 							
 		return true;
 	} catch (Exception e1) {
-		
+		System.out.println(e1);
 		System.out.println("casa no actualizada");
 		return false;
 	}
