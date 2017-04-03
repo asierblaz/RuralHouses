@@ -132,7 +132,7 @@ public class RegistroGUI extends JFrame {
 		TipoUsuario.add(rdbtnOwner);
 		rdbtnOwner.setBounds(268, 214, 67, 25);
 		contentPane.add(rdbtnOwner);
-
+  
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
 		lblContrasea.setBounds(54, 147, 76, 16);
 		contentPane.add(lblContrasea);
