@@ -133,7 +133,7 @@ public class MainGUI extends JFrame {
 			JLabel lblNewLabel_1 = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.lblNewLabel_1.text"));
 			lblNewLabel_1.setBounds(0, 332, 902, 305);
 			jContentPane.add(lblNewLabel_1);
-			lblNewLabel_1.setIcon(new ImageIcon("G:\\Informatika\\4 curso\\Ingenieria del software\\RuralHouses\\casas.png"));
+			lblNewLabel_1.setIcon(new ImageIcon("src/Imagenes/Menu.png"));
 			jContentPane.add(getLblGestinDeCasas());
 			jContentPane.add(getBtnBuscar());
 		}

@@ -102,7 +102,7 @@ public class LoginGUI extends JFrame {
 		textUsuario.setColumns(10);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("G:\\Informatika\\4 curso\\Ingenieria del software\\RuralHouses\\login.png"));
+		label.setIcon(new ImageIcon("src/Imagenes/login.png"));
 		label.setBounds(-44, 13, 258, 231);
 		contentPane.add(label);
 	}

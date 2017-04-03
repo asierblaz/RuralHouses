@@ -144,7 +144,7 @@ public class RegistroGUI extends JFrame {
 		contentPane.add(getJButton(), null); // añadimos el boton en la interfaz
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("G:\\Informatika\\4 curso\\Ingenieria del software\\RuralHouses\\registro.png"));
+		label.setIcon(new ImageIcon("src/Imagenes/registro.png"));
 		label.setBounds(308, 0, 270, 340);
 		contentPane.add(label);
 	}

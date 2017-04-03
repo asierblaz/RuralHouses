@@ -108,7 +108,7 @@ public class crearCasaGUI extends JFrame {
 		contentPane.add(textDescripcion);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("G:\\Informatika\\4 curso\\Ingenieria del software\\RuralHouses\\b1f6df5208cf1cdb159e9ba300f6e8d9.png"));
+		lblNewLabel_1.setIcon(new ImageIcon("src/Imagenes/crearCasa.png"));
 		lblNewLabel_1.setBounds(90, 226, 410, 364);
 		contentPane.add(lblNewLabel_1);
 
