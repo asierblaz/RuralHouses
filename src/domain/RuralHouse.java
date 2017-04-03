@@ -47,6 +47,18 @@ public class RuralHouse implements Serializable {
 		this.owner = owner;
 		offers = new Vector<Offer>();
 	}
+	public RuralHouse(Integer houseNumber,String description, String city, String direccion, String numHabitaciones,
+			String m2, Owner owner) {
+
+		this.houseNumber = houseNumber;
+		this.description = description;
+		this.city = city;
+		this.direccion = direccion;
+		this.numHabitaciones=numHabitaciones;
+		this.m2 = m2;
+		this.owner = owner;
+		offers = new Vector<Offer>();
+	}
 
 	/**
 	 * @return the direccion

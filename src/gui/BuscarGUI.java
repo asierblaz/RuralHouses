@@ -29,7 +29,7 @@ public class BuscarGUI extends JFrame {
 	 */
 	public BuscarGUI() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 409, 407);
+		setBounds(100, 100, 675, 407);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -37,7 +37,7 @@ public class BuscarGUI extends JFrame {
 		
 		JLabel lblBuscarCasa = new JLabel("Buscar Casa");
 		lblBuscarCasa.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblBuscarCasa.setBounds(140, 13, 188, 39);
+		lblBuscarCasa.setBounds(134, 13, 188, 39);
 		contentPane.add(lblBuscarCasa);
 		
 		JButton btnBuscar = new JButton("Buscar");
@@ -109,7 +109,7 @@ public class BuscarGUI extends JFrame {
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon("G:\\Informatika\\4 curso\\Ingenieria del software\\RuralHouses\\casabus.png"));
-		label.setBounds(96, 65, 469, 334);
+		label.setBounds(333, 26, 469, 334);
 		contentPane.add(label);
 	}
 }

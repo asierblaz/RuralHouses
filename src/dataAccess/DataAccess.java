@@ -100,9 +100,10 @@ public class DataAccess {
 	//---------------------reservar Casa---------------------
 	public Reserva reservarCasa(RuralHouse rh, Date primerDia, Date ultimaNoche,
 			String telefono, Users u) throws CasaNoReservada{
-		Reserva r =null;
+		
+	Reserva r=null;
+
 		//RuralHouse rhs = db.find(RuralHouse.class, rh.getHouseNumber());
-		db.getTransaction().begin();
 		
 		return r;
 	}

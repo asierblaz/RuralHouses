@@ -152,7 +152,7 @@ public class crearCasaGUI extends JFrame {
 								JOptionPane.showMessageDialog(null, "Casa añadida correctamente");
 								
 							if (establecerDisponibilidad()) {
-									Vector<RuralHouse> rhs = facade.getAllRuralHouses(); //Se_guardan_en_el_vector_de_casas
+									Vector<RuralHouse> rhs = facade.getRuralHousesByOwner(); //Se_guardan_en_el_vector_de_casas
 									JFrame a = new SetAvailabilityGUI(rhs);
 									a.setVisible(true);
 									setVisible(false);
