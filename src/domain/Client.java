@@ -21,4 +21,12 @@ public class Client extends Users implements Serializable {
 	public Client(String nombre, String usuario, String pass, String cuenta) {
 		super(nombre, usuario, pass, cuenta);
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Cliente: "+getUsuario();
+	}
 }

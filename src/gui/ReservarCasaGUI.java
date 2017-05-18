@@ -1,254 +1,266 @@
 package gui;
 
-import businessLogic.*;
-import com.toedter.calendar.*;
-import domain.*;
-import exceptions.OfferCanNotBeBooked;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
 
-import java.beans.*;
-import java.util.Calendar;
-import java.util.Date;
-import java.text.*;
-import java.util.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
-import javax.swing.*;
+import businessLogic.ApplicationFacadeInterfaceWS;
+import domain.Offer;
+import domain.Owner;
+import domain.Reserva;
+import domain.RuralHouse;
+import domain.Users;
+import domain.Valoracion;
 
-import java.awt.*;
-import java.awt.event.*;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JEditorPane;
+import javax.swing.UIManager;
+import javax.swing.ImageIcon;
 
 public class ReservarCasaGUI extends JFrame {
-	private static final long serialVersionUID = 1L;
-	public static final long MILLSECS_PER_DAY = 24 * 60 * 60 * 1000;
 
-	private JLabel jLabel1 = new JLabel();
-	private JComboBox comboBoxRh;
-	Vector<RuralHouse> ruralHouses;
-	private JLabel jLabel2 = new JLabel();
-	private JLabel jLabel3 = new JLabel();
-	private JLabel jLabel4 = new JLabel();
-	private JTextField jTextField2 = new JTextField();
-	private JTextField jTextFieldNumNoches = new JTextField();
-	private JTextField jTextFieldTelefono = new JTextField();
-	private JButton jButtonAceptar = new JButton();
-	private JButton jButtonVolver = new JButton();
+	private JPanel contentPane;
+	private JTextField numoffer;
+	private JTextField textFieldNombre;
+	private JTextField precio;
+	private JTextField ciudad;
+	private JTextField primerdia;
+	private JTextField ultimodia;
+	private JTextField textTelefono;
+	private String telefono;
+	private String numNoches;
+	private Offer oferta;
+	private String precioTotal;
+	private Users client;
+	private JTextField textFieldNoches;
 
-	// Code for JCalendar
-	private JCalendar jCalendar1 = new JCalendar();
-	private Calendar calendarMio = null;
-	private JLabel jLabel5 = new JLabel();
+	/**
+	 * 
+	 * 
+	 * /** Create the frame.
+	 */
+	public ReservarCasaGUI(Offer of, String noches, RuralHouse ruralHouse) {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 530, 659);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 
-	public ReservarCasaGUI() {
-		setResizable(false);
-		try {
-			jbInit();
+		JLabel lblEstosSonLos = new JLabel("Estos son los datos de la oferta seleccionada:");
+		lblEstosSonLos.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblEstosSonLos.setBounds(31, 13, 363, 16);
+		contentPane.add(lblEstosSonLos);
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+		JLabel num = new JLabel("Numero de Oferta:");
+		num.setBounds(41, 56, 133, 16);
+		contentPane.add(num);
 
-	public ReservarCasaGUI(int houseNumber, Date PrimerDia, Date ultimaNoche) {
-		try {
-			jbInit();
+		numoffer = new JTextField();
+		numoffer.setBackground(Color.WHITE);
+		numoffer.setEditable(false);
+		numoffer.setBounds(158, 53, 56, 22);
+		contentPane.add(numoffer);
+		numoffer.setColumns(10);
 
-			for (int i = 0; i < ruralHouses.size(); i++) {
-				if (((RuralHouse) ruralHouses.get(i)).getHouseNumber() == houseNumber) {
-					comboBoxRh.setSelectedIndex(i);
-					break;
-				}
-			}
+		textFieldNombre = new JTextField();
+		textFieldNombre.setEditable(false);
+		textFieldNombre.setBounds(147, 272, 116, 22);
+		contentPane.add(textFieldNombre);
+		textFieldNombre.setColumns(10);
 
-			Calendar c = new GregorianCalendar();
-			c.setTime(PrimerDia);
-			jCalendar1.setCalendar(c);
-
-			long numberOfDays = (long) (ultimaNoche.getTime() - PrimerDia.getTime())
-					/ MILLSECS_PER_DAY;
-			jTextFieldNumNoches.setText(Long.toString(numberOfDays));
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-//empieza aqui 
-	private void jbInit() throws Exception {
-		this.getContentPane().setLayout(null);
-		this.setSize(new Dimension(410, 413));
-		this.setTitle("Reservar Casa Rural");
-		jLabel1.setText("Seleccione casa rural:");
-		ApplicationFacadeInterfaceWS facade= MainGUI.getBusinessLogic();
-		ruralHouses = facade.getAllRuralHouses();
-
-		comboBoxRh = new JComboBox(ruralHouses);
-
-		jLabel1.setBounds(new Rectangle(15, 10, 140, 20));
-		comboBoxRh.setBounds(new Rectangle(167, 10, 175, 20));
-
-		jTextFieldNumNoches.addFocusListener(new FocusListener() {
-			public void focusGained(FocusEvent e) {
-			}
-
-			public void focusLost(FocusEvent e) {
-				jTextField3_focusLost();
+		JButton btnVolver = new JButton("Volver");
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
 			}
 		});
-		jTextFieldTelefono.addFocusListener(new FocusListener() {
-			public void focusGained(FocusEvent e) {
-			}
 
-			public void focusLost(FocusEvent e) {
-				jTextField4_focusLost();
-			}
-		});
-		jLabel2.setText("Primer dia:");
-		jLabel2.setBounds(new Rectangle(15, 50, 115, 20));
-		jLabel3.setText("Numero de noches");
-		jLabel3.setBounds(new Rectangle(15, 240, 115, 20));
-		jLabel4.setText("Tel\u00E9fono de contacto: ");
-		jLabel4.setBounds(new Rectangle(15, 270, 140, 20));
-		jTextField2.setBounds(new Rectangle(155, 205, 140, 20));
-		jTextField2.setEditable(false);
-		jTextFieldNumNoches.setBounds(new Rectangle(155, 240, 140, 20));
-		jTextFieldNumNoches.setText("0");
-		jTextFieldTelefono.setBounds(new Rectangle(155, 270, 140, 20));
-		jTextFieldTelefono.setText("0");
-		jButtonAceptar.setText("Aceptar");
-		jButtonAceptar.setBounds(new Rectangle(50, 345, 130, 30));
-		jButtonAceptar.setSize(new Dimension(130, 30));
-		jButtonAceptar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// codigo casa
-				RuralHouse casaRural = (RuralHouse) comboBoxRh.getSelectedItem();
-				// primer Dia
-				Date primerDia = trim(new Date(jCalendar1.getCalendar()
-						.getTime().getTime()));
+		btnVolver.setBounds(380, 533, 97, 25);
+		contentPane.add(btnVolver);
 
-				System.out.println("PrimerDia=" + primerDia);
+		JLabel lblDueo = new JLabel("Due\u00F1o:");
+		lblDueo.setBounds(31, 275, 56, 16);
+		contentPane.add(lblDueo);
+
+		precio = new JTextField();
+		precio.setBackground(Color.WHITE);
+		precio.setEditable(false);
+		precio.setBounds(158, 185, 32, 25);
+		contentPane.add(precio);
+		precio.setColumns(10);
+
+		ciudad = new JTextField();
+		ciudad.setBackground(Color.WHITE);
+		ciudad.setEditable(false);
+		ciudad.setColumns(10);
+		ciudad.setBounds(168, 230, 115, 25);
+		contentPane.add(ciudad);
+
+		JLabel lblprecio = new JLabel("Precio por noche:");
+		lblprecio.setBounds(31, 189, 167, 16);
+		contentPane.add(lblprecio);
+
+		JLabel lblMetrosCuadradosm = new JLabel("Ciudad de casa rural");
+		lblMetrosCuadradosm.setBounds(31, 234, 143, 16);
+		contentPane.add(lblMetrosCuadradosm);
+
+		JLabel primerdialbl = new JLabel("Primer D\u00EDa:");
+		primerdialbl.setBounds(41, 99, 76, 16);
+		contentPane.add(primerdialbl);
+		// asignaciones
+		primerdia = new JTextField();
+		primerdia.setText((String) null);
+		primerdia.setEditable(false);
+		primerdia.setColumns(10);
+		primerdia.setBackground(Color.WHITE);
+		primerdia.setBounds(140, 96, 298, 22);
+		contentPane.add(primerdia);
+
+		JLabel lblltimoDa = new JLabel("\u00DAltimo D\u00EDa:");
+		lblltimoDa.setBounds(41, 144, 76, 16);
+		contentPane.add(lblltimoDa);
+
+		ultimodia = new JTextField();
+		ultimodia.setText((String) null);
+		ultimodia.setEditable(false);
+		ultimodia.setColumns(10);
+		ultimodia.setBackground(Color.WHITE);
+		ultimodia.setBounds(140, 141, 298, 22);
+		contentPane.add(ultimodia);
+
+		numoffer.setText(String.valueOf(of.getOfferNumber()));
+		primerdia.setText(String.valueOf(of.getFirstDay()));
+		ultimodia.setText(String.valueOf(of.getLastDay()));
+		precio.setText(String.valueOf(of.getPrice()));
+		ciudad.setText(of.getRuralHouse().getCity());
+		textFieldNombre.setText(of.getRuralHouse().getOwner().getNombre());
+
+		String a = String.valueOf(of.getOfferNumber());
+
+		numoffer.setText(a);
+
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon("src/Imagenes/o.png"));
+		label.setBounds(245, 43, 344, 322);
+		contentPane.add(label);
+
+		JLabel lblNecesitamosUnosDatos = new JLabel("Necesitamos tu numero de t\u00E9lefono para terminar");
+		lblNecesitamosUnosDatos.setFont(new Font("Tahoma", Font.ITALIC, 14));
+		lblNecesitamosUnosDatos.setBounds(31, 357, 407, 22);
+		contentPane.add(lblNecesitamosUnosDatos);
+
+		JLabel lblTelefono = new JLabel("Telefono:");
+		lblTelefono.setBounds(31, 407, 56, 16);
+		contentPane.add(lblTelefono);
+
+		JLabel lblNewLabel = new JLabel("El precio total ser\u00E1 de: ");
+		lblNewLabel.setForeground(Color.RED);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel.setBounds(31, 459, 183, 16);
+		contentPane.add(lblNewLabel);
+
+		textTelefono = new JTextField();
+		textTelefono.setBounds(158, 404, 116, 22);
+		contentPane.add(textTelefono);
+		textTelefono.setColumns(10);
+		//------------------------------------
+		JLabel labelPrecio = new JLabel("");
+		labelPrecio.setFont(new Font("Tahoma", Font.BOLD, 15));
+		labelPrecio.setBounds(207, 460, 89, 16);
+		contentPane.add(labelPrecio);
+		float pre = Float.parseFloat(precio.getText());
+		float noche = Float.parseFloat(noches);
+		float mul = pre * noche;
+		String price = Float.toString(mul);
+		labelPrecio.setText(price + "€");
+		JButton btnReservar = new JButton("Reservar");
+		btnReservar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				
-				// Numero de noches en milisegundos
-				long noche = 1000 * 60 * 60 * 24
-						* Integer.parseInt(jTextFieldNumNoches.getText());
-				Date ultimoDia = new Date((long) (primerDia.getTime() + noche));
-				// telefono contact
-				System.out.println("ultimoDia=" + ultimoDia);
-
-			
-				String telefono = jTextFieldTelefono.getText();
+				ApplicationFacadeInterfaceWS facade = MainGUI.getBusinessLogic();
+				
+				client= MainGUI.getUsuario();
+				oferta=of;
+				numNoches=noches;
+				precioTotal= price;
+				telefono=textTelefono.getText();
 				try {
+					if (!ComprobarCamposVacios()) {
+						if (ConfirmarDatos()) {
+							
+						Reserva res= facade.crearReserva(ruralHouse,oferta, telefono, precioTotal, numNoches, client);
+						System.out.println(res.toString() + "Reserva añadida correctamente");
+							JOptionPane.showMessageDialog(null, "Reserva creada correctamente");
+							dispose();
+						
+						}
 
-					ApplicationFacadeInterfaceWS facade = MainGUI.getBusinessLogic();
-					Users u = MainGUI.getUsuario();
-				
-					if (u != null) {
-						boolean book = true;// falso
-					/*	Booking book = facade.createBooking(casaRural, PrimerDia,
-								ultimaNoche, telefono, MainGUI.getUsuario());*/
-						System.out.println("funciona");
-						if (book /*!= null*/) {
-							/*BookRuralHouseConfirmationWindow confirmWindow = new BookRuralHouseConfirmationWindow(
-									book);
-							confirmWindow.setVisible(true);
-							jLabel5.setText("Booking made");*/
-							System.out.println("funciona dos");
-
-						} else
-							jLabel5.setText("No hay ofertas disponibles para esos dias");
-					}else{
-						jLabel5.setText("Error: tu tienes que estar registrado");
 					}
-				} catch (/*OfferCanNotBeBooked*/ Exception  e1) {
-					jLabel5.setText("Error: It is not possible to book");
-					JFrame a = new QueryAvailabilityGUI();
-					a.setVisible(true);
-
-				/*} catch (Exception e1) {
-
-					e1.printStackTrace();*/
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
 		});
-		jButtonVolver.setText("Volver");
-		jButtonVolver.setBounds(new Rectangle(220, 345, 130, 30));
-		jButtonVolver.setSize(new Dimension(130, 30));
-		jButtonVolver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				jButton3_actionPerformed(e);
-			}
-		});
-		jLabel5.setBounds(new Rectangle(50, 310, 300, 20));
-		jLabel5.setForeground(Color.red);
-		jCalendar1.setBounds(new Rectangle(155, 50, 235, 145));
-		this.getContentPane().add(jCalendar1, null);
-		this.getContentPane().add(jLabel5, null);
-		this.getContentPane().add(jButtonVolver, null);
-		this.getContentPane().add(jButtonAceptar, null);
-		this.getContentPane().add(jTextFieldTelefono, null);
-		this.getContentPane().add(jTextFieldNumNoches, null);
-		this.getContentPane().add(jTextField2, null);
-		this.getContentPane().add(jLabel4, null);
-		this.getContentPane().add(jLabel3, null);
-		this.getContentPane().add(jLabel2, null);
-		this.getContentPane().add(comboBoxRh, null);
-		this.getContentPane().add(jLabel1, null);
+		btnReservar.setBounds(168, 515, 97, 25);
+		contentPane.add(btnReservar);
 
-		// Code for JCalendar
-		this.jCalendar1.addPropertyChangeListener(new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent propertychangeevent) {
-				if (propertychangeevent.getPropertyName().equals("locale")) {
-					jCalendar1.setLocale((Locale) propertychangeevent
-							.getNewValue());
-					DateFormat dateformat = DateFormat.getDateInstance(1,
-							jCalendar1.getLocale());
-					jTextField2.setText(dateformat.format(calendarMio.getTime()));
+	
 
-				} else if (propertychangeevent.getPropertyName().equals(
-						"calendar")) {
-					calendarMio = (Calendar) propertychangeevent.getNewValue();
-					DateFormat dateformat1 = DateFormat.getDateInstance(1,
-							jCalendar1.getLocale());
-					jTextField2.setText(dateformat1.format(calendarMio
-							.getTime()));
-					jCalendar1.setCalendar(calendarMio);
-				}
-			}
-		});
+		JLabel lblNmeroDe = new JLabel("N\u00FAmero de noches:");
+		lblNmeroDe.setBounds(31, 320, 125, 16);
+		contentPane.add(lblNmeroDe);
+
+		textFieldNoches = new JTextField();
+		textFieldNoches.setEditable(false);
+		textFieldNoches.setBounds(167, 317, 116, 22);
+		contentPane.add(textFieldNoches);
+		textFieldNoches.setColumns(10);
+		textFieldNoches.setText(noches);
+		// labelPrecio.setText(String.valueOf(precio.getText()));
+
+		/*
+		 * textFieldCiudad.setText(casa.getCity());
+		 * editorPane.setText(casa.getDescription());
+		 * textFieldNombre.setText(casa.getOwner().getUsuario());
+		 * textFieldhabita.setText(casa.getNumHabitaciones());
+		 * textFieldm2.setText(casa.getM2());
+		 * textFielddireccion.setText(casa.getDireccion());
+		 */
+
 	}
+	private boolean ComprobarCamposVacios() {
+		String message = "Porfavor rellene el número de télefono";
 
-	private Date trim(Date date) {
-
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
-		calendar.set(Calendar.MILLISECOND, 0);
-		calendar.set(Calendar.SECOND, 0);
-		calendar.set(Calendar.MINUTE, 0);
-		calendar.set(Calendar.HOUR_OF_DAY, 0);
-		return calendar.getTime();
-	}
-
-	private void jButton3_actionPerformed(ActionEvent e) {
-		this.setVisible(false);
-	}
-
-	public void setConfirmBooking(boolean b) {
-		if (b)
-			jLabel5.setText("Booking made");
-	}
-
-	private void jTextField3_focusLost() {
-		try {
-			new Integer(jTextFieldNumNoches.getText());
-			jLabel5.setText("");
-		} catch (NumberFormatException ex) {
-			jLabel5.setText("Error: Introduce a number");
+		if (telefono.trim().equals("") ) {
+			JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.WARNING_MESSAGE);
+			return true;
+		} else {
+			return false;
 		}
+
 	}
 
-	private void jTextField4_focusLost() {
-		try {
-			new Integer(jTextFieldTelefono.getText());
-			jLabel5.setText("");
-		} catch (NumberFormatException ex) {
-			jLabel5.setText("Error: Introduce a number");
-		}
+	private boolean ConfirmarDatos() {
+
+		String nl = System.getProperty("line.separator");
+
+		String message = "Porfavor compruebe que los siguientes datos son correctos:" + nl + "Usuario: " + MainGUI.getUsuario()+nl+"Telefono: "+telefono + nl
+				+ "Oferta: " + oferta + nl + "Precio total: " + precioTotal + nl + "Número de Noches: " + numNoches;
+
+		int selection = JOptionPane.showConfirmDialog(null, message, "Confirmation", JOptionPane.YES_NO_OPTION);
+
+		return selection == 0;
 	}
 }

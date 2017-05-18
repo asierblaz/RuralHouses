@@ -61,7 +61,7 @@ public class VerDatosCasaMenuGUI extends JFrame {
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				RuralHouse rh = (RuralHouse) comboBox.getSelectedItem();
-				JFrame ver = new VerDatosHouse(rh);
+			JFrame ver = new VerDatosHouse(rh);
 				ver.setVisible(true);
 				
 			}

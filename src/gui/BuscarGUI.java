@@ -29,7 +29,7 @@ public class BuscarGUI extends JFrame {
 	 */
 	public BuscarGUI() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 675, 407);
+		setBounds(100, 100, 675, 435);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -40,17 +40,13 @@ public class BuscarGUI extends JFrame {
 		lblBuscarCasa.setBounds(134, 13, 188, 39);
 		contentPane.add(lblBuscarCasa);
 		
-		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(271, 311, 97, 25);
-		contentPane.add(btnBuscar);
-		
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
 			}
 		});
-		btnVolver.setBounds(22, 311, 97, 25);
+		btnVolver.setBounds(22, 335, 97, 25);
 		contentPane.add(btnVolver);
 		
 		JLabel lblElijeMedianteQue = new JLabel("Elije mediante que parametro deseas realizar la busqueda:");
@@ -111,5 +107,15 @@ public class BuscarGUI extends JFrame {
 		label.setIcon(new ImageIcon("src/Imagenes/Busqueda.png"));
 		label.setBounds(333, 26, 469, 334);
 		contentPane.add(label);
+		
+		JButton buttonPuntuacion = new JButton("Puntuaci\u00F3n");
+		buttonPuntuacion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFrame ir = new TextoPuntuacion();
+				ir.setVisible(true);
+			}
+		});
+		buttonPuntuacion.setBounds(121, 285, 168, 25);
+		contentPane.add(buttonPuntuacion);
 	}
 }

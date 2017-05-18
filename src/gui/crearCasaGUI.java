@@ -148,7 +148,7 @@ public class crearCasaGUI extends JFrame {
 						if (!ComprobarCamposVacios())
 							if (ConfirmarDatos()) {
 							rh= facade.crearRuralHouse(description, city, direccion, m2, numHabitaciones, (Owner) MainGUI.getUsuario());
-								System.out.println(rh.toString() + "Casa añadida correctamente");
+							System.out.println(rh.toString() + "Casa añadida correctamente");
 								JOptionPane.showMessageDialog(null, "Casa añadida correctamente");
 								
 							if (establecerDisponibilidad()) {

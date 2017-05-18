@@ -1,7 +1,9 @@
 package domain;
 
+import java.awt.print.Book;
 import java.io.*;
 import java.util.Date;
+import java.util.Vector;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,6 +27,7 @@ public class Offer implements Serializable {
 	private float price;   // This is coherent because objects of java.sql.Date are objects of java.util.Date 
 	@XmlIDREF
 	private RuralHouse ruralHouse;
+	private Reserva reserva;
 
 	public Offer(){}
 	public Offer(Date firstDay, Date lastDay, float price, RuralHouse ruralHouse){
@@ -32,6 +35,7 @@ public class Offer implements Serializable {
 		  this.lastDay=lastDay;
 		  this.price=price;
 		  this.ruralHouse=ruralHouse;
+		  this.reserva=reserva;
 		  this.offerNumber= offerNumber;
 	}
 	/**
@@ -53,6 +57,24 @@ public class Offer implements Serializable {
 	}
 
 
+	/**
+	 * @return the reserva
+	 */
+	public Reserva getReserva() {
+		return reserva;
+	}
+	/**
+	 * @param reserva the reserva to set
+	 */
+	public void setReserva(Reserva reserva) {
+		this.reserva = reserva;
+	}
+	/**
+	 * @param offerNumber the offerNumber to set
+	 */
+	public void setOfferNumber(Integer offerNumber) {
+		this.offerNumber = offerNumber;
+	}
 	/**
 	 * Get the offer number
 	 * 
@@ -111,6 +133,10 @@ public class Offer implements Serializable {
 		return this.price;
 	}
 
+	public Reserva crearReserva(RuralHouse ruralHouse,Offer oferta,String telefono, String precioTotal,String numNoches, Users client) {
+		return reserva= new Reserva(ruralHouse,this, telefono, precioTotal, numNoches, client);
+	}
+
 	/**
 	 * Set the price
 	 * 
@@ -120,7 +146,18 @@ public class Offer implements Serializable {
 		this.price = price;
 	}
 	
-	public String toString(){
+	public String toStringg(){
 		return offerNumber+";"+firstDay.toString()+";"+lastDay.toString()+";"+price;
+	}
+	public String toString(){
+		String nl = System.getProperty("line.separator");
+		String me= offerNumber+ nl +" Casa= " + ruralHouse.getCity() + nl+  " PrimerDía= " + firstDay+ nl + " UltimoDía= " + lastDay+ nl+ " PrecioPorNoche= " + price  ;
+		
+		return me;
+		
+	}
+	public String toString2(){
+		return offerNumber+":"+ruralHouse.getCity();
+
 	}
 }

@@ -22,6 +22,7 @@ public class Users implements Serializable {
 	private String nombre = "";
 @Id	private String usuario =""; //solo puede haber un tipo de usuario
 	private String pass ="";
+	private Vector<Reserva> reservas;
 	
 
 	
@@ -29,7 +30,8 @@ public class Users implements Serializable {
 		this.cuenta= cuenta;
 		this.nombre= nombre;
 		this.usuario= usuario;
-		this.pass= pass;		
+		this.pass= pass;
+		reservas= new Vector<Reserva>();
 	}
 
 	/**
@@ -37,6 +39,20 @@ public class Users implements Serializable {
 	 */
 	public String getCuenta() {
 		return cuenta;
+	}
+
+	/**
+	 * @return the reservas
+	 */
+	public Vector<Reserva> getReservas() {
+		return reservas;
+	}
+
+	/**
+	 * @param reservas the reservas to set
+	 */
+	public void setReservas(Vector<Reserva> reservas) {
+		this.reservas = reservas;
 	}
 
 	/**
@@ -58,6 +74,10 @@ public class Users implements Serializable {
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	public Reserva anadirReserva(Reserva r){
+		reservas.add(r);
+		return r;
 	}
 
 	/**

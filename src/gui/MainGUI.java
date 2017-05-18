@@ -1,5 +1,7 @@
 package gui;
 
+import javax.jdo.JDODetachedFieldAccessException;
+
 /**
  * @author Software Engineering teachers
  */
@@ -64,11 +66,15 @@ public class MainGUI extends JFrame {
 	private static JButton btnAadir;
 	private static JButton btnVerDatos;
 	private static JButton ModificarCasa;
-	private static JButton btnReserva;
+	private static JButton btnMisReservas;
 	private static JButton btnEliminarCasa;
 	private JLabel lblGestinDeCasas;
 	private static JButton btnBuscar;
 	private static JMenu mnBusqueda;
+	private static JMenuItem mntmMiPerfil;
+	private static JMenuItem mntmGestionarOfertas;
+	private static JButton btnValoracion;
+	private static JMenuItem mntmMisReservas;
 	
 
 	/**
@@ -127,7 +133,7 @@ public class MainGUI extends JFrame {
 			jContentPane.add(getBtnAadir());
 			jContentPane.add(getBtnVerDatos());
 			jContentPane.add(getModificarCasa());
-			jContentPane.add(getBtnReserva());
+			jContentPane.add(getBtnMisReservas());
 			jContentPane.add(getBtnEliminarCasa());
 			
 			JLabel lblNewLabel_1 = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.lblNewLabel_1.text"));
@@ -136,6 +142,19 @@ public class MainGUI extends JFrame {
 			lblNewLabel_1.setIcon(new ImageIcon("src/Imagenes/Menu.png"));
 			jContentPane.add(getLblGestinDeCasas());
 			jContentPane.add(getBtnBuscar());
+			
+			JButton btnPruebas = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnPruebas.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			btnPruebas.setVisible(false);
+			btnPruebas.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					ApplicationFacadeInterfaceWS facade= getBusinessLogic();
+					JFrame ir= new TextoPuntuacion();
+					ir.setVisible(true);
+				}
+			});
+			btnPruebas.setBounds(25, 272, 97, 25);
+			jContentPane.add(btnPruebas);
+			jContentPane.add(getBtnValoracion());
 		}
 		return jContentPane;
 	}
@@ -149,15 +168,18 @@ public class MainGUI extends JFrame {
 			mntmlogin.setEnabled(false);
 			mntmRegistrarse.setEnabled(false);
 			setAvailability.setVisible(true);
-			queryAvailability.setVisible(true);
+			queryAvailability.setVisible(false);
 			btnAadir.setVisible(true);
 			btnVerDatos.setVisible(true);
-			btnReserva.setVisible(false);
+			btnMisReservas.setVisible(false);
 			ModificarCasa.setVisible(true);
 			btnEliminarCasa.setVisible(true);
 			btnBuscar.setVisible(false);
 			mnBusqueda.setEnabled(false);
-			
+			mntmMiPerfil.setEnabled(true);
+			mntmGestionarOfertas.setEnabled(true);
+			btnValoracion.setVisible(false);
+			mntmMisReservas.setEnabled(false);
 			
 
 		} else {
@@ -169,11 +191,15 @@ public class MainGUI extends JFrame {
 			queryAvailability.setVisible(true);
 			btnAadir.setVisible(false);
 			btnVerDatos.setVisible(true);
-			btnReserva.setVisible(true);
+			btnMisReservas.setVisible(true);
 			ModificarCasa.setVisible(false);
 			btnEliminarCasa.setVisible(false);
 			btnBuscar.setVisible(true);
 			mnBusqueda.setEnabled(true);
+			mntmMiPerfil.setEnabled(true);
+			mntmGestionarOfertas.setEnabled(false);
+			btnValoracion.setVisible(true);
+			mntmMisReservas.setEnabled(true);
 
 		}
 
@@ -191,11 +217,15 @@ public class MainGUI extends JFrame {
 		btnVerDatos.setVisible(true);
 		mntmDesconectar.setEnabled(false);
 		mntmlogin.setEnabled(true);
-		btnReserva.setVisible(false);
+		btnMisReservas.setVisible(false);
 		ModificarCasa.setVisible(false);
 		btnEliminarCasa.setVisible(false);
 		btnBuscar.setVisible(true);
 		mnBusqueda.setEnabled(true);
+		mntmMiPerfil.setEnabled(false);
+		mntmGestionarOfertas.setEnabled(false);
+		btnValoracion.setVisible(false);
+		mntmMisReservas.setEnabled(false);
 
 		
 
@@ -326,6 +356,14 @@ public class MainGUI extends JFrame {
 			menuBar = new JMenuBar();
 			menuBar.add(getMnLogin());
 			menuBar.add(getMnBusqueda());
+			
+			JMenu mnOfertas = new JMenu(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.mnOfertas.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			menuBar.add(mnOfertas);
+			mnOfertas.add(getMntmGestionarOfertas());
+			
+			JMenu mnReservas = new JMenu(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.mnReservas.text"));
+			menuBar.add(mnReservas);
+			mnReservas.add(getMntmMisReservas());
 		}
 		return menuBar;
 	}
@@ -351,6 +389,7 @@ public class MainGUI extends JFrame {
 					aLoBruto();
 				}
 			});
+			mnLogin.add(getMntmMiPerfil());
 			mnLogin.add(mntmDesconectar);
 
 		}
@@ -404,7 +443,7 @@ public class MainGUI extends JFrame {
 	private JButton getBtnAadir() {
 		if (btnAadir == null) {
 			btnAadir = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnAadir.text")); //$NON-NLS-1$ //$NON-NLS-2$
-			btnAadir.setBounds(224, 255, 203, 34);
+			btnAadir.setBounds(224, 158, 203, 34);
 			btnAadir.setVisible(false);
 			btnAadir.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -432,7 +471,7 @@ public class MainGUI extends JFrame {
 	private JButton getModificarCasa() {
 		if (ModificarCasa == null) {
 			ModificarCasa = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text_1")); //$NON-NLS-1$ //$NON-NLS-2$
-			ModificarCasa.setBounds(224, 349, 203, 34);
+			ModificarCasa.setBounds(224, 302, 203, 34);
 			ModificarCasa.setVisible(false);
 			ModificarCasa.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
@@ -462,26 +501,45 @@ public class MainGUI extends JFrame {
 		}
 		return ModificarCasa;
 	}
-	private JButton getBtnReserva() {
-		if (btnReserva == null) {
-			btnReserva = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text_2")); //$NON-NLS-1$ //$NON-NLS-2$
-			btnReserva.setBounds(224, 255, 203, 34);
-			btnReserva.setVisible(false);
-			btnReserva.addActionListener(new ActionListener() {
+	private JButton getBtnMisReservas() {
+		if (btnMisReservas == null) {
+			btnMisReservas = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text_2")); //$NON-NLS-1$ //$NON-NLS-2$
+			btnMisReservas.setBounds(224, 302, 203, 34);
+			btnMisReservas.setVisible(false);
+			btnMisReservas.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					JFrame reserva = new ReservarCasaGUI();
-					reserva.setVisible(true);
+					ApplicationFacadeInterfaceWS facade= getBusinessLogic();
+					Vector<Reserva> rsvlista=null;
+					//boolean vacia= true;
+					try{
+						if(getUsuario() instanceof Client){
+							Client client = (Client) getUsuario();	
+							rsvlista = facade.getReservasByClient();
+							System.out.println(rsvlista);
+						}
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+					 
+					if(rsvlista.isEmpty() !=true ){
+						JFrame reservas = new MisReservasGUI(rsvlista,getUsuario());
+						reservas.setVisible(true);					
+					} else if (rsvlista.isEmpty() == true){
+						JOptionPane.showMessageDialog(null,
+							"Debes añadir una Reserva primero", "Error",JOptionPane.PLAIN_MESSAGE);
+						System.out.println(rsvlista);
+					}
 				}
 			});
 		}
-		return btnReserva;
+		return btnMisReservas;
 	}
 
 	private JButton getBtnEliminarCasa() {
 		if (btnEliminarCasa == null) {
 			btnEliminarCasa = new JButton(
 					ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text_3")); //$NON-NLS-1$ //$NON-NLS-2$
-			btnEliminarCasa.setBounds(224, 302, 203, 34);
+			btnEliminarCasa.setBounds(224, 255, 203, 34);
 			btnEliminarCasa.setVisible(false);
 			btnEliminarCasa.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -580,7 +638,90 @@ public class MainGUI extends JFrame {
 				}
 			});
 			mnBusqueda.add(mntmDescripcin);
+			
+			JMenuItem mntmPuntuacin = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.mntmPuntuacin.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			mntmPuntuacin.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					JFrame puntos = new TextoPuntuacion();
+					puntos.setVisible(true);
+				}
+			});
+			mnBusqueda.add(mntmPuntuacin);
 		}
 		return mnBusqueda;
+	}
+	private JMenuItem getMntmMiPerfil() {
+		if (mntmMiPerfil == null) {
+			mntmMiPerfil = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.mntmMiPerfil.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			mntmMiPerfil.setEnabled(false);
+			mntmMiPerfil.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					JFrame ir = new ModificarUsuarioGUI(getUsuario());
+							ir.setVisible(true);
+				}
+			});
+		}
+		return mntmMiPerfil;
+	}
+	private JMenuItem getMntmGestionarOfertas() {
+		if (mntmGestionarOfertas == null) {
+			mntmGestionarOfertas = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.mntmGestionarOfertas.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			mntmGestionarOfertas.setEnabled(false);
+			mntmGestionarOfertas.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					JFrame borrarof = new GestionarOfferMenu();
+					borrarof.setVisible(true);
+				}
+			});
+		}
+		return mntmGestionarOfertas;
+	}
+	private JButton getBtnValoracion() {
+		if (btnValoracion == null) {
+			btnValoracion = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text_4")); //$NON-NLS-1$ //$NON-NLS-2$		
+			btnValoracion.setBounds(224, 255, 203, 34);
+			btnValoracion.setVisible(false);
+			btnValoracion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					JFrame ver = new ValorarMenuGUI(); 
+					ver.setVisible(true);
+				}
+			});
+		}
+		
+		return btnValoracion;
+	}
+	private JMenuItem getMntmMisReservas() {
+		if (mntmMisReservas == null) {
+			mntmMisReservas = new JMenuItem(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.mntmMisReservas.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			mntmMisReservas.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					ApplicationFacadeInterfaceWS facade= getBusinessLogic();
+					Vector<Reserva> rsvlista=null;
+					//boolean vacia= true;
+					try{
+						if(getUsuario() instanceof Client){
+							Client client = (Client) getUsuario();	
+							rsvlista = facade.getReservasByClient();
+							System.out.println(rsvlista);
+						}
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+					 
+					if(rsvlista.isEmpty() !=true ){
+						JFrame reservas = new MisReservasGUI(rsvlista,getUsuario());
+						reservas.setVisible(true);					
+					} else if (rsvlista.isEmpty() == true){
+						JOptionPane.showMessageDialog(null,
+							"Debes añadir una Reserva primero", "Error",JOptionPane.PLAIN_MESSAGE);
+						System.out.println(rsvlista);
+					}
+				}
+			});
+			
+			mntmMisReservas.setEnabled(false);
+		}
+		return mntmMisReservas;
 	}
 } // @jve:decl-index=0:visual-constraint="0,0"

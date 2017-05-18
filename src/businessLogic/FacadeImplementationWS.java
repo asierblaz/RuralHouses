@@ -12,6 +12,7 @@ import java.util.Vector;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.swing.JOptionPane;
+import javax.xml.crypto.Data;
 
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
@@ -19,6 +20,7 @@ import domain.*;
 //import domain.Booking;
 
 import exceptions.*;
+import gui.MainGUI;
 
 //Service Implementation
 @WebService(endpointInterface = "businessLogic.ApplicationFacadeInterfaceWS")
@@ -69,6 +71,30 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		System.out.println("<< FacadeImplementationWS: createOffer=> O= " + o);
 		return o;
 	}
+	//-----------------------crear valoracion --------------------------------------
+		public Valoracion crearValoracion(RuralHouse ruralHouse, String comentario, String puntuacion, String nombre)throws RemoteException, Exception {
+			DataAccess dbManager = new DataAccess();
+			Valoracion v =dbManager.crearValoracion(ruralHouse, comentario, puntuacion, nombre);
+			dbManager.close();
+
+			float puntos = Float.parseFloat(puntuacion);
+			System.out.println("puntos"+puntos);
+			System.out.println("puntos total"+ruralHouse.getPuntuaciontotal());
+			float puntuaciontotal = ruralHouse.getPuntuaciontotal()+puntos;
+		
+			System.out.println("puntos total tras suma"+puntuaciontotal);
+			int cont =ruralHouse.getCont() ;
+			System.out.println("contador"+ cont);
+			float medianueva = (puntuaciontotal)/cont;
+			System.out.println("la media es="+medianueva);
+			cont++;
+			ApplicationFacadeInterfaceWS facade = MainGUI.getBusinessLogic();
+			
+			facade.actualizarMedia(ruralHouse, medianueva, puntuaciontotal, cont);
+			return v;
+		}
+	
+	
 
 	// -----------------------------crear
 	// cliente----------------------------------------
@@ -156,6 +182,22 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		return b;
 
 	}
+	//------------actualizar media-------------
+	public void actualizarMedia(RuralHouse rh,float media, float puntuaciontotal,int cont){
+		System.out.println("actualizar media facade");
+		DataAccess dbManager = new DataAccess();
+		dbManager.actualizarMedia(rh, media, puntuaciontotal, cont);
+	}
+	
+	//-----------------Actualizar usuario----------------
+	public boolean actualizarUsuario (Users u, String nombre, String usuario, String pass, String cuenta)throws RemoteException, Exception {
+		
+		DataAccess dbManager = new DataAccess();
+		Boolean b= dbManager.actualizarUsuario(u, nombre, usuario, pass, cuenta);
+		dbManager.close();
+		return b;
+		}
+
 
 	// -----------------------------------------------
 	public Vector<RuralHouse> getAllRuralHouses() {
@@ -244,36 +286,76 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 
 		return ruralHouses;
 	}
-	// --------------------------reservar casa----------------------
-	public Reserva reservarCasa(RuralHouse rh, Date primerDia, Date ultimaNoche,
-			String telefono, Users u) throws CasaNoReservada{
+		//----------------------------------
 		
-		owners=null;
-		ruralHouses= null;
-		
-		DataAccess dbManager = new DataAccess();
-		//return dbManager.actualizarRuralHouse(rh, description, city);
+		public Vector<RuralHouse> getRuralHouseByPuntuacion(String puntuacion){
+			System.out.println(">> FacadeImplementationWS: getRuralHousesBypuntuacion");
 
-		 
-		Reserva r = null;
-		return r;
+			DataAccess dbManager = new DataAccess();
+
+			Vector<RuralHouse> rh = dbManager.getRuralHouseByPuntuacion(puntuacion);
+			dbManager.close();
+			System.out.println("<< FacadeImplementationWS:: getRuralHousesBypuntuacion");
+
+			return rh;
+		}
+		
+
+	// --------------------------reservar casa----------------------
+		public Reserva crearReserva(RuralHouse ruralHouse,Offer oferta,String telefono, String precioTotal,String numNoches, Users client) throws RemoteException, Exception {
+			DataAccess dbManager= new DataAccess();
+			Reserva reservas= dbManager.crearReserva(ruralHouse, oferta, telefono, precioTotal, numNoches, client);
+			dbManager.close();
+			return reservas;
 	}
 	//---------------------------eliminar casa-----------------------
-	public void BorrarCasa (RuralHouse rh) throws RemoteException, Exception{
-		
-		DataAccess dbManager = new DataAccess();
-		boolean b= 	dbManager.BorrarCasa(rh);
-		if (b){
-			System.out.println("casa borrada correctamente");
-			String a= "La casa en "+ rh.getCity()+"  ha sido borrada con exito!";
-			JOptionPane.showMessageDialog(null, a, "Bien!", JOptionPane.INFORMATION_MESSAGE);
-		}		else {
-			String message = "La casa en " + rh.getCity()+ "no ha sido borrada";
-			JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);}
-			System.out.println("casa no borrada");
-		}
+	public void BorrarCasa(RuralHouse rh) throws RemoteException, Exception {
 
+		DataAccess dbManager = new DataAccess();
+		 dbManager.BorrarCasa(rh);
+			
+	
+	}
+	
+
+	//------Borrar Offerta---
+	public void BorrarOfferta (Offer of) throws RemoteException, Exception{
+		DataAccess dbManager = new DataAccess();
+		dbManager.BorrarOfferta(of);
+	}
+
+	//--------ofertas mediante casa---
+	public Vector<Offer> getOffersbyHouse(RuralHouse rh){
+
+		DataAccess dbManager = new DataAccess();
+		
+		Vector<Offer> of = dbManager.getOffersbyHouse(rh);
+		dbManager.close();
+		return of;
+	
+	}
+	//--obtener comentarios mediante casa---------------
+	public Vector<Valoracion> getComentariosByHouse(RuralHouse rh){
+		DataAccess dbManager= new DataAccess();
+		Vector<Valoracion> valoraciones = dbManager.getComentariosByHouse(rh);
+		dbManager.close();
+		return valoraciones;
+	}
+	//-----obtener reservas mediante usuario----
+	public Vector<Reserva> getReservasByClient(){
+		DataAccess dbManager= new DataAccess();
+		Vector<Reserva> reservas = dbManager.getReservasByClient();
+		dbManager.close();
+		return reservas;
+	}
+	
+	
 	// -----------------------------------------------
+	public Vector<RuralHouse> ordenarVector(Vector<RuralHouse> a){
+		Vector<RuralHouse> aux=null;
+		return aux;
+	}
+	
 	/**
 	 * This method obtains the offers of a ruralHouse in the provided dates
 	 * 

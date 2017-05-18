@@ -42,25 +42,7 @@ public class RegistroGUI extends JFrame {
 	private JButton btnRegistro;
 	private JPasswordField passwordField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RegistroGUI frame = new RegistroGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public RegistroGUI() {
 		setBounds(100, 100, 576, 398);
 		contentPane = new JPanel();
@@ -180,7 +162,7 @@ public class RegistroGUI extends JFrame {
 								setVisible(false);
 							} else {
 								noRegistro();
-								setVisible(false);
+								
 
 							}
 					

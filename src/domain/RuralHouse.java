@@ -29,7 +29,15 @@ public class RuralHouse implements Serializable {
 	private String numHabitaciones;
 	private String m2;
 	private Owner owner;
+	private float media;
+	private String mediastring;
+	private int cont;
+	private float puntuaciontotal;
+	@OneToMany(orphanRemoval=true)
 	public Vector<Offer> offers;
+	@OneToMany(orphanRemoval=true)
+
+	public Vector<Valoracion> valoraciones;
 
 	public RuralHouse() {
 		super();
@@ -37,7 +45,6 @@ public class RuralHouse implements Serializable {
 
 	public RuralHouse(String description, String city, String direccion, String numHabitaciones,
 			String m2, Owner owner) {
-
 		this.houseNumber = houseNumber;
 		this.description = description;
 		this.city = city;
@@ -45,8 +52,18 @@ public class RuralHouse implements Serializable {
 		this.numHabitaciones=numHabitaciones;
 		this.m2 = m2;
 		this.owner = owner;
+		this.media=0;
+		this.mediastring="0";
+		this.cont=1;
+		this.puntuaciontotal=0;
 		offers = new Vector<Offer>();
+		valoraciones = new Vector<Valoracion>();
 	}
+	/**
+	 * @return the puntuacion
+	 */
+
+
 	public RuralHouse(Integer houseNumber,String description, String city, String direccion, String numHabitaciones,
 			String m2, Owner owner) {
 
@@ -58,6 +75,21 @@ public class RuralHouse implements Serializable {
 		this.m2 = m2;
 		this.owner = owner;
 		offers = new Vector<Offer>();
+		valoraciones = new Vector<Valoracion>();
+	}
+
+	/**
+	 * @return the puntuaciontotal
+	 */
+	public float getPuntuaciontotal() {
+		return puntuaciontotal;
+	}
+
+	/**
+	 * @param puntuaciontotal the puntuaciontotal to set
+	 */
+	public void setPuntuaciontotal(float puntuaciontotal) {
+		this.puntuaciontotal = puntuaciontotal;
 	}
 
 	/**
@@ -65,6 +97,20 @@ public class RuralHouse implements Serializable {
 	 */
 	public String getDireccion() {
 		return direccion;
+	}
+
+	/**
+	 * @return the mediastring
+	 */
+	public String getMediastring() {
+		return mediastring;
+	}
+
+	/**
+	 * @param mediastring the mediastring to set
+	 */
+	public void setMediastring(String mediastring) {
+		this.mediastring = mediastring;
 	}
 
 	/**
@@ -84,9 +130,10 @@ public class RuralHouse implements Serializable {
 	/**
 	 * @param numHabitaciones the numHabitaciones to set
 	 */
-	public void setNumHabitaciones(String numHabitaciones) {
-		numHabitaciones = numHabitaciones;
+	public void setNumHabitaciones(String numHabitaciones){
+		this.numHabitaciones=numHabitaciones;
 	}
+	
 
 	/**
 	 * @return the m2
@@ -102,6 +149,20 @@ public class RuralHouse implements Serializable {
 		this.m2 = m2;
 	}
 
+	/**
+	 * @return the cont
+	 */
+	public int getCont() {
+		return cont;
+	}
+
+	/**
+	 * @param cont the cont to set
+	 */
+	public void setCont(int cont) {
+		this.cont = cont;
+	}
+
 	public Integer getHouseNumber() {
 		return houseNumber;
 	}
@@ -112,6 +173,36 @@ public class RuralHouse implements Serializable {
 
 	public String getDescription() {
 		return description;
+	}
+
+	/**
+	 * @return the media
+	 */
+	public float getMedia() {
+		return media;
+	}
+
+	/**
+	 * @param media the media to set
+	 */
+	public void setMedia(float media) {
+		this.media = media;
+	}
+
+
+
+	/**
+	 * @return the offers
+	 */
+	public Vector<Offer> getOffers() {
+		return offers;
+	}
+
+	/**
+	 * @param offers the offers to set
+	 */
+	public void setOffers(Vector<Offer> offers) {
+		this.offers = offers;
 	}
 
 	public void setDescription(String description) {
@@ -150,6 +241,23 @@ public class RuralHouse implements Serializable {
 		return off;
 	}
 
+	public Valoracion crearValoracion(String comentario, String puntuacion, String nombre){
+		Valoracion val = new Valoracion(this, comentario, puntuacion, nombre);
+		valoraciones.add(val);
+		return val;
+	}
+	
+	
+	
+	public void anadirval(Valoracion v){
+		System.out.println(valoraciones);
+	valoraciones.add(v);
+	
+
+	
+	}
+	
+	
 	@Override
 	public int hashCode() {
 
@@ -157,6 +265,20 @@ public class RuralHouse implements Serializable {
 		int result = 1;
 		result = prime * result + houseNumber.hashCode();
 		return result;
+	}
+
+	/**
+	 * @return the valoraciones
+	 */
+	public Vector<Valoracion> getValoraciones() {
+		return valoraciones;
+	}
+
+	/**
+	 * @param valoraciones the valoraciones to set
+	 */
+	public void setValoraciones(Vector<Valoracion> valoraciones) {
+		this.valoraciones = valoraciones;
 	}
 
 	@Override
@@ -205,6 +327,25 @@ public class RuralHouse implements Serializable {
 		return availableOffers;
 
 	}
+
+	/**
+	 * @return the mediaint
+	 */
+
+	/**
+	 * @param mediaint the mediaint to set
+	 */
+
+
+	/**
+	 * @return the mediastring
+	 */
+
+
+	/**
+	 * @param mediastring the mediastring to set
+	 */
+	
 
 	/**
 	 * This method obtains the first offer that overlaps with the provided dates

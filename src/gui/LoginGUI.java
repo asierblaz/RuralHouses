@@ -31,25 +31,7 @@ public class LoginGUI extends JFrame {
 	private String usuario;
 	private String pass;
 	private JTextField textUsuario;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginGUI frame = new LoginGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public LoginGUI() {
 		setBounds(100, 100, 565, 362);
 		contentPane = new JPanel();

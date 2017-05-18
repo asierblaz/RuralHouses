@@ -1,0 +1,220 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-05-10 11:18:44 #1 explorer] 
+[ObjectDB 2.6.9_09] javax.persistence.PersistenceException
+Attempt to open a database file 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' that is currently in use by another process (error 141)
+	at com.objectdb.Explorer$1.run(Explorer.java:57)
+	at java.awt.event.InvocationEvent.dispatch(Unknown Source)
+	at java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.awt.EventQueue.access$500(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
+Caused by: com.objectdb.o.UserException: Attempt to open a database file 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' that is currently in use by another process
+	at com.objectdb.o.MSG.d(MSG.java:62)
+	at com.objectdb.o.LFL.G(LFL.java:939)
+	at com.objectdb.o.LFL.B(LFL.java:885)
+	at com.objectdb.o.LFL.B(LFL.java:794)
+	at com.objectdb.o.SFL.<init>(SFL.java:235)
+	at com.objectdb.o.MST.<init>(MST.java:123)
+	at com.objectdb.o.MST.aN(MST.java:105)
+	at com.objectdb.o.MSF.Vn(MSF.java:188)
+	at com.objectdb.o.OMF.an(OMF.java:782)
+	at com.objectdb.jpa.EMF.an(EMF.java:131)
+	at com.objectdb.o.OMF.am(OMF.java:693)
+	at com.objectdb.jpa.EMF.createEntityManager(EMF.java:150)
+	... 17 more
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-05-10 11:18:52 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' has been recovered (tr. 485-485)
+
+[2017-05-10 11:18:53 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 6236@ASIER
+
+[2017-05-10 11:19:22 #3 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 6236@ASIER
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-05-10 11:20:18 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 4232@ASIER
+
+[2017-05-10 11:20:30 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 4232@ASIER
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-05-10 11:25:04 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 4232@ASIER
+
+[2017-05-10 11:25:09 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 4232@ASIER
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-05-10 11:27:24 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' has been recovered (tr. 488-489)
+
+[2017-05-10 11:27:24 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 12484@ASIER
+
+[2017-05-10 11:28:34 #3 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 12484@ASIER
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-05-10 11:30:08 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' has been recovered (tr. 492-492)
+
+[2017-05-10 11:30:08 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 8376@ASIER
+
+[2017-05-10 11:30:22 #3 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 8376@ASIER
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-05-10 11:31:51 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' has been recovered (tr. 495-495)
+
+[2017-05-10 11:31:52 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 12808@ASIER
+
+[2017-05-10 11:32:05 #3 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 12808@ASIER
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-05-10 11:32:44 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' has been recovered (tr. 498-498)
+
+[2017-05-10 11:32:44 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 13276@ASIER
+
+[2017-05-10 11:32:54 #3 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 13276@ASIER
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-05-10 19:06:19 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 15288@ASIER
+
+[2017-05-10 19:07:13 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 15288@ASIER
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-05-10 19:16:19 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' has been recovered (tr. 506-506)
+
+[2017-05-10 19:16:19 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 9180@ASIER
+
+[2017-05-10 19:16:34 #3 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 9180@ASIER
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-05-10 19:20:32 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' has been recovered (tr. 508-508)
+
+[2017-05-10 19:20:32 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 8768@ASIER
+
+[2017-05-10 19:25:30 #3 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 8768@ASIER
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-05-10 19:28:36 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 13468@ASIER
+
+[2017-05-10 19:28:47 #2 explorer] 
+java.lang.IllegalArgumentException: Unexpected null argument
+	at com.objectdb.o.ERR.assertNotNull(ERR.java:232)
+	at com.objectdb.jpa.EMImpl.remove(EMImpl.java:432)
+	at com.objectdb.o.ETI.K(ETI.java:146)
+	at com.objectdb.o.ITP.D(ITP.java:456)
+	at com.objectdb.o.ITP.VQ(ITP.java:340)
+	at com.objectdb.o.RTR.VQ(RTR.java:69)
+	at com.objectdb.o.CMD.actionPerformed(CMD.java:470)
+	at javax.swing.AbstractButton.fireActionPerformed(Unknown Source)
+	at javax.swing.AbstractButton$Handler.actionPerformed(Unknown Source)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(Unknown Source)
+	at javax.swing.DefaultButtonModel.setPressed(Unknown Source)
+	at javax.swing.AbstractButton.doClick(Unknown Source)
+	at javax.swing.AbstractButton.doClick(Unknown Source)
+	at javax.swing.plaf.basic.BasicMenuItemUI$Actions.actionPerformed(Unknown Source)
+	at javax.swing.SwingUtilities.notifyAction(Unknown Source)
+	at javax.swing.JComponent.processKeyBinding(Unknown Source)
+	at javax.swing.JMenuBar.processBindingForKeyStrokeRecursive(Unknown Source)
+	at javax.swing.JMenuBar.processBindingForKeyStrokeRecursive(Unknown Source)
+	at javax.swing.JMenuBar.processBindingForKeyStrokeRecursive(Unknown Source)
+	at javax.swing.JMenuBar.processKeyBinding(Unknown Source)
+	at javax.swing.KeyboardManager.fireBinding(Unknown Source)
+	at javax.swing.KeyboardManager.fireKeyboardAction(Unknown Source)
+	at javax.swing.JComponent.processKeyBindingsForAllComponents(Unknown Source)
+	at javax.swing.JComponent.processKeyBindings(Unknown Source)
+	at javax.swing.JComponent.processKeyEvent(Unknown Source)
+	at java.awt.Component.processEvent(Unknown Source)
+	at java.awt.Container.processEvent(Unknown Source)
+	at java.awt.Component.dispatchEventImpl(Unknown Source)
+	at java.awt.Container.dispatchEventImpl(Unknown Source)
+	at java.awt.Component.dispatchEvent(Unknown Source)
+	at java.awt.KeyboardFocusManager.redispatchEvent(Unknown Source)
+	at java.awt.DefaultKeyboardFocusManager.dispatchKeyEvent(Unknown Source)
+	at java.awt.DefaultKeyboardFocusManager.preDispatchKeyEvent(Unknown Source)
+	at java.awt.DefaultKeyboardFocusManager.typeAheadAssertions(Unknown Source)
+	at java.awt.DefaultKeyboardFocusManager.dispatchEvent(Unknown Source)
+	at java.awt.Component.dispatchEventImpl(Unknown Source)
+	at java.awt.Container.dispatchEventImpl(Unknown Source)
+	at java.awt.Window.dispatchEventImpl(Unknown Source)
+	at java.awt.Component.dispatchEvent(Unknown Source)
+	at java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.awt.EventQueue.access$500(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue$4.run(Unknown Source)
+	at java.awt.EventQueue$4.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
+
+[2017-05-10 19:29:09 #3 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 13468@ASIER
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-05-10 21:39:26 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 11884@ASIER
+
+[2017-05-10 21:40:34 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 11884@ASIER
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-05-10 22:49:33 #1 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is opened by 4872@ASIER
+
+[2017-05-10 22:52:33 #2 store] 
+Database 'G:\Informatika\4 curso\Ingenieria del software\RuralHouses\resources\ruralHouses.odb' is closed by 4872@ASIER
+

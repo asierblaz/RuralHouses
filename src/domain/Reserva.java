@@ -17,60 +17,115 @@ import javax.xml.bind.annotation.XmlIDREF;
 @Entity
 public class Reserva implements Serializable {
 
-	private Date fechaReserva;
-	private int numReserva;
+	@Id
+	@GeneratedValue
+	private Integer numReserva;
+	private String precioTotal;
 	private String telefono;
-	private Offer oferta;
+	private String numNoches;
+	@XmlIDREF
 	private Users client;
+	@XmlIDREF
+	private Offer oferta;
+	private RuralHouse ruralHouse;
+
 	
-	public Reserva(Date fechaReserva, int numReserva, String telefono, Offer oferta, Users client) {
-		this.fechaReserva = new Date(System.currentTimeMillis());
-		this.numReserva = numReserva;
+	public Reserva() {	}
+
+	public Reserva(RuralHouse ruralHouse,Offer oferta,String telefono, String precioTotal,String numNoches, Users client) {
+		super();
+		this.precioTotal = precioTotal;
 		this.telefono = telefono;
 		this.oferta = oferta;
 		this.client = client;
-	}
+		this.ruralHouse=ruralHouse;
+		this.numNoches= numNoches;
+		this.numReserva = numReserva;
 
-	/**
-	 * @return the fechaReserva
-	 */
-	public Date getFechaReserva() {
-		return fechaReserva;
-	}
-
-	/**
-	 * @param fechaReserva the fechaReserva to set
-	 */
-	public void setFechaReserva(Date fechaReserva) {
-		this.fechaReserva = fechaReserva;
 	}
 
 	/**
 	 * @return the numReserva
 	 */
-	public int getNumReserva() {
+	public Integer getNumReserva() {
 		return numReserva;
 	}
 
 	/**
 	 * @param numReserva the numReserva to set
 	 */
-	public void setNumReserva(int numReserva) {
+	public void setNumReserva(Integer numReserva) {
 		this.numReserva = numReserva;
+	}
+
+	/**
+	 * @return the precioTotal
+	 */
+	public String getPrecioTotal() {
+		return precioTotal;
+	}
+
+	/**
+	 * @param precioTotal the precioTotal to set
+	 */
+	public void setPrecioTotal(String precioTotal) {
+		this.precioTotal = precioTotal;
+	}
+
+	/**
+	 * @return the ruralHouse
+	 */
+	public RuralHouse getRuralHouse() {
+		return ruralHouse;
+	}
+
+	/**
+	 * @param ruralHouse the ruralHouse to set
+	 */
+	public void setRuralHouse(RuralHouse ruralHouse) {
+		this.ruralHouse = ruralHouse;
 	}
 
 	/**
 	 * @return the telefono
 	 */
-	public String gettelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
 	/**
 	 * @param telefono the telefono to set
 	 */
-	public void settelefono(String telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+
+	/**
+	 * @return the client
+	 */
+	public Users getClient() {
+		return client;
+	}
+
+	/**
+	 * @param client the client to set
+	 */
+	public void setClient(Users client) {
+		this.client = client;
+	}
+
+	/**
+	 * @return the numNoches
+	 */
+	public String getNumNoches() {
+		return numNoches;
+	}
+
+	/**
+	 * @param numNoches the numNoches to set
+	 */
+	public void setNumNoches(String numNoches) {
+		this.numNoches = numNoches;
 	}
 
 	/**
@@ -87,18 +142,21 @@ public class Reserva implements Serializable {
 		this.oferta = oferta;
 	}
 
-	/**
-	 * @return the client
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
 	 */
-	public Users getClient() {
-		return client;
+	public String toString2() {
+		return "Reserva [numReserva=" + numReserva + ", precioTotal=" + precioTotal + ", telefono=" + telefono
+				+ ", numNoches=" + numNoches + ", client=" + client + ", oferta=" + oferta + ", ruralHouse="
+				+ ruralHouse + "]";
 	}
 
-	/**
-	 * @param client the client to set
-	 */
-	public void setClient(Users client) {
-		this.client = client;
+	@Override
+	public String toString(){
+		String nl = System.getProperty("line.separator");
+		String me= numReserva+ ":" + ruralHouse.getCity() ;
+		
+		return me;
 	}
 	
 	

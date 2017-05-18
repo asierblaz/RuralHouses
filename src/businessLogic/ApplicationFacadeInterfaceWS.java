@@ -12,6 +12,7 @@ import domain.Owner;
 import domain.Reserva;
 import domain.RuralHouse;
 import domain.Users;
+import domain.Valoracion;
 import exceptions.BadDates;
 import exceptions.CasaNoReservada;
 import exceptions.OverlappingOfferExists;
@@ -33,7 +34,12 @@ public interface ApplicationFacadeInterfaceWS  {
 
 
 	@WebMethod Offer createOffer(RuralHouse ruralHouse, Date firstDay, Date lastDay,
-			float price) throws  OverlappingOfferExists, BadDates;
+		float price) throws  OverlappingOfferExists, BadDates;
+	
+	
+	@WebMethod public Valoracion crearValoracion(RuralHouse ruralHouse, String comentario, String puntuacion, String nombre)
+			throws RemoteException, Exception;
+
 	/**
 	 * This method creates a book with a corresponding parameters
 	 * 
@@ -56,8 +62,15 @@ public interface ApplicationFacadeInterfaceWS  {
 	@WebMethod public Vector<RuralHouse> getRuralHouseByHabitaciones(String habitaciones);
 	@WebMethod public Vector<RuralHouse> getRuralHouseByMetros(String metros);
 	@WebMethod public Vector<RuralHouse> getRuralHouseByDescripcion(String descripcion);
+	@WebMethod public Vector<Offer> getOffersbyHouse(RuralHouse rh);
+	@WebMethod 	public Vector<Valoracion> getComentariosByHouse(RuralHouse rh);
+	@WebMethod	public Vector<RuralHouse> getRuralHouseByPuntuacion(String puntuacion);
 
+	@WebMethod public Vector<Reserva> getReservasByClient();
 
+	public void actualizarMedia(RuralHouse rh,float media, float puntuaciontotal,int cont);
+
+	public Reserva crearReserva(RuralHouse ruralHouse,Offer oferta,String telefono, String precioTotal,String numNoches, Users client) throws RemoteException, Exception ;
 	/**
 	 * This method obtains the  offers of a ruralHouse in the provided dates 
 	 * 
@@ -67,17 +80,19 @@ public interface ApplicationFacadeInterfaceWS  {
 	 * @return the first offer that overlaps with those dates, or null if there is no overlapping offer
 	 */
 	@WebMethod public void BorrarCasa (RuralHouse rh) throws RemoteException, Exception;
-	
+	@WebMethod public void BorrarOfferta (Offer of) throws RemoteException, Exception;
+
 	@WebMethod public Client crearCliente (String nombre,String usuario, String pass, String cuenta) throws RemoteException, Exception;
 	
 	@WebMethod public Owner crearOwner(String nombre, String usuario, String pass, String cuenta)throws RemoteException, Exception;
 	@WebMethod public Users comprobarUsuario(String usuario, String pass) throws RemoteException, Exception;
+	@WebMethod public boolean actualizarUsuario (Users u, String nombre, String usuario, String pass, String cuenta)throws RemoteException, Exception;
+
 	
 	@WebMethod public RuralHouse crearRuralHouse(String description, String city,String direccion, String m2,String numHabitaciones, Owner owner) throws RemoteException, Exception;
 	
 	@WebMethod public boolean actualizarRuralHouse(RuralHouse rh, String description, String city,String direccion,String numHabitaciones,String m2)throws RemoteException, Exception;
 	
-	@WebMethod public Reserva reservarCasa(RuralHouse rh, Date primerDia, Date ultimaNoche, String telefono, Users u) throws CasaNoReservada;
 	@WebMethod public Vector<Offer> getOffers( RuralHouse rh, Date firstDay,  Date lastDay) ;
 	
 	@WebMethod public void initializeBD();
